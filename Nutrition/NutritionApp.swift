@@ -11,10 +11,21 @@ import SwiftUI
 struct NutritionApp: App {
     let persistenceController = PersistenceController.shared
 
+    @ObservedObject var appController: AppController
+    
+    init() {
+        guard let appController = AppController() else {  fatalError("AppController initialization failed") }
+        self.appController = appController
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if appController.isContentLoaded {
+                Home(app: appController)
+            }
+            else {
+                Text("Loading...")
+            }
         }
     }
 }

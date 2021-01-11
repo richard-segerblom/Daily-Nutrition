@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDConsumed" representedClassName="CDConsumed" syncable="YES">
+        <attribute name="consumedID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="eatableID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="mealID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="cdEatable" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDEatable" inverseName="existsInConsumed" inverseEntity="CDEatable"/>
+        <relationship name="cdMeal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDMeal" inverseName="existsInConsumed" inverseEntity="CDMeal"/>
+    </entity>
+    <entity name="CDEatable" representedClassName="CDEatable" syncable="YES">
+        <attribute name="amount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="eatableID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="foodID" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="cdFood" maxCount="1" deletionRule="Nullify" destinationEntity="CDFood" inverseName="existsInEatables" inverseEntity="CDFood"/>
+        <relationship name="existsInConsumed" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDConsumed" inverseName="cdEatable" inverseEntity="CDConsumed"/>
+    </entity>
+    <entity name="CDFood" representedClassName="CDFood" syncable="YES">
+        <attribute name="foodCategory" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="foodID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="nutritionProfileID" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="existsInEatables" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDEatable" inverseName="cdFood" inverseEntity="CDEatable"/>
+        <relationship name="existsInIngredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDIngredient" inverseName="cdFood" inverseEntity="CDIngredient"/>
+        <relationship name="nutritionProfile" maxCount="1" deletionRule="Cascade" destinationEntity="CDNutritionProfile" inverseName="food" inverseEntity="CDNutritionProfile"/>
+    </entity>
+    <entity name="CDIngredient" representedClassName="CDIngredient" syncable="YES">
+        <attribute name="amount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="foodID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="ingredientID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="mealID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="cdFood" maxCount="1" deletionRule="Nullify" destinationEntity="CDFood" inverseName="existsInIngredients" inverseEntity="CDFood"/>
+        <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDMeal" inverseName="cdIngredients" inverseEntity="CDMeal"/>
+    </entity>
+    <entity name="CDMeal" representedClassName="CDMeal" syncable="YES">
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="mealCategory" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mealID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="cdIngredients" toMany="YES" deletionRule="Cascade" destinationEntity="CDIngredient" inverseName="meal" inverseEntity="CDIngredient"/>
+        <relationship name="existsInConsumed" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDConsumed" inverseName="cdMeal" inverseEntity="CDConsumed"/>
+    </entity>
+    <entity name="CDNutrient" representedClassName="CDNutrient" syncable="YES">
+        <attribute name="nutrientID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="nutrientKey" attributeType="String"/>
+        <attribute name="nutritionProfileID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="value" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weightUnit" attributeType="String"/>
+        <relationship name="nutritionProfile" maxCount="1" deletionRule="Nullify" destinationEntity="CDNutritionProfile" inverseName="allNutrients" inverseEntity="CDNutritionProfile"/>
+    </entity>
+    <entity name="CDNutritionProfile" representedClassName="CDNutritionProfile" syncable="YES">
+        <attribute name="nutritionProfileID" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="allNutrients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDNutrient" inverseName="nutritionProfile" inverseEntity="CDNutrient"/>
+        <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDFood" inverseName="nutritionProfile" inverseEntity="CDFood"/>
+    </entity>
+    <elements>
+        <element name="CDConsumed" positionX="0" positionY="0" width="128" height="119"/>
+        <element name="CDEatable" positionX="0" positionY="0" width="128" height="104"/>
+        <element name="CDFood" positionX="0" positionY="0" width="128" height="134"/>
+        <element name="CDIngredient" positionX="0" positionY="0" width="128" height="134"/>
+        <element name="CDMeal" positionX="0" positionY="0" width="128" height="119"/>
+        <element name="CDNutrient" positionX="0" positionY="0" width="128" height="119"/>
+        <element name="CDNutritionProfile" positionX="0" positionY="0" width="128" height="74"/>
+    </elements>
+</model>

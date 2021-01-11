@@ -1,0 +1,21 @@
+[
+
+    {"Food Name": "Olive Oil", "Category": 5,
+    "Nutrients": [
+    {"Key": "Fats", "Unit": "g", "Value": 100.0},
+    {"Key": "Calcium", "Unit": "mg", "Value": 1.0},
+    {"Key": "S", "Unit": "g", "Value": 13.8},
+    {"Key": "Potassium", "Unit": "mg", "Value": 1.0},
+    {"Key": "M", "Unit": "g", "Value": 73.0},
+    {"Key": "Choline", "Unit": "mg", "Value": 0.3},
+    {"Key": "ALA", "Unit": "g", "Value": 0.761},
+    {"Key": "P", "Unit": "g", "Value": 10.5},
+    {"Key": "Sodium", "Unit": "mg", "Value": 2.0},
+    {"Key": "E", "Unit": "mg", "Value": 14.4},
+    {"Key": "Iron", "Unit": "mg", "Value": 0.56},
+    {"Key": "K", "Unit": "µg", "Value": 60.2},
+    {"Key": "Calories", "Unit": "kcal", "Value": 884.0},
+    {"Key": "LA", "Unit": "g", "Value": 9.76}
+    ]}
+    
+]
