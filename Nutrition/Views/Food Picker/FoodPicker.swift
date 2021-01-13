@@ -24,7 +24,7 @@ struct FoodPicker: View {
     
     var body: some View {
         NavigationView {
-            FoodList(foodStorage: foodStorage, action: eatTapped(food:amount:))
+            FoodList(foodStorage: foodStorage, title: "Eat Something?", action: eatTapped(food:amount:))
         }
     }
     
@@ -36,15 +36,18 @@ struct FoodPicker: View {
 struct FoodList: View {
     @ObservedObject var foodStorage: FoodStorageController
     @State private var isSearchPresented: Bool = false
+    @Environment(\.presentationMode) var presentationMode
         
     let style: PickerStyle
     let action: (FoodController, Int16) -> Void
     let searchController: SearchController
+    let title: String
     
     var foods: [FoodController] { foodStorage.foods }
     
-    init(foodStorage: FoodStorageController, style: PickerStyle = .food, action: @escaping (FoodController, Int16) -> Void) {
+    init(foodStorage: FoodStorageController, title: String, style: PickerStyle = .food, action: @escaping (FoodController, Int16) -> Void) {
         self.foodStorage = foodStorage
+        self.title = title
         self.style = style
         self.action = action
         self.searchController = SearchController(required: foodStorage.userController.profile,
@@ -63,12 +66,12 @@ struct FoodList: View {
             }
         }
         .sheet(isPresented: $isSearchPresented) { SearchView(searchController: searchController) }
-        .navigationTitle("Eat Something?")
+        .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar() {
             ToolbarItem(placement: .navigationBarLeading) {
                 if style == .food { Button(action: { isSearchPresented = true }, label: { Text("New") }) }
-                else { EmptyView() }
+                else { Button(action: { self.presentationMode.wrappedValue.dismiss() }, label: { Text("Close") }) }
             }
             ToolbarItem(placement: .navigationBarTrailing) { menu }
         }
