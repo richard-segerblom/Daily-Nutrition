@@ -23,48 +23,46 @@ struct MealPicker: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section(header: Label("ALL", systemImage: "asterisk.circle")) {
-                    sectionContent
-                    
-                    ForEach(mealStorage.meals) { mealController in
-                        NavigationLink(destination: MealDetail(mealController: mealController)) {
-                            MealRow(mealController: mealController)
-                                .contextMenu(ContextMenu(menuItems: {
-                                    eatButton
-                                    deleteButton
-                                }))
-                        }
+            Group {
+                if isCreateMealPresented {
+                    CreateMeal(mealStorage: mealStorage, foodStorage: foodStorage)
+                } else {
+                    if mealStorage.meals.isEmpty {
+                       createMealButton
+                    } else {
+                       MealList(mealStorage: mealStorage)
                     }
-                    .onDelete { indexSet in mealStorage.deleteMeal(atOffsets: indexSet) }
                 }
             }
-            .onTapGesture { isCreateMealPresented = true }
-            .navigationTitle("Meals")
+            .navigationTitle(isCreateMealPresented ? "New Meal" : "Meals")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar() { ToolbarItem(placement: .navigationBarTrailing) { menu } }
-            .sheet(isPresented: $isCreateMealPresented) {
-                CreateMeal(mealController: mealStorage.emptyMeal(), foodStorageController: foodStorage)
+            .toolbar() {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if isCreateMealPresented { createButton } else { menu }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if !isCreateMealPresented { addButton } else { cancelButton }
+                }
             }
         }
+    }        
+            
+    var cancelButton: some View { Button(action: { isCreateMealPresented = false }, label: { Text("Cancel") }) }
+    
+    var createButton: some View { Button(action: { /* TODO Implement create */ }, label: { Text("Create") }) }
+        
+    var addButton: some View { Button(action: { isCreateMealPresented = true }, label: { Image(systemName: "plus") }) }
+    
+    var createMealButton: some View {
+        Button(action: {
+            isCreateMealPresented = true
+        }, label: {
+            VStack {
+                Text("You have no meals.\nWant to create a new?")
+                    .multilineTextAlignment(.center)
+            }.foregroundColor(.accentColor)
+        })
     }
-    
-    var sectionContent: some View {
-        HStack {
-            Image(systemName: "plus.square.fill")
-                .font(.system(size: fontSize))
-                .padding(.trailing, padding)
-            Text("New Meal...")
-            Spacer()
-        }
-        .padding(.vertical, padding)
-        .foregroundColor(isCreateMealPresented ? .black : .accentColor)
-        .contentShape(Rectangle())
-    }
-    
-    var eatButton: some View { Button(action: { /* TODO Implement eat */ }, label: { Label("Eat", systemImage: "folder") }) }
-    
-    var deleteButton: some View { Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "folder") }) }
     
     var menu: some View {
         Menu {
@@ -83,6 +81,31 @@ struct MealPicker: View {
     private let menuColor = Color("ProgressColor")
     private let padding: CGFloat = 4
     private let fontSize: CGFloat = 26
+}
+
+struct MealList: View {
+    @ObservedObject var mealStorage: MealStorageController
+    
+    var body: some View {
+        List {
+            Section(header: Label("ALL", systemImage: "asterisk.circle")) {
+                ForEach(mealStorage.meals) { mealController in
+                    NavigationLink(destination: MealDetail(mealController: mealController)) {
+                        MealRow(mealController: mealController)
+                            .contextMenu(ContextMenu(menuItems: {
+                                eatButton
+                                deleteButton
+                            }))
+                    }
+                }
+                .onDelete { indexSet in mealStorage.deleteMeal(atOffsets: indexSet) }
+            }
+        }
+    }
+    
+    var eatButton: some View { Button(action: { /* TODO Implement eat */ }, label: { Label("Eat", systemImage: "folder") }) }
+    
+    var deleteButton: some View { Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "folder") }) }
 }
 
 struct MealPicker_Previews: PreviewProvider {

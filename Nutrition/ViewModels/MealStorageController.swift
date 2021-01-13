@@ -29,8 +29,4 @@ final class MealStorageController: ObservableObject {
     func deleteMeal(atOffsets offsets: IndexSet) {
         meals.remove(atOffsets: offsets)
     }
-    
-    func emptyMeal() -> MealController { // REMOVE ????
-        MealController(meal: NewMeal(id: UUID(), name: "", date: Date(), ingredients: []), required: userController.profile)
-    }    
 }
