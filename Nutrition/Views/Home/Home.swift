@@ -62,6 +62,7 @@ struct Home: View {
             Image(systemName: "person.crop.circle.fill")
         }
         .sheet(isPresented: $isProfilePresented) { Profile(user: userController) }
+        .disabled(!userController.isUserSetUp)
     }
     
     var consumedButton: some View {
@@ -71,6 +72,7 @@ struct Home: View {
             Image(systemName: "heart.fill")
         }
         .sheet(isPresented: $isConsumedPresented) { ConsumedToday(consumedStorageController: app.consumedStorage) }
+        .disabled(!userController.isUserSetUp)
     }
     
     // MARK: - Drawing Constants
