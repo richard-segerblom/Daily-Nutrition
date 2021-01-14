@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MealDetail: View {
-    let mealController: MealController        
+    let mealController: MealController
+    let onEatTapped: (MealController) -> Void
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -33,13 +34,16 @@ struct MealDetail: View {
                 
                 Detail(profile: mealController.nutritionProfile)
                 
-                DefaultButton(title: "EAT", action: { /* TODO Implement eat meal */ })
+                DefaultButton(title: "EAT", action: { onEatTapped(mealController) })
                     .padding(.top, buttonPadding)
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(Text(mealController.name))
+            .toolbar() { ToolbarItem(placement: .navigationBarTrailing) { eatButton } }
         }.padding()
     }
+    
+    var eatButton: some View { Button(action: { onEatTapped(mealController) }, label: { Text("Eat") }) }
     
     // MARK: - Drawing Constants
     private let titlePadding: CGFloat = 5
@@ -50,6 +54,6 @@ struct MealDetail: View {
 
 struct MealDetail_Previews: PreviewProvider {
     static var previews: some View {
-        MealDetail(mealController: PreviewData.mealController)
+        MealDetail(mealController: PreviewData.mealController) { _ in }
     }
 }

@@ -68,7 +68,7 @@ final class MealStorageController: ObservableObject {
     
     func fetchMeals() {
         let meals = CDMeal.all(context: persistenceController.container.viewContext).map {
-            MealController(meal: $0, required: userController.profile)
+            MealController(meal: $0, required: userController.profile, persistenceController: persistenceController)
         }
         
         self.meals = meals

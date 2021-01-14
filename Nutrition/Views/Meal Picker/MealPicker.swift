@@ -93,11 +93,16 @@ struct MealPicker: View {
 struct MealList: View {
     @ObservedObject var mealStorage: MealStorageController
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         List {
             Section(header: Label("ALL", systemImage: "asterisk.circle")) {
                 ForEach(mealStorage.meals) { mealController in
-                    NavigationLink(destination: MealDetail(mealController: mealController)) {
+                    NavigationLink(destination: MealDetail(mealController: mealController) {
+                        $0.eat()
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
                         MealRow(mealController: mealController)
                             .contextMenu(ContextMenu(menuItems: {
                                 eatButton

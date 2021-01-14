@@ -27,7 +27,7 @@ final class FoodController: NutritionProfileController {
     func eat(amount: Int16, completion: (() -> Void)? = nil) {
         let context = persistenceController.container.viewContext
         let eatable = CDEatable(context: context, amount: amount, food: food as! CDFood)
-        let _ = CDConsumed(context: context, meal: nil, eatable: eatable)
+        CDConsumed(context: context, meal: nil, eatable: eatable)
                 
         persistenceController.saveChanges(success: { completion?() })
     }    
