@@ -101,6 +101,17 @@ extension CDMeal {
 }
 
 extension CDMeal {
+    static func all(context: NSManagedObjectContext) -> [CDMeal] {
+        let request = NSFetchRequest<CDMeal>(entityName: "CDMeal")
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(CDMeal.name), ascending: true)]
+        
+        guard let meals = try? context.fetch(request) else { return [] }
+        
+        meals.forEach { $0.addToCdIngredients(NSSet(array: CDIngredient.inMeal(mealID: $0.mealID, context: context))) }
+        
+        return meals
+    }
+    
     static func withID(_ id: UUID, context: NSManagedObjectContext) -> CDMeal? {
         let request = NSFetchRequest<CDMeal>(entityName: "CDMeal")
         request.predicate = NSPredicate(format: "mealID == %@", id as CVarArg)

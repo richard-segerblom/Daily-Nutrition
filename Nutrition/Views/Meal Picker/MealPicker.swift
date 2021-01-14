@@ -54,6 +54,7 @@ struct MealPicker: View {
     var cancelButton: some View { Button(action: { isCreateMealPresented = false }, label: { Text("Cancel") }) }
     
     var createButton: some View { Button(action: {
+        isCreateMealPresented = false
         mealStorage.createMeal(name: newMealName, category: newMealCategory, ingredients: newMealIngredients)
     }, label: { Text("Create") }) }
         
