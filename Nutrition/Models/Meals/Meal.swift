@@ -96,7 +96,7 @@ extension CDMeal {
         setValue(mealID, forKey: "mealID")
         setValue(name, forKey: "name")
         setValue(creationDate, forKey: "creationDate")
-        setValue(foodCategory.rawValue, forKey: "foodCategory")
+        setValue(foodCategory.rawValue, forKey: "mealCategory")
     }
 }
 

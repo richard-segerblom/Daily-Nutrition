@@ -29,4 +29,15 @@ final class MealStorageController: ObservableObject {
     func deleteMeal(atOffsets offsets: IndexSet) {
         meals.remove(atOffsets: offsets)
     }
+    
+    func createMeal(name: String, category: Int, ingredients: [Ingredient]) {
+        guard let category = FoodCategory(rawValue: Int16(category)) else { return }
+        
+        let meal = CDMeal(context: persistenceController.container.viewContext, name: name, foodCategory: category)
+        for ingrediet in ingredients {
+            CDIngredient(context: persistenceController.container.viewContext, amount: ingrediet.amount, sortOrder: ingrediet.sortOrder, food: ingrediet.food as! CDFood, meal: meal)
+        }
+        
+        persistenceController.saveChanges(success: { print("success") }, failure: { _ in print("failure") })
+    }
 }

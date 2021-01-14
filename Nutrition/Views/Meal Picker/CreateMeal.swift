@@ -7,17 +7,19 @@
 
 import SwiftUI
 
-struct CreateMeal: View {
-    let mealStorage: MealStorageController
+struct CreateMeal: View {    
     let foodStorage: FoodStorageController
     
-    @State private var name = ""
-    @State private var category = 0
-    @State private var ingredients: [Ingredient] = [ ]
+    @Binding var name: String
+    @Binding var category: Int
+    @Binding var ingredients: [Ingredient]
+    
     @State private var isIngredientPickerPresented = false
     
-    init(mealStorage: MealStorageController, foodStorage: FoodStorageController) {
-        self.mealStorage = mealStorage
+    init(name: Binding<String>, category: Binding<Int>, ingredients: Binding<[Ingredient]>, foodStorage: FoodStorageController) {
+        _name = name
+        _category = category
+        _ingredients = ingredients
         self.foodStorage = foodStorage
         
         UINavigationBar.setOpaqueBackground()
@@ -104,6 +106,6 @@ struct IngredientList: View {
 
 struct CreateMeal_Previews: PreviewProvider {
     static var previews: some View {
-        CreateMeal(mealStorage: PreviewData.mealStorage, foodStorage: PreviewData.foodStorage)
+        CreateMeal(name: Binding.constant("Smoothie"), category: Binding.constant(0), ingredients: Binding.constant([]), foodStorage: PreviewData.foodStorage)
     }
 }

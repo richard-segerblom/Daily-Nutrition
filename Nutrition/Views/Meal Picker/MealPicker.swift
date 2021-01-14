@@ -14,6 +14,10 @@ struct MealPicker: View {
     @State private var filterOption = 0
     @State private var isCreateMealPresented = false
     
+    @State private var newMealName: String = ""
+    @State private var newMealCategory: Int = 0
+    @State private var newMealIngredients: [Ingredient] = []
+    
     init(mealStorage: MealStorageController, foodStorage: FoodStorageController) {
         self.mealStorage = mealStorage
         self.foodStorage = foodStorage
@@ -25,7 +29,7 @@ struct MealPicker: View {
         NavigationView {
             Group {
                 if isCreateMealPresented {
-                    CreateMeal(mealStorage: mealStorage, foodStorage: foodStorage)
+                    CreateMeal(name: $newMealName, category: $newMealCategory, ingredients: $newMealIngredients, foodStorage: foodStorage)
                 } else {
                     if mealStorage.meals.isEmpty {
                        createMealButton
@@ -49,7 +53,9 @@ struct MealPicker: View {
             
     var cancelButton: some View { Button(action: { isCreateMealPresented = false }, label: { Text("Cancel") }) }
     
-    var createButton: some View { Button(action: { /* TODO Implement create */ }, label: { Text("Create") }) }
+    var createButton: some View { Button(action: {
+        mealStorage.createMeal(name: newMealName, category: newMealCategory, ingredients: newMealIngredients)
+    }, label: { Text("Create") }) }
         
     var addButton: some View { Button(action: { isCreateMealPresented = true }, label: { Image(systemName: "plus") }) }
     
