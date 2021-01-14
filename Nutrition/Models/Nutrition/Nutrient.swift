@@ -70,7 +70,19 @@ extension CDNutrient {
         request.predicate = NSPredicate(format: "nutritionProfileID == %@", profileID as CVarArg)
         
         guard let result = try? context.fetch(request) else { return [] }
+        
         return result
+    }
+    
+    static func update(nutrientID: UUID, value: Float, context: NSManagedObjectContext) {
+        let request = NSFetchRequest<CDNutrient>(entityName: "CDNutrient")
+        request.predicate = NSPredicate(format: "nutrientID == %@", nutrientID as CVarArg)
+        
+        guard let result = try? context.fetch(request).first else { return }
+        
+        result.setValue(value, forKey: "value")
+        
+        try? context.save()
     }
 }
 

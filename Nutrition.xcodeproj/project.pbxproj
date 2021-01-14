@@ -182,6 +182,7 @@
 			children = (
 				794103592598DB6C00101920 /* Storage */,
 				794103B02599224500101920 /* Networking */,
+				7978AEB725B07E030013F235 /* Utility */,
 				79D22E1A25A20326006E046B /* Models */,
 				79D22E1825A2012F006E046B /* ViewModels */,
 				7998349025A0CBC600949A6F /* Views */,
@@ -273,6 +274,14 @@
 			path = "Progress Bars";
 			sourceTree = "<group>";
 		};
+		7978AEB725B07E030013F235 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				79A024B625A513CD005D186B /* ReferenceDailyIntake.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		7998347425A0BE8A00949A6F /* Chart */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,7 +323,6 @@
 		7998348B25A0CA0800949A6F /* Nutrition */ = {
 			isa = PBXGroup;
 			children = (
-				79A024B625A513CD005D186B /* ReferenceDailyIntake.swift */,
 				794103D2259A75A100101920 /* NutritionProfile.swift */,
 				794103D5259A75D000101920 /* Nutrient.swift */,
 			);

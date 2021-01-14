@@ -37,7 +37,16 @@ class NutritionProfileController: Identifiable, ObservableObject {
     init(profile: NutritionProfile, required: NutritionProfile) {
         self._profile = profile
         self.required = required
-        scalableProfile = NewNutritionProfile(nutrients: profile.nutrients.map { NewNutrient(key: $0, value: $1.value, unit: $1.unit) })
+        scalableProfile = NewNutritionProfile(nutrients: profile.nutrients.map { NewNutrient(key: $0, value: $1.value, unit: $1.unit) }, id: required.id)
+    }
+    
+    func updateRequired(key: NutrientKey, value: String) {
+        var nutrients = required.nutrients
+        guard let original = nutrients[key], let value = Float(value) else { return }
+        
+        nutrients[key] = NewNutrient(id: original.id, key: key, value: value, unit: original.unit)
+                
+        required = NewNutritionProfile(nutrients: nutrients.map { $0.value }, id: required.id)   
     }
     
     func floatValue(key: NutrientKey) -> Float {
@@ -61,7 +70,7 @@ class NutritionProfileController: Identifiable, ObservableObject {
         
         var nutrients: [Nutrient] = []
         for (key, nutrient) in _profile.nutrients {
-            nutrients.append(NewNutrient(key: key, value: nutrient.value * scale, unit: nutrient.unit))
+            nutrients.append(NewNutrient(id: nutrient.id, key: key, value: nutrient.value * scale, unit: nutrient.unit))
         }
         
         objectWillChange.send()

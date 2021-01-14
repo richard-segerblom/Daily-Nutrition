@@ -14,6 +14,8 @@ struct Profile: View {
     @State private var gender = 0
     @State private var age = 0
     
+    @Environment(\.presentationMode) var presentationMode
+    
     init(user: UserController) {
         self.user = user
         _profile = State(initialValue: NutritionProfileController(profile: user.profile, required: user.profile))
@@ -44,7 +46,10 @@ struct Profile: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar() {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { /* TODO implement save profile */ }, label: { Text("Save") })
+                    Button(action: {
+                        user.updateNutrients(profile: profile.required)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }, label: { Text("Save") })
                 }
             }
         }
@@ -71,10 +76,11 @@ struct ProfileSection: View {
                 HStack {
                     Text("\(nutrient.name)")
                     TextField("0.0", text: Binding(
-                        get: { return  isDecimal ? String(format: "%.1f", profile.floatValue(key: nutrient.key))
-                            : String(profile.intValue(key: nutrient.key))},
-                        set: { _ in
-                            // TODO Handle new value
+                        get: {
+                            return  isDecimal ? String(format: "%.1f", profile.floatValue(key: nutrient.key)) : String(profile.intValue(key: nutrient.key))
+                        },
+                        set: { newValue in
+                            profile.updateRequired(key: nutrient.key, value: newValue)
                         }
                     ))
                     .multilineTextAlignment(.trailing)

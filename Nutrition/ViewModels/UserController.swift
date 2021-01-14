@@ -13,7 +13,7 @@ final class UserController: ObservableObject {
     let persistenceController: PersistenceController
     
     var isUserSetUp: Bool { user != nil }
-    var profile: NutritionProfile { user?.nutritionProfile ?? NewNutritionProfile(nutrients: []) }
+    var profile: NutritionProfile { return user?.nutritionProfile ?? NewNutritionProfile(nutrients: []) }
     var age: Int { user?.age ?? 0 }
     var gender: Gender { user?.gender ?? .unknown }
     
@@ -31,19 +31,23 @@ final class UserController: ObservableObject {
     }
     
     func updateNutrients(profile: NutritionProfile) {
-        if hasProfileChanged(profile: profile) {
-            // TODO Implement..
-        }
-    }
-    
-    private func hasProfileChanged(profile: NutritionProfile) -> Bool {
-        let original = self.profile.nutrients
-        let new = profile.nutrients
-        for (key, nutrient) in new {
-            if nutrient.value == original[key]?.value {
-                return true
+        DispatchQueue.global(qos: .background).async {
+            var didUpdate = false
+            let all = self.profile.nutrients
+            for (key, nutrient) in profile.nutrients {
+                guard let original = all[key] else { continue }
+                
+                if  nutrient.value != original.value {
+                    CDNutrient.update(nutrientID: nutrient.id, value: nutrient.value, context: self.persistenceController.container.viewContext)
+                    didUpdate = true
+                }
+            }
+            
+            DispatchQueue.main.async {
+                if didUpdate {
+                    self.user = User.loadUser(context: self.persistenceController.container.viewContext)
+                }
             }
         }
-        return false
     }
 }

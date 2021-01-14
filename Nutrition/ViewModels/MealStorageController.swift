@@ -63,7 +63,7 @@ final class MealStorageController: ObservableObject {
             CDIngredient(context: persistenceController.container.viewContext, amount: ingrediet.amount, sortOrder: ingrediet.sortOrder, food: ingrediet.food as! CDFood, meal: meal)
         }
         
-        persistenceController.saveChanges(success: { print("success") }, failure: { _ in print("failure") })
+        persistenceController.saveChanges()
     }
     
     func fetchMeals() {
