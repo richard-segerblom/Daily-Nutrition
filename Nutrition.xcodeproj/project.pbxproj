@@ -44,6 +44,7 @@
 		79850C5725AA254E008490FE /* Seafood.json in Resources */ = {isa = PBXBuildFile; fileRef = 79850C5625AA254E008490FE /* Seafood.json */; };
 		79850C5A25AA256B008490FE /* Dairy.json in Resources */ = {isa = PBXBuildFile; fileRef = 79850C5925AA256B008490FE /* Dairy.json */; };
 		79850C5D25AA258B008490FE /* Pantry.json in Resources */ = {isa = PBXBuildFile; fileRef = 79850C5C25AA258B008490FE /* Pantry.json */; };
+		798ABE8925B1ECA10074DC10 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798ABE8825B1ECA10074DC10 /* SplashView.swift */; };
 		7998347B25A0BE8B00949A6F /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998347525A0BE8A00949A6F /* Bar.swift */; };
 		7998347C25A0BE8B00949A6F /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998347625A0BE8A00949A6F /* BarChart.swift */; };
 		7998347D25A0BE8B00949A6F /* PageIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998347825A0BE8B00949A6F /* PageIndex.swift */; };
@@ -119,6 +120,7 @@
 		79850C5625AA254E008490FE /* Seafood.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Seafood.json; sourceTree = "<group>"; };
 		79850C5925AA256B008490FE /* Dairy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Dairy.json; sourceTree = "<group>"; };
 		79850C5C25AA258B008490FE /* Pantry.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Pantry.json; sourceTree = "<group>"; };
+		798ABE8825B1ECA10074DC10 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		7998347525A0BE8A00949A6F /* Bar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
 		7998347625A0BE8A00949A6F /* BarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
 		7998347825A0BE8B00949A6F /* PageIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageIndex.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				79D22E1825A2012F006E046B /* ViewModels */,
 				7998349025A0CBC600949A6F /* Views */,
 				794103432598DB3900101920 /* NutritionApp.swift */,
+				798ABE8825B1ECA10074DC10 /* SplashView.swift */,
 				794103472598DB3A00101920 /* Assets.xcassets */,
 				794103512598DB3A00101920 /* Info.plist */,
 				794103492598DB3A00101920 /* Preview Content */,
@@ -588,6 +591,7 @@
 				79AB13BC25A25686008D6C54 /* MealDetail.swift in Sources */,
 				79E73374259C91EA00CFD561 /* SearchDetail.swift in Sources */,
 				7941039F2598FD7000101920 /* DefaultButton.swift in Sources */,
+				798ABE8925B1ECA10074DC10 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
