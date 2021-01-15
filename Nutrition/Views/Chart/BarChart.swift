@@ -7,21 +7,24 @@
 
 import SwiftUI
 
-struct BarChart: View {
-    let nutrients: [NutrientController]
+struct BarChart<Content: View>: View {
+    var content: Content
+    let nutrients: [NutrientKey: NutrientController]
     let title: String
     let labelLength: Int
     let spacing: CGFloat
     let barWidth: CGFloat
     let height: CGFloat
     
-    init(nutrients: [NutrientController], title: String, labelLength: Int = 3, spacing: CGFloat = 8, barWidth: CGFloat = 12, height: CGFloat = 100) {
+    init(nutrients: [NutrientKey: NutrientController], title: String, labelLength: Int = 3, spacing: CGFloat = 8, barWidth: CGFloat = 12,
+         height: CGFloat = 100, @ViewBuilder content: () -> Content) {
         self.nutrients = nutrients
         self.title = title
         self.labelLength = labelLength
         self.spacing = spacing
         self.barWidth = barWidth
         self.height = height
+        self.content = content()
     }
             
     var body: some View {
@@ -35,11 +38,7 @@ struct BarChart: View {
                 lineCenter
                 lineBottom
                 
-                HStack(spacing: 0) {
-                    ForEach(nutrients) { nutrient in
-                        Bar(nutrient: nutrient, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength)
-                    }
-                }
+                content                                    
             }
         }
     }
@@ -88,6 +87,6 @@ struct BarChartLine: View {
 
 struct BarChartView_Previews: PreviewProvider {
     static var previews: some View {
-        BarChart(nutrients: PreviewData.profileController[.vitamins], title: "VITAMINS", spacing: 6, barWidth: 10)
+        BarChart(nutrients: PreviewData.profileController[.vitamins], title: "VITAMINS", spacing: 6, barWidth: 10) { }
     }
 }

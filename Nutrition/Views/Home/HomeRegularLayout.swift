@@ -20,10 +20,10 @@ struct HomeRegularLayout: View {
             VStack {
                 HStack(spacing: chartSpacing(geometry)) {
                     Group {
-                        BarChart(nutrients: consumedStorage.nutritionToday[.vitamins], title: "VITAMINS",
+                        VitaminChart(nutrients: consumedStorage.nutritionToday[.vitamins], title: "VITAMINS",
                                  spacing: barSpacing(geometry), barWidth: barWidth(geometry), height: chartHeight(geometry))
 
-                        BarChart(nutrients: consumedStorage.nutritionToday[.minerals], title: "MINERALS", labelLength: 2,
+                        MineralChart(nutrients: consumedStorage.nutritionToday[.minerals], title: "MINERALS", labelLength: 2,
                                  spacing: barSpacing(geometry), barWidth: barWidth(geometry), height: chartHeight(geometry))
                     }.padding(.top)
                 }                

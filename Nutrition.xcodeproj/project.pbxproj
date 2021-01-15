@@ -70,6 +70,8 @@
 		79C23A0925AC887D0034DCA2 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C23A0825AC887D0034DCA2 /* PreviewData.swift */; };
 		79E137A725A103BA0085390A /* HomeCompactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E137A625A103BA0085390A /* HomeCompactLayout.swift */; };
 		79E137AA25A103D60085390A /* HomeRegularLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E137A925A103D60085390A /* HomeRegularLayout.swift */; };
+		79E3FC8425B1D19100A2F78A /* VitaminChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E3FC8325B1D19100A2F78A /* VitaminChart.swift */; };
+		79E3FC8725B1DBE500A2F78A /* MineralChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E3FC8625B1DBE500A2F78A /* MineralChart.swift */; };
 		79E41F6C25AF62F1000532CF /* IngredientPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E41F6B25AF62F1000532CF /* IngredientPicker.swift */; };
 		79E73374259C91EA00CFD561 /* SearchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E73373259C91EA00CFD561 /* SearchDetail.swift */; };
 		79F5CF9825A4DBED00A2F25B /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5CF9725A4DBED00A2F25B /* Registration.swift */; };
@@ -143,6 +145,8 @@
 		79C23A0825AC887D0034DCA2 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		79E137A625A103BA0085390A /* HomeCompactLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCompactLayout.swift; sourceTree = "<group>"; };
 		79E137A925A103D60085390A /* HomeRegularLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRegularLayout.swift; sourceTree = "<group>"; };
+		79E3FC8325B1D19100A2F78A /* VitaminChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminChart.swift; sourceTree = "<group>"; };
+		79E3FC8625B1DBE500A2F78A /* MineralChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineralChart.swift; sourceTree = "<group>"; };
 		79E41F6B25AF62F1000532CF /* IngredientPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPicker.swift; sourceTree = "<group>"; };
 		79E73373259C91EA00CFD561 /* SearchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetail.swift; sourceTree = "<group>"; };
 		79F5CF9725A4DBED00A2F25B /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
@@ -287,6 +291,8 @@
 			children = (
 				7998347525A0BE8A00949A6F /* Bar.swift */,
 				7998347625A0BE8A00949A6F /* BarChart.swift */,
+				79E3FC8325B1D19100A2F78A /* VitaminChart.swift */,
+				79E3FC8625B1DBE500A2F78A /* MineralChart.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -543,6 +549,7 @@
 				794103D6259A75D000101920 /* Nutrient.swift in Sources */,
 				7998348225A0BF5300949A6F /* PageItem.swift in Sources */,
 				79AB13D125A38A1C008D6C54 /* ConsumedController.swift in Sources */,
+				79E3FC8725B1DBE500A2F78A /* MineralChart.swift in Sources */,
 				79AB13BA25A25686008D6C54 /* CreateMeal.swift in Sources */,
 				79AB13A325A20A78008D6C54 /* FoodController.swift in Sources */,
 				794103932598F2B700101920 /* UserController.swift in Sources */,
@@ -567,6 +574,7 @@
 				79FC150925A60E2F0043E130 /* AppController.swift in Sources */,
 				794103A3259903E500101920 /* Loader.swift in Sources */,
 				79E137A725A103BA0085390A /* HomeCompactLayout.swift in Sources */,
+				79E3FC8425B1D19100A2F78A /* VitaminChart.swift in Sources */,
 				7998347D25A0BE8B00949A6F /* PageIndex.swift in Sources */,
 				79AB13C025A368B2008D6C54 /* MealController.swift in Sources */,
 				79A2B648259BC4E900F848DA /* SearchController.swift in Sources */,

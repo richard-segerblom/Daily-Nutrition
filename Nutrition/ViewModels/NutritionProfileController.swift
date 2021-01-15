@@ -24,7 +24,7 @@ class NutritionProfileController: Identifiable, ObservableObject {
     var profile: NutritionProfile { scalableProfile }
         
     static let vitaminKeys: [NutrientKey] = [.a, .c, .e, .k, .b1, .b2, .b3, .b6, .b9, .b12, .choline]
-    static let mineralKeys: [NutrientKey] = [.calcium, .phosphorus, .potassium, .manganese, .iron, .zinc, .copper,
+    static let mineralKeys: [NutrientKey] = [.calcium, .phosphorus, .potassium, .magnesium, .iron, .zinc, .copper,
                                                      .sodium, .manganese, .selenium]
     static let energyKeys:  [NutrientKey] = [.carbs, .protein, .fats, .calories]
     static let fatKeys:     [NutrientKey] = [.saturated, .monounsaturated, .polyunsaturated, .ala, .la]
@@ -37,7 +37,7 @@ class NutritionProfileController: Identifiable, ObservableObject {
     init(profile: NutritionProfile, required: NutritionProfile) {
         self._profile = profile
         self.required = required
-        scalableProfile = NewNutritionProfile(nutrients: profile.nutrients.map { NewNutrient(key: $0, value: $1.value, unit: $1.unit) }, id: required.id)
+        scalableProfile = NewNutritionProfile(nutrients: profile.nutrients.map { NewNutrient(id: $1.id, key: $0, value: $1.value, unit: $1.unit) }, id: required.id)
     }
     
     func updateRequired(key: NutrientKey, value: String) {
@@ -57,8 +57,8 @@ class NutritionProfileController: Identifiable, ObservableObject {
         return self[key].intValue
     }
     
-    static func totalProgress(nutrients: [NutrientController]) -> Float {
-        nutrients.map { $0.limitProgress }.reduce(0, +) / Float(nutrients.count) * 100
+    static func totalProgress(nutrients: [NutrientKey: NutrientController]) -> Float {
+        nutrients.map { $1.limitProgress }.reduce(0, +) / Float(nutrients.count) * 100
     }
     
     static func unit(_ key: NutrientKey) -> Unit {

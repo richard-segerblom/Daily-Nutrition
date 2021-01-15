@@ -18,10 +18,10 @@ struct HomeCompactLayout: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: verticalSpacing(geometry)) {
-                BarChart(nutrients: consumedStorage.nutritionToday[.vitamins], title: "VITAMINS",
+                VitaminChart(nutrients: consumedStorage.nutritionToday[.vitamins], title: "VITAMINS",
                          spacing: barSpacing(geometry), barWidth: barWidth(geometry), height: chartHeight(geometry))
 
-                BarChart(nutrients: consumedStorage.nutritionToday[.minerals], title: "MINERALS", labelLength: 2,
+                MineralChart(nutrients: consumedStorage.nutritionToday[.minerals], title: "MINERALS", labelLength: 2,
                          spacing: barSpacing(geometry), barWidth: barWidth(geometry), height: chartHeight(geometry))
             
                 FlipCard(consumedStorage: consumedStorage)

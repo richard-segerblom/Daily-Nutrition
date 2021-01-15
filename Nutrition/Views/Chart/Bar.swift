@@ -17,7 +17,6 @@ struct Bar: View {
     @State private var isDetailPresented = false
     @State private var timer: Timer?
     @State private var zIndex = 0
-    @State private var progress: CGFloat = 0
     
     init(nutrient: NutrientController, size: CGSize, padding: CGFloat = 5, labelLength: Int = 3) {
         self.nutrient = nutrient
@@ -32,11 +31,12 @@ struct Bar: View {
                 ZStack(alignment: .bottom) {
                     Rectangle().frame(width: size.width, height: size.height)
                         .foregroundColor(progressTrackColor)
-                    Rectangle().frame(width: size.width, height: progress)
+                    Rectangle().frame(width: size.width, height: height)
                         .foregroundColor(progressColor)
-                        .animation(Animation.linear)
+                        .animation(Animation.linear.delay(0.3))
                 }
                 .padding(.horizontal, padding)
+                
                 Text(nutrient.name.prefix(labelLength))
                     .font(.system(size: fontSize))
                     .foregroundColor(textColor)
@@ -55,9 +55,6 @@ struct Bar: View {
                     .animation(Animation.linear(duration: fadeInOutSpeed))
             )
         }.zIndex(isDetailPresented ? 2 : 0)
-        .onAppear {
-            progress = height
-        }
     }
     
     // MARK: - Drawing Constants

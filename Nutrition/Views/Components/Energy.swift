@@ -27,11 +27,13 @@ struct Energy: View {
                 .foregroundColor(.white)
                 
                 HStack(spacing: spacing) {
-                    ForEach(profile[[.carbs, .protein, .fats]]) { energy in
-                        EnergyDetail(nutrient: energy)
-                            .font(.system(size: fontSize(geometry)))
-                            .foregroundColor(.white)
+                    Group {
+                        EnergyDetail(nutrient: profile[.carbs])
+                        EnergyDetail(nutrient: profile[.protein])
+                        EnergyDetail(nutrient: profile[.fats])
                     }
+                    .font(.system(size: fontSize(geometry)))
+                    .foregroundColor(.white)
                 }
                 .padding([.horizontal, .bottom])
             }
@@ -52,21 +54,17 @@ struct Energy: View {
 struct EnergyDetail: View {
     let nutrient: NutrientController
     
-    @State var progress: Float = 0
-    
     var body: some View {
         VStack(spacing: 0){
             Text(nutrient.name)
                 .padding(.bottom, padding)
-            ProgressView(value: progress)
+            ProgressView(value: nutrient.limitProgress)
                 .cornerRadius(cornerRadius)
                 .accentColor(.white)
                 .background(Color(#colorLiteral(red: 0.5425443053, green: 0.817581892, blue: 0.9679200053, alpha: 1)))
-                .animation(Animation.linear)
+                .animation(.linear)
             Text(nutrient.percentText)
                 .padding(.top, padding)
-        }.onAppear {
-            progress = nutrient.limitProgress
         }
     }
     
