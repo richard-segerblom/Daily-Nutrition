@@ -56,13 +56,13 @@ struct FlipCard: View {
     
     var body: some View {
         ZStack {
-            if isFaceUp {
-                Energy(profile: consumedStorage.nutritionToday)
-            } else {
-                Fats(profile: consumedStorage.nutritionToday)
-                    .rotation3DEffect(Angle.degrees(180), axis: (1,0,0))
-                    .animation(nil)
-            }
+            Energy(profile: consumedStorage.nutritionToday)
+                .animation(nil)
+                .opacity(isFaceUp ? 1 : 0)
+            Fats(profile: consumedStorage.nutritionToday)
+                .rotation3DEffect(Angle.degrees(180), axis: (1,0,0))
+                .animation(nil)
+                .opacity(isFaceUp ? 0 : 1)
         }
         .frame(maxHeight: maxHeight)
         .rotation3DEffect(Angle.degrees(isFaceUp ? 0 : 180), axis: (1,0,0))

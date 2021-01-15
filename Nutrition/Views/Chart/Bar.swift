@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct Bar: View {
-    
     let nutrient: NutrientController
     
-    var size: CGSize
-    var padding: CGFloat = 5
-    var labelLength = 3
+    let size: CGSize
+    let padding: CGFloat
+    let labelLength: Int
     
     @State private var isDetailPresented = false
     @State private var timer: Timer?
     @State private var zIndex = 0
+    @State private var progress: CGFloat = 0
+    
+    init(nutrient: NutrientController, size: CGSize, padding: CGFloat = 5, labelLength: Int = 3) {
+        self.nutrient = nutrient
+        self.size = size
+        self.padding = padding
+        self.labelLength = labelLength                
+    }
     
     var body: some View {
         ZStack {
@@ -27,6 +34,7 @@ struct Bar: View {
                         .foregroundColor(progressTrackColor)
                     Rectangle().frame(width: size.width, height: progress)
                         .foregroundColor(progressColor)
+                        .animation(Animation.linear)
                 }
                 .padding(.horizontal, padding)
                 Text(nutrient.name.prefix(labelLength))
@@ -47,13 +55,16 @@ struct Bar: View {
                     .animation(Animation.linear(duration: fadeInOutSpeed))
             )
         }.zIndex(isDetailPresented ? 2 : 0)
+        .onAppear {
+            progress = height
+        }
     }
     
     // MARK: - Drawing Constants
     private let progressTrackColor: Color = Color("ProgressTrackColor")
     private let progressColor: Color = Color("ProgressColor")
     private let textColor: Color = Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-    private var progress: CGFloat { CGFloat(nutrient.limitProgress) * size.height }
+    private var height: CGFloat { CGFloat(nutrient.limitProgress) * size.height }
     private let spacing: CGFloat = 8
     private let fontSize: CGFloat = 12
     private var detailY: CGFloat { -size.height/2 }
