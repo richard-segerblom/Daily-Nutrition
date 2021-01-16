@@ -126,6 +126,7 @@ enum NutrientKey: String, CaseIterable {
     case la = "LA"
     
     case unknown = "?"
+    case none
 }
 
 enum Unit: String {

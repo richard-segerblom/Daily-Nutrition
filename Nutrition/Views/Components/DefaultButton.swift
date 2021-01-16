@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct DefaultButton: View {
-    let title: String
-    let color: Color
+    let title: String    
     let action: () -> Void
     
-    init(title: String, action: @escaping () -> Void, color: Color = Color("ProgressColor")) {
+    init(title: String, action: @escaping () -> Void) {
         self.title = title
         self.action = action
-        self.color = color
     }
     
     var body: some View {
@@ -36,6 +34,7 @@ struct DefaultButton: View {
     // MARK: - Drawing Constants
     private let cornerRadius: CGFloat = 10
     private let height: CGFloat = 50
+    private let color = Color("ProgressColor")
 }
 
 struct ButtonStyle_Previews: PreviewProvider {

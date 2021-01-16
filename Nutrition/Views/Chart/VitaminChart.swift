@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct VitaminChart: View {
     let nutrients: [NutrientKey: NutrientController]
     let title: String
@@ -14,6 +15,10 @@ struct VitaminChart: View {
     let barWidth: CGFloat
     let height: CGFloat
     let labelLength: Int
+    
+    @State private var timer: Timer?
+    @State private var selected: NutrientKey = .none
+    @State private var lastSelected: NutrientKey = .none
     
     init(nutrients: [NutrientKey: NutrientController], title: String, labelLength: Int = 3, spacing: CGFloat = 8, barWidth: CGFloat = 12, height: CGFloat = 100) {
         self.nutrients = nutrients
@@ -28,21 +33,29 @@ struct VitaminChart: View {
         BarChart(nutrients: nutrients, title: title, labelLength: labelLength, spacing: spacing, barWidth: barWidth, height: height) {
             HStack(spacing: 0) {
                 Group {
-                    if let a = nutrients[.a] { Bar(nutrient: a, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                    if let c = nutrients[.c] { Bar(nutrient: c, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                    if let e = nutrients[.e] { Bar(nutrient: e, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                    if let k = nutrients[.k] { Bar(nutrient: k, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
+                    bar(key: .a)
+                    bar(key: .c)
+                    bar(key: .e)
+                    bar(key: .k)                                       
                 }
                 Group {
-                    if let b1 = nutrients[.b1] { Bar(nutrient: b1, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                    if let b2 = nutrients[.b2] { Bar(nutrient: b2, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                    if let b3 = nutrients[.b3] { Bar(nutrient: b3, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                    if let b6 = nutrients[.b6] { Bar(nutrient: b6, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                    if let b9 = nutrients[.b9] { Bar(nutrient: b9, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                    if let b12 = nutrients[.b12] { Bar(nutrient: b12, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                    if let choline = nutrients[.choline] { Bar(nutrient: choline, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
+                    bar(key: .b1)
+                    bar(key: .b2)
+                    bar(key: .b3)
+                    bar(key: .b6)
+                    bar(key: .b9)
+                    bar(key: .b12)
+                    bar(key: .choline)
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    func bar(key: NutrientKey) -> some View {
+        if let nutrient = nutrients[key] {
+            Bar(nutrient: nutrient, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength,
+                selected: $selected, lastSelected: $lastSelected, timer: $timer)
         }
     }
 }

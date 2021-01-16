@@ -15,6 +15,10 @@ struct MineralChart: View {
     let height: CGFloat
     let labelLength: Int
     
+    @State private var timer: Timer?
+    @State private var selected: NutrientKey = .none
+    @State private var lastSelected: NutrientKey = .none
+    
     init(nutrients: [NutrientKey: NutrientController], title: String, labelLength: Int = 3, spacing: CGFloat = 8, barWidth: CGFloat = 12, height: CGFloat = 100) {
         self.nutrients = nutrients
         self.title = title
@@ -27,17 +31,25 @@ struct MineralChart: View {
     var body: some View {
         BarChart(nutrients: nutrients, title: title, labelLength: labelLength, spacing: spacing, barWidth: barWidth, height: height) {
             HStack(spacing: 0) {
-                if let calcium = nutrients[.calcium] { Bar(nutrient: calcium, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                if let phosphorus = nutrients[.phosphorus] { Bar(nutrient: phosphorus, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                if let potassium = nutrients[.potassium] { Bar(nutrient: potassium, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                if let magnesium = nutrients[.magnesium] { Bar(nutrient: magnesium, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                if let iron = nutrients[.iron] { Bar(nutrient: iron, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                if let zinc = nutrients[.zinc] { Bar(nutrient: zinc, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                if let copper = nutrients[.copper] { Bar(nutrient: copper, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                if let sodium = nutrients[.sodium] { Bar(nutrient: sodium, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                if let manganese = nutrients[.manganese] { Bar(nutrient: manganese, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
-                if let selenium = nutrients[.selenium] { Bar(nutrient: selenium, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength) }
+                bar(key: .calcium)
+                bar(key: .phosphorus)
+                bar(key: .potassium)
+                bar(key: .magnesium)
+                bar(key: .iron)
+                bar(key: .zinc)
+                bar(key: .copper)
+                bar(key: .sodium)
+                bar(key: .manganese)
+                bar(key: .selenium)
             }
+        }
+    }
+    
+    @ViewBuilder
+    func bar(key: NutrientKey) -> some View {
+        if let nutrient = nutrients[key] {
+            Bar(nutrient: nutrient, size: CGSize(width: barWidth, height: height), padding: spacing, labelLength: labelLength,
+                selected: $selected, lastSelected: $lastSelected, timer: $timer)
         }
     }
 }

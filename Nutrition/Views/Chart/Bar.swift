@@ -14,15 +14,19 @@ struct Bar: View {
     let padding: CGFloat
     let labelLength: Int
     
-    @State private var isDetailPresented = false
-    @State private var timer: Timer?
-    @State private var zIndex = 0
+    @Binding var selected: NutrientKey
+    @Binding var lastSelected: NutrientKey
+    @Binding var timer: Timer?
     
-    init(nutrient: NutrientController, size: CGSize, padding: CGFloat = 5, labelLength: Int = 3) {
+    init(nutrient: NutrientController, size: CGSize, padding: CGFloat = 5, labelLength: Int = 3,
+         selected: Binding<NutrientKey>, lastSelected: Binding<NutrientKey>, timer: Binding<Timer?>) {
         self.nutrient = nutrient
         self.size = size
         self.padding = padding
-        self.labelLength = labelLength                
+        self.labelLength = labelLength
+        _selected = selected
+        _lastSelected = lastSelected
+        _timer = timer
     }
     
     var body: some View {
@@ -40,21 +44,24 @@ struct Bar: View {
                 Text(nutrient.name.prefix(labelLength))
                     .font(.system(size: fontSize))
                     .foregroundColor(textColor)
-            }.onTapGesture {
-                isDetailPresented = !isDetailPresented
-                if isDetailPresented {
-                    if let timer = timer { timer.invalidate() }
-                    timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { _ in
-                        self.isDetailPresented = false
-                    })
-                }
-            }.overlay(
-                BarDetail(isPresented: $isDetailPresented, color: progressColor, text: nutrient.progressText)
-                    .offset(x: 0, y: detailY)
-                    .fixedSize()
-                    .animation(Animation.linear(duration: fadeInOutSpeed))
-            )
-        }.zIndex(isDetailPresented ? 2 : 0)
+            }
+        }
+        .zIndex(selected == nutrient.key || lastSelected == nutrient.key ? 2 : 1 )
+        .onTapGesture {
+            lastSelected = nutrient.key
+            selected = selected == nutrient.key ? .none : nutrient.key
+            if let timer = timer { timer.invalidate() }
+            if selected != .none {
+                timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { _ in self.selected = .none })
+            }
+        }
+        .overlay(
+            BarDetail(color: progressColor, text: nutrient.progressText)
+                .offset(x: 0, y: detailY)
+                .fixedSize()
+                .opacity(selected == nutrient.key ? 1 : 0)
+                .animation(Animation.linear)
+        )
     }
     
     // MARK: - Drawing Constants
@@ -65,45 +72,36 @@ struct Bar: View {
     private let spacing: CGFloat = 8
     private let fontSize: CGFloat = 12
     private var detailY: CGFloat { -size.height/2 }
-    private let fadeInOutSpeed: Double = 0.05
 }
 
-struct BarDetail: View {
-    @Binding var isPresented: Bool
+struct BarDetail: View {    
     var color: Color
     var text: String
     
-    init(isPresented: Binding<Bool>, color: Color, text: String) {
-        _isPresented = isPresented
+    init(color: Color, text: String) {
         self.color = color
         self.text = text
     }
     
     @ViewBuilder
     var body: some View {
-        if isPresented {
-            ZStack {
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .frame(height: height)
-                    .foregroundColor(color)
-                Text(text)
-                    .font(.subheadline)
-                    .padding(.horizontal, padding)
-                    .foregroundColor(textColor)
-            }
+        ZStack {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .frame(height: height)
+                .foregroundColor(color)
+                .shadow(color: .accentColor, radius: 2, x: 0, y: 0)
+            Text(text)
+                .font(.system(size: fontSize))
+                .padding(.horizontal, padding)
+                .foregroundColor(textColor)
         }
     }
     
     // MARK: - Drawing Constants
-    private let height: CGFloat = 25
     private let cornerRadius: CGFloat = 5
-    private let padding: CGFloat = 8
     private let textColor = Color.white
-}
-
-struct Bar_Previews: PreviewProvider {
-    static var previews: some View {
-        Bar(nutrient: PreviewData.nutrientController, size: CGSize(width: 20, height: 150))
-            .previewLayout(PreviewLayout.fixed(width: 50, height: 200))
-    }
+    private var height: CGFloat { isIpadTouch ? 20 : 23 }
+    private var padding: CGFloat { isIpadTouch ? 4 : 6 }
+    private var fontSize: CGFloat { isIpadTouch ? 12 : 16 }
+    private var isIpadTouch: Bool { UIScreen.main.bounds.size.width < 400 }
 }

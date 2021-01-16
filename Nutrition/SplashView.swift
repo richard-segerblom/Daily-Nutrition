@@ -17,6 +17,7 @@ struct SplashView: View {
                 .edgesIgnoringSafeArea(.all)
             Text("DAILY NUTRITION")
                 .opacity(textOpacity)
+                .foregroundColor(.accentColor)
                 .animation(Animation.linear(duration: 0.5))
         }
         .onAppear { textOpacity = 1 }
