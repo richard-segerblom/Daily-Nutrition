@@ -12,11 +12,7 @@ struct MealPicker: View {
     var foodStorage: FoodStorageController
     
     @State private var filterOption: MealFilterOption = .all
-    @State private var isCreateMealPresented = false
-    
-    @State private var newMealName: String = ""
-    @State private var newMealCategory: Int = 0
-    @State private var newMealIngredients: [Ingredient] = []
+    @State private var isCreateMealPresented = false       
     
     init(mealStorage: MealStorageController, foodStorage: FoodStorageController) {
         self.mealStorage = mealStorage
@@ -30,37 +26,24 @@ struct MealPicker: View {
     var body: some View {
         NavigationView {
             Group {
-                if isCreateMealPresented {
-                    CreateMeal(name: $newMealName, category: $newMealCategory, ingredients: $newMealIngredients, foodStorage: foodStorage)
+                if mealStorage.meals.isEmpty {
+                   createMealButton
+                } else if filterOption == .recent {
+                   
                 } else {
-                    if mealStorage.meals.isEmpty {
-                       createMealButton
-                    } else if filterOption == .recent {
-                       
-                    } else {
-                       MealList(mealStorage: mealStorage)
-                    }
+                   MealList(mealStorage: mealStorage)
                 }
             }
-            .navigationTitle(isCreateMealPresented ? "New Meal" : "Meals")
+            .navigationTitle("Meals")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar() {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    if isCreateMealPresented { createButton } else { menu }
-                }
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if !isCreateMealPresented { addButton } else { cancelButton }
-                }
+                ToolbarItem(placement: .navigationBarTrailing) { menu }
+                ToolbarItem(placement: .navigationBarLeading) { addButton }
             }
+        }.sheet(isPresented: $isCreateMealPresented) {
+            CreateMeal(mealStorage: mealStorage, foodStorage: foodStorage)
         }
-    }        
-            
-    var cancelButton: some View { Button(action: { isCreateMealPresented = false }, label: { Text("Cancel") }) }
-    
-    var createButton: some View { Button(action: {
-        isCreateMealPresented = false
-        mealStorage.createMeal(name: newMealName, category: newMealCategory, ingredients: newMealIngredients)
-    }, label: { Text("Create") }) }
+    }                       
         
     var addButton: some View { Button(action: { isCreateMealPresented = true }, label: { Image(systemName: "plus") }) }
     

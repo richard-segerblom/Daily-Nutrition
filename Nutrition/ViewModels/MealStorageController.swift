@@ -100,6 +100,14 @@ final class MealStorageController: ObservableObject {
         recent = distinct.map { MealController(meal: $1, required: userController.profile, persistenceController: persistenceController) }        
     }
     
+    static func nutrition(_ ingredients: [Ingredient], user: UserController) -> NutritionProfileController {
+        var profile: NutritionProfile = NewNutritionProfile(nutrients: [])
+        for ingredient in ingredients {
+            profile = ingredient.nutritionProfile.merged(other: profile)
+        }
+        return NutritionProfileController(profile: profile, required: user.profile)
+    }
+    
     func filter(_ filter: MealFilterOption) {
         _filter = filter
         

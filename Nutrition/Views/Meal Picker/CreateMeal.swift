@@ -7,54 +7,104 @@
 
 import SwiftUI
 
-struct CreateMeal: View {    
+struct CreateMeal: View {
+    let mealStorage: MealStorageController
     let foodStorage: FoodStorageController
     
-    @Binding var name: String
-    @Binding var category: Int
-    @Binding var ingredients: [Ingredient]
+    @State private var name: String = ""
+    @State private var category: Int = 0
+    @State private var ingredients: [Ingredient] = []
     
     @State private var isIngredientPickerPresented = false
+    @State private var isNutritonProfilePresented = false
     
-    init(name: Binding<String>, category: Binding<Int>, ingredients: Binding<[Ingredient]>, foodStorage: FoodStorageController) {
-        _name = name
-        _category = category
-        _ingredients = ingredients
+    @Environment(\.presentationMode) var presentationMode
+    
+    init(mealStorage: MealStorageController, foodStorage: FoodStorageController) {
+        self.mealStorage = mealStorage
         self.foodStorage = foodStorage
         
         UINavigationBar.setOpaqueBackground()
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: spacing) {
-                Group {
-                    TextField("Enter Name...", text: $name)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.top)
-                    
-                    categorySegment
-                                        
-                    Text("Ingredients")
-                        .font(.system(size: fontSize, weight: .medium, design: .rounded))
+        NavigationView {
+            ZStack {
+                ScrollView {
+                    VStack(spacing: spacing) {
+                        Group {
+                            nameTextField
+                            categorySegment
+                            HStack {
+                                Text("Ingredients")
+                                    .font(.system(size: fontSize, weight: .medium, design: .rounded))
+                                addIngredientButton
+                            }
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, paddingTop)
+                        
+                        VStack(alignment: .leading, spacing: listSpacing) {
+                            if ingredients.isEmpty { noIngredientsText }
+                            IngredientList(ingredients: $ingredients)
+                            createButton
+                                .padding()
+                        }
+                    }
                 }
-                .padding(.horizontal)
-                .padding(.top, paddingTop)
+                .navigationTitle("Create Meal")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar() {
+                    ToolbarItem(placement: .navigationBarLeading) { leadingButton }
+                    ToolbarItem(placement: .navigationBarTrailing) { trailingButton }
+                }
+                                
+                NavigationLink( destination: mealDetails, isActive: $isNutritonProfilePresented, label: { EmptyView() })
                 
-                VStack(alignment: .leading, spacing: listSpacing) {
-                    IngredientList(ingredients: $ingredients)
-                    DefaultButton(title: "Add Ingredient") { isIngredientPickerPresented = true }                    
-                        .padding()
-                }
             }
+        }.sheet(isPresented: $isIngredientPickerPresented) { ingredientPicker }
+    }
+    
+    var noIngredientsText: some View {
+        Text("No ingredeint..")
+            .font(.subheadline)
+            .padding()
+    }
+    
+    var nameTextField: some View {
+        TextField("Enter Name...", text: $name)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.top)
+    }
+    
+    var mealDetails: CreateMealDetail {
+        CreateMealDetail(profile: MealStorageController.nutrition(ingredients, user: mealStorage.userController))
+    }
+    
+    var leadingButton: some View {
+        Button(action: { self.presentationMode.wrappedValue.dismiss() }, label: { Text("Cancel") })
+    }
+    
+    var trailingButton: some View {
+        Button(action: { self.isNutritonProfilePresented = true }, label: { Image(systemName: "info") })
+    }
+    
+    var addIngredientButton: some View {
+        Button(action: { isIngredientPickerPresented = true }, label: { Image(systemName: "plus.circle.fill") })
+            .foregroundColor(.accentColor)
+            .font(.system(size: iconSize))
+    }
+    
+    var createButton: some View {
+        DefaultButton(title: "CREATE", isDisabled: ingredients.isEmpty) {
+            self.presentationMode.wrappedValue.dismiss()
+            mealStorage.createMeal(name: name, category: category, ingredients: ingredients)
         }
-        .sheet(isPresented: $isIngredientPickerPresented) { ingredientPicker }
     }
     
     var ingredientPicker: some View {
         IngredientPicker(foodStorage: foodStorage) { foodController, amount in
-            let ingredient = NewIngredient(id: UUID(), amount: amount, sortOrder: Int16(ingredients.count),
-                                           food: foodController.food, nutritionProfile: foodController.profile)
+            let ingredient = NewIngredient(id: UUID(), amount: amount, sortOrder: Int16(ingredients.count), food: foodController.food)
             ingredients.append(ingredient)
         }
     }
@@ -74,7 +124,7 @@ struct CreateMeal: View {
     private let listSpacing: CGFloat = 4
     private let paddingTop: CGFloat = 10
     private let fontSize: CGFloat = 18
-    
+    private let iconSize: CGFloat = 24
 }
 
 struct IngredientList: View {
@@ -104,8 +154,19 @@ struct IngredientList: View {
     private let rowBackgroundColor = Color(#colorLiteral(red: 0.9537998028, green: 0.9537998028, blue: 0.9537998028, alpha: 1))
 }
 
+struct CreateMealDetail: View {
+    let profile: NutritionProfileController
+    
+    var body: some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            Detail(profile: profile)
+        }
+        .padding()
+    }
+}
+
 struct CreateMeal_Previews: PreviewProvider {
     static var previews: some View {
-        CreateMeal(name: Binding.constant("Smoothie"), category: Binding.constant(0), ingredients: Binding.constant([]), foodStorage: PreviewData.foodStorage)
+        CreateMeal(mealStorage: PreviewData.mealStorage, foodStorage: PreviewData.foodStorage)
     }
 }

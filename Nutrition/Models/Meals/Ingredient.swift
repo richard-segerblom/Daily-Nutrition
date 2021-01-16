@@ -24,7 +24,9 @@ struct NewIngredient: Ingredient {
     var amount: Int16
     var sortOrder: Int16
     var food: Food
-    var nutritionProfile: NutritionProfile    
+    var nutritionProfile: NutritionProfile {
+        get { food.profile.scale(Float(amount) / 100) }
+    }
 }
 
 // MARK: - Core Data
@@ -45,7 +47,7 @@ public final class CDIngredient: NSManagedObject, Ingredient {
     private var _nutritionProfile: NutritionProfile? = nil
     var nutritionProfile: NutritionProfile {
         if _nutritionProfile == nil {
-            _nutritionProfile = cdFood.nutritionProfile.scale(Float(amount / 100))
+            _nutritionProfile = cdFood.nutritionProfile.scale(Float(amount) / 100)
         }
         return _nutritionProfile!
     }
