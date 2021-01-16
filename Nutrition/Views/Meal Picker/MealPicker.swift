@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MealPicker: View {
     @ObservedObject var mealStorage: MealStorageController
-    @ObservedObject var foodStorage: FoodStorageController
+    var foodStorage: FoodStorageController
     
-    @State private var filterOption = 0
+    @State private var filterOption: MealFilterOption = .all
     @State private var isCreateMealPresented = false
     
     @State private var newMealName: String = ""
@@ -21,6 +21,8 @@ struct MealPicker: View {
     init(mealStorage: MealStorageController, foodStorage: FoodStorageController) {
         self.mealStorage = mealStorage
         self.foodStorage = foodStorage
+        
+        filterOption = mealStorage.isRecentEmpty ? .recent : .all
         
         UINavigationBar.setOpaqueBackground()
     }
@@ -33,6 +35,8 @@ struct MealPicker: View {
                 } else {
                     if mealStorage.meals.isEmpty {
                        createMealButton
+                    } else if filterOption == .recent {
+                       
                     } else {
                        MealList(mealStorage: mealStorage)
                     }
@@ -65,7 +69,7 @@ struct MealPicker: View {
             isCreateMealPresented = true
         }, label: {
             VStack {
-                Text("You have no meals.\nWant to create a new?")
+                Text(mealStorage.description(filterOption))
                     .multilineTextAlignment(.center)
             }.foregroundColor(.accentColor)
         })
@@ -73,15 +77,22 @@ struct MealPicker: View {
     
     var menu: some View {
         Menu {
-            // TODO Implement filter
-            Button(action: { }, label: { Label("All", systemImage: "folder") })
-            Button(action: { }, label: { Label("Breakfast", systemImage: "folder") })
-            Button(action: { }, label: { Label("Lunch", systemImage: "folder") })
-            Button(action: { }, label: { Label("Dinner", systemImage: "folder") })
-            Button(action: { }, label: { Label("Snack", systemImage: "folder") })
+            menuItem(name: "Recent", icon: "folder", filter: .recent)
+            menuItem(name: "All", icon: "folder", filter: .all)
+            menuItem(name: "Breakfast", icon: "folder", filter: .breakfast)
+            menuItem(name: "Lunch", icon: "folder", filter: .lunch)
+            menuItem(name: "Dinner", icon: "folder", filter: .dinner)
+            menuItem(name: "Snack", icon: "folder", filter: .snack)
         } label: {
-            Text("Filter").foregroundColor(menuColor)
+            Image(systemName: "slider.horizontal.3").foregroundColor(menuColor)
         }
+    }
+    
+    func menuItem(name: String, icon: String, filter: MealFilterOption) -> some View {
+        Button(action: {
+            filterOption = filter
+            mealStorage.filter(filter)
+        }, label: { Label(name, systemImage: icon) })
     }
     
     // MARK: - Drawing Constants

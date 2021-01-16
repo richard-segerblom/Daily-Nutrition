@@ -72,7 +72,7 @@ struct PreviewData {
     
     static var mealController: MealController = {
         let ingredients: [Ingredient] = [NewIngredient(id: UUID(), amount: 75, sortOrder: 0, food: apple, nutritionProfile: appleProfile)]
-        let meal = NewMeal(id: UUID(), name: "Smoothie", date: Date(), ingredients: ingredients)
+        let meal = NewMeal(id: UUID(), name: "Smoothie", date: Date(), category: .breakfast, ingredients: ingredients)
         return MealController(meal: meal, required: userProfile, persistenceController: PersistenceController.preview)
     }()
     

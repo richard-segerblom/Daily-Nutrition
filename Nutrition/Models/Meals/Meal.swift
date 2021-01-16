@@ -15,6 +15,7 @@ protocol Meal {
     var id: UUID { get }
     var name: String { get }
     var date: Date { get }
+    var category: MealCategory { get }
     var ingredients: [Ingredient] { get }
     var nutritionProfile: NutritionProfile { mutating get }
     
@@ -35,6 +36,7 @@ struct NewMeal: Meal {
     var id: UUID
     var name: String
     var date: Date
+    var category: MealCategory
     var ingredients: [Ingredient]
     
     private var _nutritionProfile: NutritionProfile?
@@ -47,10 +49,11 @@ struct NewMeal: Meal {
         }
     }
     
-    init(id: UUID, name: String, date: Date, ingredients: [Ingredient]) {
+    init(id: UUID, name: String, date: Date, category: MealCategory, ingredients: [Ingredient]) {
         self.id = id
         self.name = name
         self.date = date
+        self.category = category
         self.ingredients = ingredients
     }
 }
@@ -69,6 +72,7 @@ public final class CDMeal: NSManagedObject, Meal {
     
     var id: UUID { mealID }
     var date: Date { creationDate }
+    var category: MealCategory { MealCategory(rawValue: mealCategory) ?? .snack }
     var ingredients: [Ingredient] { (cdIngredients.allObjects as! [Ingredient]).sorted { $0.sortOrder < $1.sortOrder } }
     
     private var _nutritionProfile: NutritionProfile?
@@ -77,12 +81,6 @@ public final class CDMeal: NSManagedObject, Meal {
             _nutritionProfile = makeNutritionProfile()
         }
         return _nutritionProfile!
-    }
-}
-    
-extension CDMeal {
-    var category: FoodCategory {
-        return FoodCategory(rawValue: mealCategory)!
     }
 }
  
@@ -155,7 +153,6 @@ extension CDMeal {
 // MARK: - Defines
 
 enum MealCategory: Int16, CaseIterable {
-    case all
     case breakfast
     case lunch
     case dinner

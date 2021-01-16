@@ -90,6 +90,21 @@ extension CDConsumed {
         return consumed
     }
     
+    static func latestMeals(context: NSManagedObjectContext, limit: Int = 100) -> [CDConsumed] {
+        let request = NSFetchRequest<CDConsumed>(entityName: "CDConsumed")
+        request.predicate = NSPredicate(format: "mealID != nil")
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(CDConsumed.date), ascending: true)]
+        request.fetchLimit = limit
+        
+        guard let consumed = try? context.fetch(request) else { return [] }
+        
+        for item in consumed {
+            item.cdMeal = CDMeal.withID(item.mealID!, context: context)
+        }
+                
+        return consumed
+    }
+    
     static func sinceDate(date: Date, context: NSManagedObjectContext) -> [CDConsumed] {
         let request = NSFetchRequest<CDConsumed>(entityName: "CDConsumed")
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(CDConsumed.date), ascending: true)]

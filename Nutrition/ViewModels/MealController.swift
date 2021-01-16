@@ -18,6 +18,7 @@ final class MealController: Identifiable {
     var name: String { meal.name }
     var ingredients: [Ingredient] { meal.ingredients }
     var caloriesText: String { String("\(nutritionProfile[.calories].intValue)") + " kcal" }
+    var category: MealCategory { meal.category }
     
     init(meal: Meal, required: NutritionProfile, persistenceController: PersistenceController) {
         self.meal = meal
