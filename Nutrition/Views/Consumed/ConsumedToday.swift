@@ -23,16 +23,18 @@ struct ConsumedToday: View {
                 .font(.title2)
         } else {
             NavigationView {
-                List {
-                    ForEach(consumedStorageController.today) { consumed in
-                        NavigationLink(destination: ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE", action: { _ in /* TODO Implement delete */ })) {
-                            ConsumedRow(consumedController: consumed)
-                                .contextMenu(ContextMenu(menuItems: {
-                                    eatButton
-                                    deleteButton
-                                }))
-                        }
+                ScrollView {
+                    VStack {
+                        ForEach(consumedStorageController.today) { consumed in
+                            Row(name: consumed.name, calories: consumed.caloriesText, icon: Image.icon(consumed)) {
+                                ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE", action: { _ in /* TODO Implement delete */ })
+                            }.contextMenu(ContextMenu(menuItems: {
+                                eatButton
+                                deleteButton
+                            }))
+                        }.onDelete { _ in /* TODO Implement delete */  }
                     }
+                    Spacer()
                 }
                 .navigationTitle(Text("Consumed Today"))
                 .navigationBarTitleDisplayMode(.inline)

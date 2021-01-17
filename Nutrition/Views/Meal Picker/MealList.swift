@@ -14,20 +14,21 @@ struct MealList: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        List {
-            ForEach(mealStorage.meals) { mealController in
-                NavigationLink(destination: MealDetail(mealController: mealController) {
-                    $0.eat()
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    MealRow(mealController: mealController)
-                        .contextMenu(ContextMenu(menuItems: {
-                            eatButton
-                            deleteButton
-                        }))
-                }
+        ScrollView {
+            VStack {
+                ForEach(mealStorage.meals) { mealController in
+                    Row(name: mealController.name, calories: mealController.caloriesText, icon: Image.icon(mealController.category)) {
+                        MealDetail(mealController: mealController) {
+                            $0.eat()
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }.contextMenu(ContextMenu(menuItems: {
+                        eatButton
+                        deleteButton
+                    }))
+                }.onDelete { indexSet in mealStorage.deleteMeal(atOffsets: indexSet) }
             }
-            .onDelete { indexSet in mealStorage.deleteMeal(atOffsets: indexSet) }
+            Spacer()
         }
     }
     

@@ -49,7 +49,7 @@ struct CreateMeal: View {
                             IngredientList(ingredients: $ingredients)
                             createButton
                                 .padding()
-                        }
+                        }.foregroundColor(Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1)))
                     }
                 }
                 .navigationTitle("Create Meal")

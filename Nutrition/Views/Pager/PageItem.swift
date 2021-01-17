@@ -35,7 +35,7 @@ struct PageItem: View {
                 .font(.system(size: titleFontSize(geometry)))
                 .position(x: x(geometry), y: y(geometry))
                 .border(Color.accentColor)                
-            }).buttonStyle(PageItemStyle())
+            }).buttonStyle(RowStyle())
         }.sheet(isPresented: $isDetailPresented) {
             ConsumedDetail(consumedController: food, buttonTitle: actionType.rawValue, action: action)
         }
@@ -48,16 +48,6 @@ struct PageItem: View {
     private func subTitleFontSize(_ geometry: GeometryProxy) -> CGFloat { 0.04 * geometry.size.width }
     private func x(_ geometry: GeometryProxy) -> CGFloat { geometry.size.width / 2 }
     private func y(_ geometry: GeometryProxy) -> CGFloat { geometry.size.height / 2 }
-}
-
-struct PageItemStyle: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .font(.subheadline)
-            .foregroundColor(configuration.isPressed ? Color.white : Color.accentColor)
-            .background(configuration.isPressed ? Color.accentColor : Color.white)
-            .cornerRadius(.infinity)
-    }
 }
 
 struct PageItem_Previews: PreviewProvider {

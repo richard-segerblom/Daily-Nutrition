@@ -71,12 +71,15 @@ struct SearchResultList: View {
     @Binding var isSearchPresented: Bool
     
     var body: some View {
-        List {
-            ForEach(searchController.result) { foodController in
-                NavigationLink(destination: SearchDetail(profile: foodController)) {
-                    FoodRow(foodController: foodController)
+        ScrollView {
+            VStack {
+                ForEach(searchController.result) { foodController in
+                    Row(name: foodController.name, calories: foodController.caloriesText, icon: Image.icon(foodController.category)) {
+                        SearchDetail(profile: foodController)
+                    }
                 }
             }
+            Spacer()
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar() {

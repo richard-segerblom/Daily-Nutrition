@@ -17,11 +17,11 @@ struct ConsumedDetail: View {
             VStack {
                 Detail(profile: consumedController.nutritionProfile)
                 DefaultButton(title: buttonTitle, action: { /* TODO Implement delete consumed */ })
-                .padding(.top)
+                    .padding([.top, .bottom])
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(Text(consumedController.name))
-        }.padding([.horizontal, .bottom])
+        }.padding(.horizontal)
     }
 }
 

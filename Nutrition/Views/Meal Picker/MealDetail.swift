@@ -36,14 +36,15 @@ struct MealDetail: View {
                 
                 DefaultButton(title: "EAT", action: { onEatTapped(mealController) })
                     .padding(.top, buttonPadding)
+                    .padding(.bottom)
             }
+            .padding(.top)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(Text(mealController.name))
-            .toolbar() { ToolbarItem(placement: .navigationBarTrailing) { eatButton } }
-        }.padding()
-    }
-    
-    var eatButton: some View { Button(action: { onEatTapped(mealController) }, label: { Text("Eat") }) }
+        }
+        .foregroundColor(Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1)))
+        .padding(.horizontal)
+    }        
     
     // MARK: - Drawing Constants
     private let titlePadding: CGFloat = 5

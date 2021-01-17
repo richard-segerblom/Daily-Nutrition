@@ -39,11 +39,13 @@ struct FoodDetail: View {
                     .padding(.bottom, padding)
                 
                 eatButton
+                    .padding(.bottom)
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(Text(foodController.name))
         }
-        .padding([.horizontal, .bottom])
+        .padding(.horizontal)
+        .foregroundColor(Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1)))
         .onAppear { self.foodController.scale(amount) }
     }
     
