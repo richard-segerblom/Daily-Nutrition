@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Page: View {
-    let items: [FoodController]
+    let items: [ConsumedController]
     let rows = 3
     let columns = 3
     
@@ -22,7 +22,7 @@ struct Page: View {
                                 let itemIndex = index(for: column, row: row)
                                 let item = items[itemIndex]
                                 PageItem(food: item)
-                                    .padding(padding)
+                                    .padding([.bottom, .trailing], padding)
                                     .id(row)
                                     .frame(width: width(geometry), height: height(geometry))
                             }
@@ -53,7 +53,7 @@ struct Page: View {
 
 struct Page_Previews: PreviewProvider {
     static var previews: some View {
-        Page(items: Array(repeating: PreviewData.foodController, count: 15))
+        Page(items: Array(repeating: PreviewData.consumedController, count: 15))
             .previewLayout(PreviewLayout.fixed(width: 400, height: 200))
     }
 }

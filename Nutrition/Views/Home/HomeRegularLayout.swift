@@ -34,8 +34,8 @@ struct HomeRegularLayout: View {
                 }.padding(.horizontal)
 
                 Group {
-                    HorizontalPager(items: [], title: "CONSUMED TODAY", emptyText: "No food exists")
-                    HorizontalPager(items: [], title: "RECENT", emptyText: "No recent items exists.")
+                    HorizontalPager(items: consumedStorage.today, title: "CONSUMED TODAY", emptyText: "No food exists")
+                    HorizontalPager(items: consumedStorage.latest, title: "RECENT", emptyText: "No recent items exists.")
                 }.padding(.top)
 
                 VStack(spacing: 0) {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HorizontalPager: View {
-    let items: [FoodController]
+    let items: [ConsumedController]
     let title: String
     let emptyText: String
     let columns: Int
@@ -16,7 +16,7 @@ struct HorizontalPager: View {
     
     @State private var pageIndex: Int = 0
     
-    init(items: [FoodController], title: String = "", emptyText: String = "", columns: Int = 3, rows: Int = 3) {
+    init(items: [ConsumedController], title: String = "", emptyText: String = "", columns: Int = 3, rows: Int = 3) {
         self.items = items
         self.title = title
         self.emptyText = emptyText
@@ -28,26 +28,25 @@ struct HorizontalPager: View {
         VStack(spacing: 0) {
             Text(title)
             GeometryReader { geometry in
-                if items.isEmpty {
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(Color.clear)
-                            .border(borderColor)
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(Color.clear)
+                        .border(borderColor)
+                    if items.isEmpty {
                         Text(emptyText)
-                            .foregroundColor(textColor)                        
-                    }.padding(.horizontal)
-                } else {
-                    TabView(selection: $pageIndex.animation()) {
-                        ForEach((0..<pages), id: \.self) {
-                            Page(items: pageItems(for: $0))
-                                .tag($0)
-                                .padding(padding)
+                            .foregroundColor(textColor)
+                    } else {
+                        TabView(selection: $pageIndex.animation()) {
+                            ForEach((0..<pages), id: \.self) {
+                                Page(items: pageItems(for: $0))
+                                    .tag($0)
+                                    .padding(padding)
+                            }
                         }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        .frame(height: geometry.size.height)
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .frame(height: geometry.size.height)
-                    .padding(.bottom)
-                }
+                }.padding(.horizontal)
             }
             
             PageIndex(numberOfPages: pages, currentIndex: pageIndex)
@@ -62,7 +61,7 @@ struct HorizontalPager: View {
     
     var pages: Int { Int(CGFloat(CGFloat(items.count) / CGFloat(itemsPerPage)).rounded(.up)) }
     
-    func pageItems(for index: Int) -> [FoodController] {
+    func pageItems(for index: Int) -> [ConsumedController] {
         let start = index * itemsPerPage
         var end = start + itemsPerPage
         if end > items.count { end = items.count }
@@ -79,7 +78,7 @@ struct HorizontalPager: View {
 
 struct HorizontalPager_Previews: PreviewProvider {
     static var previews: some View {
-        HorizontalPager(items:Array(repeating: PreviewData.foodController, count: 18), title: "RECENT")
+        HorizontalPager(items:Array(repeating: PreviewData.consumedController, count: 18), title: "RECENT")
             .previewLayout(PreviewLayout.fixed(width: 400, height: 200))
             .padding()
     }

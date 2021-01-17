@@ -18,11 +18,8 @@ struct PageIndex: View {
                 if numberOfPages > 1 {
                     Circle()
                         .fill(currentIndex == index ? primaryColor : secondaryColor)
-                        
                         .frame(width: circleSize, height: circleSize)
-                        
                         .transition(AnyTransition.opacity.combined(with: .scale))
-                        
                         .id(index)
                 }
             }

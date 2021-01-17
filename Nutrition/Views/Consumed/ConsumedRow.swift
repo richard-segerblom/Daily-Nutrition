@@ -13,18 +13,7 @@ struct ConsumedRow: View {
     var body: some View {
         Row(name: consumedController.name,
             calories: consumedController.caloriesText,
-            icon: icon)
-    }
-    
-    var icon: Image {
-        if let category = consumedController.foodCategory {
-            return Image.icon(category)
-        }
-        if let category = consumedController.mealCategory {
-            return Image.icon(category)
-        }
-        
-        return Image(systemName: "questionmark")
+            icon: Image.icon(consumedController))
     }
 }
 

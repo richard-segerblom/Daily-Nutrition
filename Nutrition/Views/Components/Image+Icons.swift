@@ -37,4 +37,15 @@ extension Image {
             return Image(systemName: "s.circle.fill")
         }
     }
+    
+    static func icon(_ consumedController: ConsumedController) -> Image {
+        if let category = consumedController.foodCategory {
+            return self.icon(category)
+        }
+        if let category = consumedController.mealCategory {
+            return self.icon(category)
+        }
+        
+        return Image(systemName: "questionmark")
+    }
 }
