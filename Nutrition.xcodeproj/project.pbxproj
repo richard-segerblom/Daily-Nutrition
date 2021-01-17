@@ -45,6 +45,8 @@
 		79850C5A25AA256B008490FE /* Dairy.json in Resources */ = {isa = PBXBuildFile; fileRef = 79850C5925AA256B008490FE /* Dairy.json */; };
 		79850C5D25AA258B008490FE /* Pantry.json in Resources */ = {isa = PBXBuildFile; fileRef = 79850C5C25AA258B008490FE /* Pantry.json */; };
 		798ABE8925B1ECA10074DC10 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798ABE8825B1ECA10074DC10 /* SplashView.swift */; };
+		7997776025B35AA300FD1815 /* MealList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7997775F25B35AA300FD1815 /* MealList.swift */; };
+		7997776425B38B2700FD1815 /* Image+Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7997776325B38B2700FD1815 /* Image+Icons.swift */; };
 		7998347B25A0BE8B00949A6F /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998347525A0BE8A00949A6F /* Bar.swift */; };
 		7998347C25A0BE8B00949A6F /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998347625A0BE8A00949A6F /* BarChart.swift */; };
 		7998347D25A0BE8B00949A6F /* PageIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998347825A0BE8B00949A6F /* PageIndex.swift */; };
@@ -121,6 +123,8 @@
 		79850C5925AA256B008490FE /* Dairy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Dairy.json; sourceTree = "<group>"; };
 		79850C5C25AA258B008490FE /* Pantry.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Pantry.json; sourceTree = "<group>"; };
 		798ABE8825B1ECA10074DC10 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		7997775F25B35AA300FD1815 /* MealList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealList.swift; sourceTree = "<group>"; };
+		7997776325B38B2700FD1815 /* Image+Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Icons.swift"; sourceTree = "<group>"; };
 		7998347525A0BE8A00949A6F /* Bar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
 		7998347625A0BE8A00949A6F /* BarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
 		7998347825A0BE8B00949A6F /* PageIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageIndex.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				7941039E2598FD7000101920 /* UINavigationBar+Appearance.swift */,
+				7997776325B38B2700FD1815 /* Image+Icons.swift */,
 				7941039D2598FD7000101920 /* DefaultButton.swift */,
 				794103C52599E14800101920 /* Detail.swift */,
 				794103CB2599E23A00101920 /* Energy.swift */,
@@ -382,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				79AB13B825A25686008D6C54 /* MealPicker.swift */,
+				7997775F25B35AA300FD1815 /* MealList.swift */,
 				79AB13B725A25686008D6C54 /* CreateMeal.swift */,
 				79AB13B925A25686008D6C54 /* MealDetail.swift */,
 				79AB13C325A3741D008D6C54 /* MealRow.swift */,
@@ -533,6 +539,7 @@
 				79A2B645259BC4D600F848DA /* SearchView.swift in Sources */,
 				7941037C2598E0F100101920 /* Meal.swift in Sources */,
 				796F9F59259F92F1008B41C0 /* FoodStorageController.swift in Sources */,
+				7997776025B35AA300FD1815 /* MealList.swift in Sources */,
 				7941034D2598DB3A00101920 /* Persistence.swift in Sources */,
 				794103D3259A75A100101920 /* NutritionProfile.swift in Sources */,
 				790A174525A0CD6300B8E5D1 /* ConsumedStorageController.swift in Sources */,
@@ -548,6 +555,7 @@
 				794103CD2599E23A00101920 /* Energy.swift in Sources */,
 				795C89A8259FC62E00C87566 /* NutritionProfileController.swift in Sources */,
 				79F5CF9825A4DBED00A2F25B /* Registration.swift in Sources */,
+				7997776425B38B2700FD1815 /* Image+Icons.swift in Sources */,
 				79C23A0925AC887D0034DCA2 /* PreviewData.swift in Sources */,
 				794103D6259A75D000101920 /* Nutrient.swift in Sources */,
 				7998348225A0BF5300949A6F /* PageItem.swift in Sources */,

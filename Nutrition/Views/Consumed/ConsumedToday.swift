@@ -42,9 +42,9 @@ struct ConsumedToday: View {
         }
     }
     
-    var eatButton: some View { Button(action: { /* TODO Implement eat */ }, label: { Label("Eat", systemImage: "folder") }) }
+    var eatButton: some View { Button(action: { /* TODO Implement eat */ }, label: { Label("Eat", systemImage: "arrowshape.turn.up.right.fill") }) }
     
-    var deleteButton: some View { Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "folder") }) }
+    var deleteButton: some View { Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "trash.fill") }) }
 }
 
 struct ConsumedToday_Previews: PreviewProvider {

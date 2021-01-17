@@ -69,7 +69,7 @@ struct Home: View {
         Button(action: {
             isConsumedPresented = true
         }) {
-            Image(systemName: "heart.fill")
+            Image(systemName: "clock.fill")
         }
         .sheet(isPresented: $isConsumedPresented) { ConsumedToday(consumedStorageController: app.consumedStorage) }
         .disabled(!userController.isUserSetUp)

@@ -56,12 +56,10 @@ struct FoodList: View {
     }
     
     var body: some View {
-        List {
-            Section(header: Label("ALL", systemImage: "asterisk.circle")) {
-                ForEach(foods) { foodController in
-                    NavigationLink(destination: FoodDetail(foodController: foodController, style: style, action: action)) {
-                        FoodRow(foodController: foodController)
-                    }
+        List {            
+            ForEach(foods) { foodController in
+                NavigationLink(destination: FoodDetail(foodController: foodController, style: style, action: action)) {
+                    FoodRow(foodController: foodController)
                 }
             }
         }
@@ -80,15 +78,15 @@ struct FoodList: View {
     var menu: some View {
         Menu {
             // TODO Implement filter
-            Button(action: { }, label: { Label("All", systemImage: "folder") })
-            Button(action: { }, label: { Label("Fruits", systemImage: "folder") })
-            Button(action: { }, label: { Label("Vegetables", systemImage: "folder") })
-            Button(action: { }, label: { Label("Nuts", systemImage: "folder") })
-            Button(action: { }, label: { Label("Legumes", systemImage: "folder") })
-            Button(action: { }, label: { Label("Grains", systemImage: "folder") })
-            Button(action: { }, label: { Label("Other", systemImage: "folder") })
+            Button(action: { }, label: { Label("All", systemImage: "asterisk.circle.fill") })
+            Button(action: { }, label: { Label("Fruits", systemImage: "f.circle.fill") })
+            Button(action: { }, label: { Label("Vegetables", systemImage: "v.circle.fill") })
+            Button(action: { }, label: { Label("Meat", systemImage: "m.circle.fill") })
+            Button(action: { }, label: { Label("Seafood", systemImage: "s.circle.fill") })
+            Button(action: { }, label: { Label("Dairy", systemImage: "d.circle.fill") })
+            Button(action: { }, label: { Label("Pantry", systemImage: "p.circle.fill") })
         } label: {
-            Text("Filter").foregroundColor(menuColor)
+            Image(systemName: "slider.horizontal.3").foregroundColor(menuColor)
         }
     }
     

@@ -13,7 +13,7 @@ struct PageItem: View {
     var body: some View {
         GeometryReader { geometry in
             HStack {
-                Image(systemName: food.iconName)
+                Image.icon(food.category)
                     .foregroundColor(iconColor)
                     .padding(iconPadding)
                 

@@ -125,31 +125,15 @@ final class MealStorageController: ObservableObject {
         default:
             meals = allMeals
         }
-    }
-    
-    func description(_ filter: MealFilterOption) -> String {
-        switch filter {
-        case .recent:
-            return "Meals you have eaten will be shown here"
-        case .breakfast:
-            return "You have no breakfast meals.\nDo you want to create one?"
-        case .lunch:
-            return "You have no lunch meals.\nDo you want to create one?"
-        case .dinner:
-            return "You have no dinner meals.\nDo you want to create one?"
-        case .snack:
-            return "You have no snacks.\nDo you want to create one?"
-        default:
-            return "You have no meals.\nDo you want to create one?"
-        }
-    }
+    }       
 }
 
-enum MealFilterOption {
-    case all
-    case recent
-    case breakfast
-    case lunch
-    case dinner
-    case snack
+enum MealFilterOption: String {
+    case all = "All Meals"
+    case recent = "Recent Meals"
+    case breakfast = "Breakfast Meals"
+    case lunch = "Lunch Meals"
+    case dinner = "Dinner Meals"
+    case snack = "Snacks"
 }
+

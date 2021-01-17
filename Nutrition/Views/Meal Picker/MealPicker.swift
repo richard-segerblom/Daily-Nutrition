@@ -31,10 +31,10 @@ struct MealPicker: View {
                 } else if filterOption == .recent {
                    
                 } else {
-                   MealList(mealStorage: mealStorage)
+                   MealList(mealStorage: mealStorage, filter: $filterOption)
                 }
             }
-            .navigationTitle("Meals")
+            .navigationTitle(filterOption.rawValue)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar() {
                 ToolbarItem(placement: .navigationBarTrailing) { menu }
@@ -52,7 +52,7 @@ struct MealPicker: View {
             isCreateMealPresented = true
         }, label: {
             VStack {
-                Text(mealStorage.description(filterOption))
+                description
                     .multilineTextAlignment(.center)
             }.foregroundColor(.accentColor)
         })
@@ -60,14 +60,31 @@ struct MealPicker: View {
     
     var menu: some View {
         Menu {
-            menuItem(name: "Recent", icon: "folder", filter: .recent)
-            menuItem(name: "All", icon: "folder", filter: .all)
-            menuItem(name: "Breakfast", icon: "folder", filter: .breakfast)
-            menuItem(name: "Lunch", icon: "folder", filter: .lunch)
-            menuItem(name: "Dinner", icon: "folder", filter: .dinner)
-            menuItem(name: "Snack", icon: "folder", filter: .snack)
+            menuItem(name: "Recent", icon: "clock.arrow.circlepath", filter: .recent)
+            menuItem(name: "All", icon: "asterisk.circle.fill", filter: .all)
+            menuItem(name: "Breakfast", icon: "b.circle.fill", filter: .breakfast)
+            menuItem(name: "Lunch", icon: "l.circle.fill", filter: .lunch)
+            menuItem(name: "Dinner", icon: "d.circle.fill", filter: .dinner)
+            menuItem(name: "Snack", icon: "s.circle.fill", filter: .snack)
         } label: {
             Image(systemName: "slider.horizontal.3").foregroundColor(menuColor)
+        }
+    }
+    
+    var description: some View {
+        switch filterOption {
+        case .recent:
+            return Text("Meals you have eaten will be shown here")
+        case .breakfast:
+            return Text("You have no breakfast meals.\nDo you want to create one?")
+        case .lunch:
+            return Text("You have no lunch meals.\nDo you want to create one?")
+        case .dinner:
+            return Text("You have no dinner meals.\nDo you want to create one?")
+        case .snack:
+            return Text("You have no snacks.\nDo you want to create one?")
+        default:
+            return Text("You have no meals.\nDo you want to create one?")
         }
     }
     
@@ -82,36 +99,6 @@ struct MealPicker: View {
     private let menuColor = Color("ProgressColor")
     private let padding: CGFloat = 4
     private let fontSize: CGFloat = 26
-}
-
-struct MealList: View {
-    @ObservedObject var mealStorage: MealStorageController
-    
-    @Environment(\.presentationMode) var presentationMode
-    
-    var body: some View {
-        List {
-            Section(header: Label("ALL", systemImage: "asterisk.circle")) {
-                ForEach(mealStorage.meals) { mealController in
-                    NavigationLink(destination: MealDetail(mealController: mealController) {
-                        $0.eat()
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        MealRow(mealController: mealController)
-                            .contextMenu(ContextMenu(menuItems: {
-                                eatButton
-                                deleteButton
-                            }))
-                    }
-                }
-                .onDelete { indexSet in mealStorage.deleteMeal(atOffsets: indexSet) }
-            }
-        }
-    }
-    
-    var eatButton: some View { Button(action: { /* TODO Implement eat */ }, label: { Label("Eat", systemImage: "folder") }) }
-    
-    var deleteButton: some View { Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "folder") }) }
 }
 
 struct MealPicker_Previews: PreviewProvider {

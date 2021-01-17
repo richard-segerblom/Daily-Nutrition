@@ -14,8 +14,7 @@ final class FoodController: NutritionProfileController {
     
     var name: String { food.name }
     var category: FoodCategory { food.category }
-    var caloriesText: String { "\(intValue(key: .calories)) kcal" }
-    var iconName: String { "paperplane" /* TODO Implement */}
+    var caloriesText: String { "\(intValue(key: .calories)) kcal" }    
     
     init(food: Food, required: NutritionProfile, persistenceController: PersistenceController) {
         self.food = food

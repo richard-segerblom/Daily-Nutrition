@@ -13,8 +13,8 @@ struct MealRow: View {
     var body: some View {
         Row(name: mealController.name,
             calories: mealController.caloriesText,
-            icon: Image(systemName: "paperplane"))
-    }
+            icon: Image.icon(mealController.category))
+    }       
 }
 
 struct MealRow_Previews: PreviewProvider {

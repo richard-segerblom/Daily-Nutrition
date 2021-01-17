@@ -13,6 +13,8 @@ final class ConsumedController: ObservableObject, Identifiable {
     
     var id: UUID { consumed.id }
     var nutritionProfile: NutritionProfileController
+    var foodCategory: FoodCategory? { consumed.eatable?.food.category }
+    var mealCategory: MealCategory? { consumed.meal?.category }
     
     var name: String {
         var name = "???"
