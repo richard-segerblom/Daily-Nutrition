@@ -14,6 +14,9 @@ final class FoodStorageController: ObservableObject {
     let persistenceController: PersistenceController
     let userController: UserController
     
+    private var filter: FoodFilterOption = .all
+    
+    private var allFood: [FoodController] = []
     private var cancellable: AnyCancellable?
     
     init(persistenceController: PersistenceController, userController: UserController) {
@@ -34,10 +37,39 @@ final class FoodStorageController: ObservableObject {
 
     // TODO - Should check for change notification and fetch then
     func fetchFood() {
-        let foods = CDFood.all(context: persistenceController.container.viewContext).map {
+        allFood = CDFood.all(context: persistenceController.container.viewContext).map {
             FoodController(food: $0, required: userController.profile, persistenceController: persistenceController)
         }
             
-        self.foods = foods
+        filter(filter)
     }
+    
+    func filter(_ filter: FoodFilterOption) {
+        self.filter = filter
+        
+        switch filter {
+        case .fruit:
+            foods = allFood.filter { $0.category == .fruit }
+        case .vegetables:
+            foods = allFood.filter { $0.category == .vegetables }
+        case .seafood:
+            foods = allFood.filter { $0.category == .seafood }
+        case .dairy:
+            foods = allFood.filter { $0.category == .dairy }
+        case .pantry:
+            foods = allFood.filter { $0.category == .pantry }
+        default:
+            foods = allFood
+        }
+    }
+}
+
+enum FoodFilterOption {
+    case all
+    case fruit
+    case vegetables
+    case meat
+    case seafood
+    case dairy
+    case pantry
 }

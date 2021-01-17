@@ -35,15 +35,16 @@ struct FoodPicker: View {
 
 struct FoodList: View {
     @ObservedObject var foodStorage: FoodStorageController
+    
+    @State private var filterOption: FoodFilterOption = .all
     @State private var isSearchPresented: Bool = false
+    
     @Environment(\.presentationMode) var presentationMode
         
     let style: PickerStyle
     let action: (FoodController, Int16) -> Void
     let searchController: SearchController
-    let title: String
-    
-    var foods: [FoodController] { foodStorage.foods }
+    let title: String        
     
     init(foodStorage: FoodStorageController, title: String, style: PickerStyle = .food, action: @escaping (FoodController, Int16) -> Void) {
         self.foodStorage = foodStorage
@@ -57,7 +58,7 @@ struct FoodList: View {
     
     var body: some View {
         List {            
-            ForEach(foods) { foodController in
+            ForEach(foodStorage.foods) { foodController in
                 NavigationLink(destination: FoodDetail(foodController: foodController, style: style, action: action)) {
                     FoodRow(foodController: foodController)
                 }
@@ -77,17 +78,23 @@ struct FoodList: View {
     
     var menu: some View {
         Menu {
-            // TODO Implement filter
-            Button(action: { }, label: { Label("All", systemImage: "asterisk.circle.fill") })
-            Button(action: { }, label: { Label("Fruits", systemImage: "f.circle.fill") })
-            Button(action: { }, label: { Label("Vegetables", systemImage: "v.circle.fill") })
-            Button(action: { }, label: { Label("Meat", systemImage: "m.circle.fill") })
-            Button(action: { }, label: { Label("Seafood", systemImage: "s.circle.fill") })
-            Button(action: { }, label: { Label("Dairy", systemImage: "d.circle.fill") })
-            Button(action: { }, label: { Label("Pantry", systemImage: "p.circle.fill") })
+            menuItem(name: "All", icon: "asterisk.circle.fill", filter: .all)
+            menuItem(name: "Fruits", icon: "f.circle.fill", filter: .fruit)
+            menuItem(name: "Vegetables", icon: "v.circle.fill", filter: .vegetables)
+            menuItem(name: "Meat", icon: "m.circle.fill", filter: .meat)
+            menuItem(name: "Seafood", icon: "s.circle.fill", filter: .seafood)
+            menuItem(name: "Dairy", icon: "d.circle.fill", filter: .dairy)
+            menuItem(name: "Pantry", icon: "p.circle.fill", filter: .pantry)  
         } label: {
             Image(systemName: "slider.horizontal.3").foregroundColor(menuColor)
         }
+    }
+    
+    func menuItem(name: String, icon: String, filter: FoodFilterOption) -> some View {
+        Button(action: {
+            filterOption = filter
+            foodStorage.filter(filter)
+        }, label: { Label(name, systemImage: icon) })
     }
     
     // MARK: - Drawing Constants

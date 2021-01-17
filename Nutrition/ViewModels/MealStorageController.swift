@@ -18,12 +18,7 @@ final class MealStorageController: ObservableObject {
     let persistenceController: PersistenceController
     let userController: UserController
     
-    private var _filter: MealFilterOption = .all
-    var filter: MealFilterOption = .all {
-        willSet {
-            filter(newValue)
-        }
-    }
+    private var filter: MealFilterOption = .all
     
     private var allMeals: [MealController] = []
     private var cancellable: AnyCancellable?
@@ -80,11 +75,11 @@ final class MealStorageController: ObservableObject {
     }
     
     func fetchMeals() {
-        self.allMeals = CDMeal.all(context: persistenceController.container.viewContext).map {
+        allMeals = CDMeal.all(context: persistenceController.container.viewContext).map {
             MealController(meal: $0, required: userController.profile, persistenceController: persistenceController)
         }
                  
-        self.filter(.all)
+        filter(filter)
     }
     
     func fetchRecent() {
@@ -109,7 +104,7 @@ final class MealStorageController: ObservableObject {
     }
     
     func filter(_ filter: MealFilterOption) {
-        _filter = filter
+        self.filter = filter
         
         switch filter {
         case .recent:
