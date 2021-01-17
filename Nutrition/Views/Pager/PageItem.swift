@@ -9,32 +9,40 @@ import SwiftUI
 
 struct PageItem: View {
     let food: ConsumedController
+    let actionType: HorizontalPager.ActionType
+    let action: (ConsumedController) -> Void
+    
+    @State var isDetailPresented = false
     
     var body: some View {
         GeometryReader { geometry in
-            HStack {
-                Image.icon(food)
-                    .foregroundColor(iconColor)
-                    .font(.system(size: iconSize))
-                    .padding(iconPadding)
-                
-                VStack(alignment: HorizontalAlignment.leading) {
-                    Text(food.name)
-                    Text(food.nutritionProfile[.calories].intValueDetailText)
-                        .font(.system(size: subTitleFontSize(geometry)))
+            Button(action: {
+                isDetailPresented = true
+            } , label: {
+                HStack {
+                    Image.icon(food)
+                        .font(.system(size: iconSize))
+                        .padding(iconPadding)
+                    
+                    VStack(alignment: HorizontalAlignment.leading) {
+                        Text(food.name)
+                        Text(food.nutritionProfile[.calories].intValueDetailText)
+                            .font(.system(size: subTitleFontSize(geometry)))
+                    }
+                    
+                    Spacer()
                 }
-                
-                Spacer()                                
-            }
-            .font(.system(size: titleFontSize(geometry)))
-            .position(x: x(geometry), y: y(geometry))
-            .border(Color.accentColor)
+                .font(.system(size: titleFontSize(geometry)))
+                .position(x: x(geometry), y: y(geometry))
+                .border(Color.accentColor)                
+            }).buttonStyle(PageItemStyle())
+        }.sheet(isPresented: $isDetailPresented) {
+            ConsumedDetail(consumedController: food, buttonTitle: actionType.rawValue, action: action)
         }
     }
     
     // MARK: - Drawing Constants
     private let iconPadding: CGFloat = 10
-    private let iconColor = Color.accentColor
     private let iconSize: CGFloat = 24
     private func titleFontSize(_ geometry: GeometryProxy) -> CGFloat { 0.07 * geometry.size.width }
     private func subTitleFontSize(_ geometry: GeometryProxy) -> CGFloat { 0.04 * geometry.size.width }
@@ -42,9 +50,19 @@ struct PageItem: View {
     private func y(_ geometry: GeometryProxy) -> CGFloat { geometry.size.height / 2 }
 }
 
+struct PageItemStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .font(.subheadline)
+            .foregroundColor(configuration.isPressed ? Color.white : Color.accentColor)
+            .background(configuration.isPressed ? Color.accentColor : Color.white)
+            .cornerRadius(.infinity)
+    }
+}
+
 struct PageItem_Previews: PreviewProvider {
     static var previews: some View {
-        PageItem(food: PreviewData.consumedController)
+        PageItem(food: PreviewData.consumedController, actionType: .delete) { _ in }
             .previewLayout(PreviewLayout.fixed(width: 300, height: 80))
     }
 }

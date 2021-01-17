@@ -13,15 +13,20 @@ struct HorizontalPager: View {
     let emptyText: String
     let columns: Int
     let rows: Int
+    let actionType: ActionType
+    let action: (ConsumedController) -> Void
     
     @State private var pageIndex: Int = 0
     
-    init(items: [ConsumedController], title: String = "", emptyText: String = "", columns: Int = 3, rows: Int = 3) {
+    init(items: [ConsumedController], title: String, emptyText: String, actionType: ActionType,
+         columns: Int = 3, rows: Int = 3, action: @escaping (ConsumedController) -> Void) {
         self.items = items
         self.title = title
         self.emptyText = emptyText
+        self.actionType = actionType
         self.columns = columns
         self.rows = rows
+        self.action = action
     }
     
     var body: some View {
@@ -38,7 +43,7 @@ struct HorizontalPager: View {
                     } else {
                         TabView(selection: $pageIndex.animation()) {
                             ForEach((0..<pages), id: \.self) {
-                                Page(items: pageItems(for: $0))
+                                Page(items: pageItems(for: $0), actionType: actionType, action: action)
                                     .tag($0)
                                     .padding(padding)
                             }
@@ -69,6 +74,11 @@ struct HorizontalPager: View {
         return Array(items[start..<end])
     }
     
+    enum ActionType: String {
+        case delete = "DELETE"
+        case eat = "EAT"
+    }
+    
     // MARK: - Drawing Constants
     private let borderColor = Color.accentColor
     private let textColor = Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
@@ -78,7 +88,8 @@ struct HorizontalPager: View {
 
 struct HorizontalPager_Previews: PreviewProvider {
     static var previews: some View {
-        HorizontalPager(items:Array(repeating: PreviewData.consumedController, count: 18), title: "RECENT")
+        HorizontalPager(items:Array(repeating: PreviewData.consumedController, count: 18), title: "RECENT",
+                        emptyText: "Some text", actionType: .delete) { _ in }
             .previewLayout(PreviewLayout.fixed(width: 400, height: 200))
             .padding()
     }

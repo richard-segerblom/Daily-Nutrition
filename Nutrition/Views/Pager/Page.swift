@@ -11,6 +11,8 @@ struct Page: View {
     let items: [ConsumedController]
     let rows = 3
     let columns = 3
+    let actionType: HorizontalPager.ActionType
+    let action: (ConsumedController) -> Void
     
     var body: some View {
         GeometryReader { geometry in
@@ -21,7 +23,7 @@ struct Page: View {
                             ForEach(0..<rowsInColumn(column), id: \.self) { row in
                                 let itemIndex = index(for: column, row: row)
                                 let item = items[itemIndex]
-                                PageItem(food: item)
+                                PageItem(food: item, actionType: actionType, action: action)
                                     .padding([.bottom, .trailing], padding)
                                     .id(row)
                                     .frame(width: width(geometry), height: height(geometry))
@@ -53,7 +55,7 @@ struct Page: View {
 
 struct Page_Previews: PreviewProvider {
     static var previews: some View {
-        Page(items: Array(repeating: PreviewData.consumedController, count: 15))
+        Page(items: Array(repeating: PreviewData.consumedController, count: 15), actionType: .delete) { _ in }
             .previewLayout(PreviewLayout.fixed(width: 400, height: 200))
     }
 }

@@ -25,7 +25,7 @@ struct ConsumedToday: View {
             NavigationView {
                 List {
                     ForEach(consumedStorageController.today) { consumed in
-                        NavigationLink(destination: ConsumedDetail(consumedController: consumed)) {
+                        NavigationLink(destination: ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE", action: { _ in /* TODO Implement delete */ })) {
                             ConsumedRow(consumedController: consumed)
                                 .contextMenu(ContextMenu(menuItems: {
                                     eatButton
