@@ -11,7 +11,9 @@ struct HomeCompactLayout: View {
     @ObservedObject var consumedStorage: ConsumedStorageController
     @ObservedObject var foodStorage: FoodStorageController
     @ObservedObject var mealStorage: MealStorageController
+    @ObservedObject var userController: UserController
     
+    @State private var isConsumedPresented = false
     @State private var isFoodPresented = false
     @State private var isMealPresented = false
     
@@ -36,8 +38,21 @@ struct HomeCompactLayout: View {
                 }
                 .frame(maxHeight: buttonMaxHeight(geometry))
             }
+            .toolbar() {
+                ToolbarItem(placement: .navigationBarLeading) { consumedButton }
+            }.foregroundColor(Color.accentColor)
             .padding([.horizontal, .bottom])
         }
+    }
+    
+    var consumedButton: some View {
+        Button(action: {
+            isConsumedPresented = true
+        }) {
+            Image(systemName: "clock.fill")
+        }
+        .sheet(isPresented: $isConsumedPresented) { ConsumedToday(consumedStorageController: consumedStorage) }
+        .disabled(!userController.isUserSetUp)
     }
     
     // MARK: - Drawing Constants
@@ -80,6 +95,6 @@ struct FlipCard: View {
 struct HomeCompactLayout_Previews: PreviewProvider {
     static var previews: some View {
         HomeCompactLayout(consumedStorage: PreviewData.consumedStorage, foodStorage: PreviewData.foodStorage,
-                          mealStorage: PreviewData.mealStorage)
+                          mealStorage: PreviewData.mealStorage, userController: PreviewData.userController)
     }
 }

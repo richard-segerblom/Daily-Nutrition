@@ -13,10 +13,8 @@ struct Home: View {
     @ObservedObject var userController: UserController
     
     @State private var isProfilePresented = false
-    @State private var isConsumedPresented = false
     
-    @Environment(\.horizontalSizeClass) var sizeClass
-    
+    @Environment(\.horizontalSizeClass) var sizeClass    
         
     init(app: AppController) {
         self.app = app
@@ -31,7 +29,8 @@ struct Home: View {
                 if sizeClass == .compact {
                     HomeCompactLayout(consumedStorage: app.consumedStorage,
                                       foodStorage: app.foodStorage,
-                                      mealStorage: app.mealStorage)
+                                      mealStorage: app.mealStorage,
+                                      userController: app.user)
                 } else {
                     HomeRegularLayout(consumedStorage: app.consumedStorage,
                                       foodStorage: app.foodStorage,
@@ -43,7 +42,6 @@ struct Home: View {
             .toolbar() {
                 ToolbarItem(placement: .principal) { Text(Date(), style: .date).font(.title2) }
                 ToolbarItem(placement: .navigationBarTrailing) { profileButton }
-                ToolbarItem(placement: .navigationBarLeading) { consumedButton }
             }.foregroundColor(titleColor)
         }.navigationViewStyle(StackNavigationViewStyle())
     }
@@ -62,16 +60,6 @@ struct Home: View {
             Image(systemName: "person.crop.circle.fill")
         }
         .sheet(isPresented: $isProfilePresented) { Profile(user: userController) }
-        .disabled(!userController.isUserSetUp)
-    }
-    
-    var consumedButton: some View {
-        Button(action: {
-            isConsumedPresented = true
-        }) {
-            Image(systemName: "clock.fill")
-        }
-        .sheet(isPresented: $isConsumedPresented) { ConsumedToday(consumedStorageController: app.consumedStorage) }
         .disabled(!userController.isUserSetUp)
     }
     
