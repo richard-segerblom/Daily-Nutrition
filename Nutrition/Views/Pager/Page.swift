@@ -25,7 +25,6 @@ struct Page: View {
                                 let item = items[itemIndex]
                                 PageItem(food: item, actionType: actionType, action: action)
                                     .padding([.bottom, .trailing], padding)
-                                    .id(row)
                                     .frame(width: width(geometry), height: height(geometry))
                             }
                         }
