@@ -12,11 +12,16 @@ struct ConsumedDetail: View {
     let buttonTitle: String
     let action: (ConsumedController) -> Void
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 Detail(profile: consumedController.nutritionProfile)
-                DefaultButton(title: buttonTitle, action: { /* TODO Implement delete consumed */ })
+                DefaultButton(title: buttonTitle, action: {
+                    self.action(consumedController)
+                    self.presentationMode.wrappedValue.dismiss()
+                })
                     .padding([.top, .bottom])
             }
             .navigationBarTitleDisplayMode(.inline)

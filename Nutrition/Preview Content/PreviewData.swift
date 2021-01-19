@@ -79,7 +79,7 @@ struct PreviewData {
     static var consumedController: ConsumedController = {
         let eatable = NewEatable(id: UUID(), food: apple, amount: 125, nutritionProfile: appleProfile)
         let consumed = NewConsumed(id: UUID(), date: Date(), eatable: eatable, meal: nil, nutritionProfile: appleProfile)
-        return ConsumedController(consumed: consumed, required: userProfile)
+        return ConsumedController(consumed: consumed, required: userProfile, persistenceController: PersistenceController.preview)
     }()
     
     static let consumedStorage = ConsumedStorageController(persistenceController: PersistenceController.preview,
