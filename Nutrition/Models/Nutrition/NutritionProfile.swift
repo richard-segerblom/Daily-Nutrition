@@ -15,7 +15,7 @@ protocol NutritionProfile {
     var nutrients: [NutrientKey: Nutrient] { get }
     
     func scale(_ factor: Float) -> NutritionProfile
-    func merged(other: NutritionProfile) -> NutritionProfile
+    func merged(other: NutritionProfile, units: [NutrientKey: Unit]) -> NutritionProfile
 }
 
 extension NutritionProfile {
@@ -29,11 +29,13 @@ extension NutritionProfile {
         return NewNutritionProfile(nutrients: all)
     }
     
-    func merged(other: NutritionProfile) -> NutritionProfile {
+    func merged(other: NutritionProfile, units: [NutrientKey: Unit] = NutritionProfileController.nutrientUnits) -> NutritionProfile {
         var all: [Nutrient] = []
-        for (key, nutrient) in nutrients {            
-            let value = nutrient.value + (other.nutrients[key]?.value ?? 0)
-            all.append(NewNutrient(id: nutrient.id, key: nutrient.key, value: value, unit: nutrient.unit))
+        for key in NutrientKey.allCases {
+            let value = (nutrients[key]?.value ?? 0) + (other.nutrients[key]?.value ?? 0)
+            if value > 0 {
+                all.append(NewNutrient(key: key, value: value, unit: units[key] ?? .unknown))
+            }
         }
         return NewNutritionProfile(nutrients: all)
     }
