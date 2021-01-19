@@ -32,7 +32,7 @@ struct MealDetail: View {
                     }
                 }                
                 
-                Detail(profile: mealController.nutritionProfile)
+                Detail(profile: mealController)
                 
                 DefaultButton(title: "EAT", action: { onEatTapped(mealController) })
                     .padding(.top, buttonPadding)
