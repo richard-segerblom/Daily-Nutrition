@@ -17,7 +17,7 @@ struct ConsumedDetail: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                Detail(profile: consumedController.nutritionProfile)
+                Detail(profile: consumedController)
                 DefaultButton(title: buttonTitle, action: {
                     self.action(consumedController)
                     self.presentationMode.wrappedValue.dismiss()

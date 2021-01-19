@@ -15,7 +15,7 @@ enum NutrientCategory {
 }
 
 class NutritionProfileController: Identifiable, ObservableObject {
-    let id = UUID()
+    var id: UUID { _profile.id }
     
     var required: NutritionProfile
     

@@ -26,7 +26,7 @@ struct PageItem: View {
                     
                     VStack(alignment: HorizontalAlignment.leading) {
                         Text(food.name)
-                        Text(food.nutritionProfile[.calories].intValueDetailText)
+                        Text(food[.calories].intValueDetailText)
                             .font(.system(size: subTitleFontSize(geometry)))
                     }
                     

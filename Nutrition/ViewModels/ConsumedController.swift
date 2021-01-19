@@ -7,13 +7,10 @@
 
 import Foundation
 
-final class ConsumedController: ObservableObject, Identifiable {
+final class ConsumedController: NutritionProfileController {
     let consumed: Consumed
-    var required: NutritionProfile
     let persistenceController: PersistenceController
     
-    var id: UUID { consumed.id }
-    var nutritionProfile: NutritionProfileController
     var foodCategory: FoodCategory? { consumed.eatable?.food.category }
     var mealCategory: MealCategory? { consumed.meal?.category }
     
@@ -28,15 +25,15 @@ final class ConsumedController: ObservableObject, Identifiable {
     }
     
     var date: Date { consumed.date }
-    var caloriesText: String { String("\(nutritionProfile[.calories].intValue)") + " kcal" }
+    var caloriesText: String { String("\(self[.calories].intValue)") + " kcal" }
     var meal: Meal? { consumed.meal }
     var eatable: Eatable? { consumed.eatable }        
     
     init(consumed: Consumed, required: NutritionProfile, persistenceController: PersistenceController) {
         self.consumed = consumed
-        self.required = required
         self.persistenceController = persistenceController
-        self.nutritionProfile = NutritionProfileController(profile: consumed.nutritionProfile, required: required)
+        
+        super.init(profile: consumed.nutritionProfile, required: required)
     }
     
     func eat(completion: (() -> Void)? = nil) {
