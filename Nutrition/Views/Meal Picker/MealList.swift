@@ -19,24 +19,17 @@ struct MealList: View {
                 ForEach(mealStorage.meals) { mealController in
                     Row(name: mealController.name, calories: mealController.caloriesText, icon: Image.icon(mealController.category)) {
                         MealDetail(mealController: mealController) {
-                            $0.eat()
-                            self.presentationMode.wrappedValue.dismiss()
+                            $0.eat { self.presentationMode.wrappedValue.dismiss() }                            
                         }
                     }.contextMenu(ContextMenu(menuItems: {
-                        eatButton
-                        deleteButton
+                        Button(action: {
+                            mealController.eat { presentationMode.wrappedValue.dismiss() }
+                        }, label: { Label("Eat", systemImage: "folder") })
+                        Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "folder") })
                     }))
                 }.onDelete { indexSet in mealStorage.deleteMeal(atOffsets: indexSet) }
             }
             Spacer()
         }
-    }
-    
-    var eatButton: some View {
-        Button(action: { /* TODO Implement eat */ }, label: { Label("Eat", systemImage: "folder") })
-    }
-    
-    var deleteButton: some View {
-        Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "folder") })
     }
 }

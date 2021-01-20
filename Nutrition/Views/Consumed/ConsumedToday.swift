@@ -28,9 +28,8 @@ struct ConsumedToday: View {
                         ForEach(consumedStorageController.today) { consumed in
                             Row(name: consumed.name, calories: consumed.caloriesText, icon: Image.icon(consumed)) {
                                 ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE", action: { _ in /* TODO Implement delete */ })
-                            }.contextMenu(ContextMenu(menuItems: {
-                                eatButton
-                                deleteButton
+                            }.contextMenu(ContextMenu(menuItems: {                                
+                                Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "trash.fill") })
                             }))
                         }.onDelete { _ in /* TODO Implement delete */  }
                     }
@@ -43,10 +42,6 @@ struct ConsumedToday: View {
             }
         }
     }
-    
-    var eatButton: some View { Button(action: { /* TODO Implement eat */ }, label: { Label("Eat", systemImage: "arrowshape.turn.up.right.fill") }) }
-    
-    var deleteButton: some View { Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "trash.fill") }) }
 }
 
 struct ConsumedToday_Previews: PreviewProvider {

@@ -37,9 +37,7 @@ struct FoodList: View {
                 ForEach(foodStorage.foods) { foodController in
                     Row(name: foodController.name, calories: foodController.caloriesText, icon: Image.icon(foodController.category)) {
                         FoodDetail(foodController: foodController, style: style, action: action)
-                    }.contextMenu(ContextMenu(menuItems: {
-                        Button(action: { /* TODO Implement eat */ }, label: { Label("Eat", systemImage: "folder") })
-                    }))
+                    }
                 }
             }
             Spacer()
