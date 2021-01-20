@@ -35,9 +35,9 @@ struct HomeRegularLayout: View {
 
                 Group {
                     HorizontalPager(items: consumedStorage.today, title: "CONSUMED TODAY", emptyText: "No food exists",
-                                    actionType: .delete) { _ in /* TODO Implement delete */ }
+                                    actionType: .delete) { $0.delete() }
                     HorizontalPager(items: consumedStorage.latest, title: "RECENT", emptyText: "No recent items exists.",
-                                    actionType: .eat) { $0.eat() }
+                                    actionType: .eat) { $0.eat() }                        
                 }.padding(.top)
 
                 VStack(spacing: 0) {

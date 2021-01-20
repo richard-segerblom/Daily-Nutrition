@@ -20,7 +20,7 @@ final class MealController: NutritionProfileController {
         self.meal = meal
         self.persistenceController = persistenceController
         
-        super.init(profile: self.meal.nutritionProfile, required: required)
+        super.init(profile: self.meal.nutritionProfile, required: required, id: meal.id)
     }
     
     func ingredientFriendlyName(_ ingredient: Ingredient) -> String {

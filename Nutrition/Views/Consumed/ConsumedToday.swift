@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ConsumedToday: View {
     @ObservedObject var consumedStorageController: ConsumedStorageController
-    @State private var editMode = EditMode.inactive
+
+    @State private var toDelete: ConsumedController?
+
+    @Environment(\.presentationMode) var presentationMode
     
     init(consumedStorageController: ConsumedStorageController) {
         self.consumedStorageController = consumedStorageController
@@ -27,20 +30,29 @@ struct ConsumedToday: View {
                     VStack {
                         ForEach(consumedStorageController.today) { consumed in
                             Row(name: consumed.name, calories: consumed.caloriesText, icon: Image.icon(consumed)) {
-                                ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE", action: { _ in /* TODO Implement delete */ })
-                            }.contextMenu(ContextMenu(menuItems: {                                
-                                Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "trash.fill") })
+                                ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE",
+                                               action: { deleteTapped($0) })
+                            }
+                            .contextMenu(ContextMenu(menuItems: {
+                                Button(action: { deleteTapped(consumed) },
+                                       label: { Label("Delete", systemImage: "trash.fill") })
                             }))
-                        }.onDelete { _ in /* TODO Implement delete */  }
+                        }
                     }
                     Spacer()
                 }
                 .navigationTitle(Text("Consumed Today"))
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar() { ToolbarItem(placement: .navigationBarTrailing) { EditButton() } }
-                .environment(\.editMode, $editMode)
+                .onDisappear {
+                    if let consumed = toDelete { consumed.delete() }
+                }
             }
         }
+    }
+    
+    func deleteTapped(_ consumed: ConsumedController) {
+        toDelete = consumed
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
@@ -49,4 +61,3 @@ struct ConsumedToday_Previews: PreviewProvider {
         ConsumedToday(consumedStorageController: PreviewData.consumedStorage)
     }
 }
-

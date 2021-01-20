@@ -37,7 +37,22 @@ struct PageItem: View {
                 .border(Color.accentColor)                
             }).buttonStyle(RowStyle())
         }.sheet(isPresented: $isDetailPresented) {
-            ConsumedDetail(consumedController: food, buttonTitle: actionType.rawValue, action: action)
+            if actionType == .eat {
+                ConsumedDetail(consumedController: food, buttonTitle: actionType.rawValue, action: action)
+            } else {
+                Detail(profile: food)
+                    .padding()
+            }
+        }
+        .contextMenu(ContextMenu(menuItems: {
+            Button(action: { self.action(food) }, label: { menuLabel })
+        }))
+    }
+    
+    private var menuLabel: some View {
+        switch actionType {
+        case .delete: return Label(actionType.rawValue, systemImage: "trash.fill")
+        default: return Label(actionType.rawValue, systemImage: "heart.fill")
         }
     }
     

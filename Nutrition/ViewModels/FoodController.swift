@@ -20,7 +20,7 @@ final class FoodController: NutritionProfileController {
         self.food = food
         self.persistenceController = persistenceController
         
-        super.init(profile: food.profile, required: required)
+        super.init(profile: food.profile, required: required, id: food.id)
     }
     
     func eat(amount: Int16, completion: (() -> Void)? = nil) {

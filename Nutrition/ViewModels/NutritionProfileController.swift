@@ -15,8 +15,7 @@ enum NutrientCategory {
 }
 
 class NutritionProfileController: Identifiable, ObservableObject {
-    var id: UUID { _profile.id }
-    
+    var id: UUID
     var required: NutritionProfile
     
     private let _profile: NutritionProfile
@@ -34,9 +33,11 @@ class NutritionProfileController: Identifiable, ObservableObject {
                                                      .manganese:.mg, .selenium:.mcg, .a:.mcg, .e:.mg, .c:.mg, .b1:.mg, .b2:.mg,
                                                      .b3:.mg, .b6:.mg, .b12:.mcg, .choline:.mg, .k:.mcg, .b9:.mcg]
        
-    init(profile: NutritionProfile, required: NutritionProfile) {
+    init(profile: NutritionProfile, required: NutritionProfile, id: UUID = UUID()) {
         self._profile = profile
         self.required = required
+        self.id = id
+        
         scalableProfile = NewNutritionProfile(nutrients: profile.nutrients.map { NewNutrient(id: $1.id, key: $0, value: $1.value, unit: $1.unit) }, id: required.id)
     }
     

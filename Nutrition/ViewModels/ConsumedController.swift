@@ -33,7 +33,7 @@ final class ConsumedController: NutritionProfileController {
         self.consumed = consumed
         self.persistenceController = persistenceController
         
-        super.init(profile: consumed.nutritionProfile, required: required)
+        super.init(profile: consumed.nutritionProfile, required: required, id: consumed.id)
     }
     
     func eat(completion: (() -> Void)? = nil) {
@@ -41,5 +41,10 @@ final class ConsumedController: NutritionProfileController {
         CDConsumed(context: context, meal: consumed.meal as? CDMeal, eatable: consumed.eatable as? CDEatable)
         
         persistenceController.saveChanges(success: { completion?() })
+    }
+    
+    func delete(completion: (() -> Void)? = nil) {
+        persistenceController.container.viewContext.delete(consumed as! CDConsumed)
+        persistenceController.saveChanges(success: completion)
     }
 }
