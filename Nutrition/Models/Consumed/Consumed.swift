@@ -72,10 +72,11 @@ extension CDConsumed {
 }
 
 extension CDConsumed {
-    static func latest(context: NSManagedObjectContext, limit: Int = 45) -> [CDConsumed] {
+    static func today(context: NSManagedObjectContext) -> [CDConsumed] {
         let request = NSFetchRequest<CDConsumed>(entityName: "CDConsumed")
+        request.predicate = NSPredicate(format: "%K >= %@", #keyPath(CDConsumed.date),
+                                        Calendar.current.startOfDay(for: Date()) as CVarArg)
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(CDConsumed.date), ascending: true)]
-        request.fetchLimit = limit
         
         guard let consumed = try? context.fetch(request) else { return [] }
 
@@ -105,18 +106,18 @@ extension CDConsumed {
         return consumed
     }
     
-    static func sinceDate(date: Date, context: NSManagedObjectContext) -> [CDConsumed] {
+    static func latest(context: NSManagedObjectContext, limit: Int = 45) -> [CDConsumed] {
         let request = NSFetchRequest<CDConsumed>(entityName: "CDConsumed")
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(CDConsumed.date), ascending: true)]
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(CDConsumed.date), Date() as CVarArg)
+        request.fetchLimit = limit
         
         guard let consumed = try? context.fetch(request) else { return [] }
-
+        
         for item in consumed {
             if let mealID = item.mealID {
                 item.cdMeal = CDMeal.withID(mealID, context: context)
-            } else if let eatableID = item.eatableID {
-                item.cdEatable = CDEatable.withID(eatableID, context: context)
+            } else {
+                item.cdEatable = CDEatable.withID(item.eatableID!, context: context)
             }
         }
                 

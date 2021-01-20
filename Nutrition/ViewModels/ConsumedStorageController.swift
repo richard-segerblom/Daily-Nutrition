@@ -58,11 +58,12 @@ final class ConsumedStorageController: ObservableObject {
     }
     
     func fetchConsumed(completion: (() -> Void)? = nil) {
-        let latest = CDConsumed.latest(context: persistenceController.container.viewContext)
+        self.today = CDConsumed.today(context: persistenceController.container.viewContext)
             .map { ConsumedController(consumed: $0, required: userController.profile, persistenceController: persistenceController) }
-        let today = latest.filter { Calendar.current.isDateInToday($0.date) }
-        self.latest = latest
-        self.today = today
+        
+        self.latest = CDConsumed.latest(context: persistenceController.container.viewContext)
+            .map { ConsumedController(consumed: $0, required: userController.profile, persistenceController: persistenceController) }
+                
         completion?()
     }
     
