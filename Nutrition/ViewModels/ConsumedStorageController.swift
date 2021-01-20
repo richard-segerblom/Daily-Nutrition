@@ -24,7 +24,7 @@ final class ConsumedStorageController: ObservableObject {
         self.userController = userController
         self.nutritionToday = NutritionProfileController(profile: userController.profile, required: userController.profile)
         
-        fetchConsumed { self.sumNutritionToday() }
+        fetch()
         
         NotificationCenter.default.addObserver(self, selector: #selector(onChangeNotification(_:)), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
         
@@ -52,19 +52,28 @@ final class ConsumedStorageController: ObservableObject {
             shouldReload = !deletedObjects.filter { $0 is CDConsumed }.isEmpty
         }
         
-        if shouldReload {
-            fetchConsumed { self.sumNutritionToday() }
-        }
+        if shouldReload { fetch() }
+    }
+        
+    func fetch() {
+        fetchToday()
+        fetchLatest()
+        self.sumNutritionToday()
     }
     
-    func fetchConsumed(completion: (() -> Void)? = nil) {
+    func fetchToday() {
         self.today = CDConsumed.today(context: persistenceController.container.viewContext)
             .map { ConsumedController(consumed: $0, required: userController.profile, persistenceController: persistenceController) }
-        
-        self.latest = CDConsumed.latest(context: persistenceController.container.viewContext)
+    }
+    
+    private func fetchLatest() {
+        let latest = CDConsumed.latest(context: persistenceController.container.viewContext, limit: 150)
             .map { ConsumedController(consumed: $0, required: userController.profile, persistenceController: persistenceController) }
-                
-        completion?()
+        
+        var unique: [String: ConsumedController] = [:]
+        latest.forEach { unique[$0.name] = $0 }
+        
+        self.latest = unique.map { $1 }
     }
     
     private func sumNutritionToday() {                
