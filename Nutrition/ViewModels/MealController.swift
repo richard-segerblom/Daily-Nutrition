@@ -33,4 +33,9 @@ final class MealController: NutritionProfileController {
 
         persistenceController.saveChanges(success: { completion?() })
     }
+    
+    func delete(completion: (() -> Void)? = nil) {
+        persistenceController.container.viewContext.delete(meal as! CDMeal)
+        persistenceController.saveChanges(success: completion)
+    }
 }

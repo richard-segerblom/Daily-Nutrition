@@ -25,7 +25,7 @@ struct MealList: View {
                         Button(action: {
                             mealController.eat { presentationMode.wrappedValue.dismiss() }
                         }, label: { Label("Eat", systemImage: "folder") })
-                        Button(action: { /* TODO Implement delete */ }, label: { Label("Delete", systemImage: "folder") })
+                        Button(action: { mealController.delete() }, label: { Label("Delete", systemImage: "folder") })
                     }))
                 }.onDelete { indexSet in mealStorage.deleteMeal(atOffsets: indexSet) }
             }
