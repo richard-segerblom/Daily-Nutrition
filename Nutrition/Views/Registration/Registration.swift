@@ -64,6 +64,7 @@ struct Registration: View {
                     isGenderPresented = true
                 }) {
                     Image(systemName: "arrow.backward")
+                        .font(.system(size: backButtonSize))
                 }
                 Spacer()
             }.foregroundColor(.accentColor)
@@ -87,6 +88,7 @@ struct Registration: View {
         
     // MARK: - Drawing Constants
     private let backgroundColor = Color.black.opacity(0.3)
+    private let backButtonSize: CGFloat = 20
 }
 
 struct PopupView<Content: View>: View {

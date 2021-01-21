@@ -30,8 +30,9 @@ struct FoodDetail: View {
                 }), in: 5...500, step: 5,  minimumValueLabel: Text("5g"), maximumValueLabel: Text("500g")) { Text("Amount") }
                     .padding(.top, padding)
                 
-                Text("\(amount, specifier: "%.0f")")
+                Text("\(amount, specifier: "%.0f")g")
                     .padding(.bottom)
+                    .font(.title2)
                                 
                 eatButton
                 

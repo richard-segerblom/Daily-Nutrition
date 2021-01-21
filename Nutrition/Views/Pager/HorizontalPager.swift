@@ -32,6 +32,7 @@ struct HorizontalPager: View {
     var body: some View {
         VStack(spacing: 0) {
             Text(title)
+                .font(.system(size: fontSize))
             GeometryReader { geometry in
                 ZStack {
                     Rectangle()
@@ -39,6 +40,7 @@ struct HorizontalPager: View {
                         .border(borderColor)
                     if items.isEmpty {
                         Text(emptyText)
+                            .font(.system(size: fontSize))
                             .foregroundColor(textColor)
                     } else {
                         TabView(selection: $pageIndex.animation()) {
@@ -84,6 +86,7 @@ struct HorizontalPager: View {
     private let textColor = Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
     private let padding: CGFloat = 6
     private let pageIndexPadding: CGFloat = 5
+    private let fontSize: CGFloat = 14
 }
 
 struct HorizontalPager_Previews: PreviewProvider {

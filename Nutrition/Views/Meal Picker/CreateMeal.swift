@@ -33,11 +33,15 @@ struct CreateMeal: View {
                 ScrollView {
                     VStack(spacing: spacing) {
                         Group {
-                            nameTextField
+                            TextField("Enter Name...", text: $name)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.top)
+                                .foregroundColor(textColor)
                             categorySegment
                             HStack {
                                 Text("Ingredients")
-                                    .font(.system(size: fontSize, weight: .medium, design: .rounded))
+                                    .font(.title2)
+                                    .foregroundColor(textColor)
                                 addIngredientButton
                             }
                         }
@@ -45,11 +49,18 @@ struct CreateMeal: View {
                         .padding(.top, paddingTop)
                         
                         VStack(alignment: .leading, spacing: listSpacing) {
-                            if ingredients.isEmpty { noIngredientsText }
+                            if ingredients.isEmpty {
+                                HStack {
+                                    Spacer()
+                                    Text("No ingredeint..")
+                                        .padding()
+                                    Spacer()
+                                }
+                            }
                             IngredientList(ingredients: $ingredients)
                             createButton
                                 .padding()
-                        }.foregroundColor(Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1)))
+                        }.foregroundColor(textColor)
                     }
                 }
                 .navigationTitle("Create Meal")
@@ -63,18 +74,6 @@ struct CreateMeal: View {
                 
             }
         }.sheet(isPresented: $isIngredientPickerPresented) { ingredientPicker }
-    }
-    
-    var noIngredientsText: some View {
-        Text("No ingredeint..")
-            .font(.subheadline)
-            .padding()
-    }
-    
-    var nameTextField: some View {
-        TextField("Enter Name...", text: $name)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding(.top)
     }
     
     var mealDetails: CreateMealDetail {
@@ -92,7 +91,7 @@ struct CreateMeal: View {
     var addIngredientButton: some View {
         Button(action: { isIngredientPickerPresented = true }, label: { Image(systemName: "plus.circle.fill") })
             .foregroundColor(.accentColor)
-            .font(.system(size: iconSize))
+            .font(.title)
     }
     
     var createButton: some View {
@@ -123,8 +122,7 @@ struct CreateMeal: View {
     private let spacing: CGFloat = 12
     private let listSpacing: CGFloat = 4
     private let paddingTop: CGFloat = 10
-    private let fontSize: CGFloat = 18
-    private let iconSize: CGFloat = 24
+    private let textColor = Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1))
 }
 
 struct IngredientList: View {
@@ -135,22 +133,16 @@ struct IngredientList: View {
             ZStack(alignment: .leading) {
                 Rectangle()
                     .foregroundColor(rowBackgroundColor)
-                    .frame(height: rowHeight)
-                HStack {
-                    Text("\(ingredient.amount)g    \t")
-                        .padding(.leading)
-                        .font(.system(size: primaryFontSize, weight: .medium, design: .rounded))
-                    Text("\(ingredient.food.name)")
-                        .font(.system(size: secondaryFontSize, weight: .light, design: .rounded))
-                }
+                    .frame(minHeight: minRowHeight)
+                    
+                Text("\(ingredient.amount)g   \t\(ingredient.food.name)")
+                    .padding(.leading)
             }
         }
     }
     
     // MARK: - Drawing Constants
-    private let rowHeight: CGFloat = 40
-    private let primaryFontSize: CGFloat = 16
-    private let secondaryFontSize: CGFloat = 14
+    private let minRowHeight: CGFloat = 40
     private let rowBackgroundColor = Color(#colorLiteral(red: 0.9537998028, green: 0.9537998028, blue: 0.9537998028, alpha: 1))
 }
 
@@ -160,8 +152,9 @@ struct CreateMealDetail: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             Detail(profile: profile)
+                .padding(.bottom)
         }
-        .padding()
+        .padding(.horizontal)
     }
 }
 

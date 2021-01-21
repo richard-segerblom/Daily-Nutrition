@@ -75,6 +75,7 @@ struct TitleView<Content: View>: View {
     var body: some View {
         VStack(spacing: 0) {
             Text(title)
+                .font(.system(size: fontSize))
                 .padding(.top)
                 .padding(.bottom, bottomPadding)
             content
@@ -83,6 +84,7 @@ struct TitleView<Content: View>: View {
     
     // MARK: - Drawing Constants
     private let bottomPadding: CGFloat = 5
+    private let fontSize: CGFloat = 14
 }
 
 struct HomeRegularLayout_Previews: PreviewProvider {

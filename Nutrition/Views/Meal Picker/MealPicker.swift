@@ -68,6 +68,7 @@ struct MealPicker: View {
             menuItem(name: "Snack", icon: "s.circle.fill", filter: .snack)
         } label: {
             Image(systemName: "slider.horizontal.3").foregroundColor(menuColor)
+                .font(.system(size: navigationBarIconSize))
         }
     }
     
@@ -98,7 +99,7 @@ struct MealPicker: View {
     // MARK: - Drawing Constants
     private let menuColor = Color("ProgressColor")
     private let padding: CGFloat = 4
-    private let fontSize: CGFloat = 26
+    private let navigationBarIconSize: CGFloat = 26
 }
 
 struct MealPicker_Previews: PreviewProvider {

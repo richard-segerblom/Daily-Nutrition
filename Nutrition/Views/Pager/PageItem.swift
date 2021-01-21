@@ -40,8 +40,10 @@ struct PageItem: View {
             if actionType == .eat {
                 ConsumedDetail(consumedController: food, buttonTitle: actionType.rawValue, action: action)
             } else {
-                Detail(profile: food)
-                    .padding()
+                ScrollView {
+                    Detail(profile: food)
+                        .padding()
+                }
             }
         }
         .contextMenu(ContextMenu(menuItems: {

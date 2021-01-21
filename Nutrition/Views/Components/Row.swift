@@ -32,7 +32,7 @@ struct Row<Destination: View>: View {
                 VStack(alignment: HorizontalAlignment.leading) {
                     Text(name)
                     Text(calories)
-                        .font(.system(size: fontSize))
+                        .scaledFont(size: caloriesFontSize)
                 }
                 .foregroundColor(Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1)))
                 .padding(.vertical, padding)
@@ -53,7 +53,7 @@ struct Row<Destination: View>: View {
     
     // MARK: - Drawing Constants
     private let padding: CGFloat = 8
-    private let fontSize: CGFloat = 12
+    private let caloriesFontSize: CGFloat = 12
     private let dividerThickness: CGFloat = 0.5
     private let disclosureSize: CGFloat = 14
     private let color = Color(#colorLiteral(red: 0.7281854981, green: 0.7307450292, blue: 0.7384236226, alpha: 1))
@@ -61,8 +61,7 @@ struct Row<Destination: View>: View {
 
 struct RowStyle: ButtonStyle {    
     func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .font(.subheadline)
+        configuration.label            
             .foregroundColor(configuration.isPressed ? Color.white : Color.accentColor)
             .background(configuration.isPressed ? Color.accentColor : Color.white)
     }

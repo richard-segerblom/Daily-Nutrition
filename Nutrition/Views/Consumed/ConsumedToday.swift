@@ -21,31 +21,34 @@ struct ConsumedToday: View {
     }
     
     var body: some View {
-        if consumedStorageController.today.isEmpty {
-            Text("No food consumed today")
-                .font(.title2)
-        } else {
-            NavigationView {
-                ScrollView {
-                    VStack {
-                        ForEach(consumedStorageController.today) { consumed in
-                            Row(name: consumed.name, calories: consumed.caloriesText, icon: Image.icon(consumed)) {
-                                ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE",
-                                               action: { deleteTapped($0) })
+        NavigationView {
+            Group {
+                if consumedStorageController.today.isEmpty {
+                    Text("No food consumed today")
+                        .font(.system(size: fontSize))
+                        .foregroundColor(textColor)
+                } else {
+                    ScrollView {
+                        VStack {
+                            ForEach(consumedStorageController.today) { consumed in
+                                Row(name: consumed.name, calories: consumed.caloriesText, icon: Image.icon(consumed)) {
+                                    ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE",
+                                                   action: { deleteTapped($0) })
+                                }
+                                .contextMenu(ContextMenu(menuItems: {
+                                    Button(action: { deleteTapped(consumed) },
+                                           label: { Label("Delete", systemImage: "trash.fill") })
+                                }))
                             }
-                            .contextMenu(ContextMenu(menuItems: {
-                                Button(action: { deleteTapped(consumed) },
-                                       label: { Label("Delete", systemImage: "trash.fill") })
-                            }))
                         }
+                        Spacer()
                     }
-                    Spacer()
                 }
-                .navigationTitle(Text("Consumed Today"))
-                .navigationBarTitleDisplayMode(.inline)
-                .onDisappear {
-                    if let consumed = toDelete { consumed.delete() }
-                }
+            }
+            .navigationTitle(Text("Consumed Today"))
+            .navigationBarTitleDisplayMode(.inline)
+            .onDisappear {
+                if let consumed = toDelete { consumed.delete() }
             }
         }
     }
@@ -54,6 +57,10 @@ struct ConsumedToday: View {
         toDelete = consumed
         presentationMode.wrappedValue.dismiss()
     }
+    
+    // MARK: - Drawing Constants
+    private let fontSize: CGFloat = 18
+    private let textColor = Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1))
 }
 
 struct ConsumedToday_Previews: PreviewProvider {

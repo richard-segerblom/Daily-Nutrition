@@ -66,7 +66,9 @@ struct FoodList: View {
             menuItem(name: "Dairy", icon: "d.circle.fill", filter: .dairy)
             menuItem(name: "Pantry", icon: "p.circle.fill", filter: .pantry)
         } label: {
-            Image(systemName: "slider.horizontal.3").foregroundColor(menuColor)
+            Image(systemName: "slider.horizontal.3")
+                .foregroundColor(menuColor)
+                .font(.system(size: navigationBarIconSize))
         }
     }
     
@@ -74,9 +76,12 @@ struct FoodList: View {
         Button(action: {
             filterOption = filter
             foodStorage.filter(filter)
-        }, label: { Label(name, systemImage: icon) })
+        }, label: {
+            Label(name, systemImage: icon)
+        })
     }
     
     // MARK: - Drawing Constants
     private let menuColor = Color("ProgressColor")
+    private let navigationBarIconSize: CGFloat = 26
 }

@@ -26,7 +26,7 @@ struct DefaultButton: View {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .foregroundColor(backgroundColor)
                 Text(title)
-                    .font(.title2)
+                    .font(.system(size: fontSize))
                     .foregroundColor(.white)
             }
         }
@@ -35,6 +35,7 @@ struct DefaultButton: View {
     }
     
     // MARK: - Drawing Constants
+    private let fontSize: CGFloat = 26
     private let cornerRadius: CGFloat = 10
     private let height: CGFloat = 50
     private let color = Color("ProgressColor")

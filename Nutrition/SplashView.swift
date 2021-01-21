@@ -19,6 +19,7 @@ struct SplashView: View {
                 .opacity(textOpacity)
                 .foregroundColor(.accentColor)
                 .animation(Animation.linear(duration: 0.5))
+                .multilineTextAlignment(.center)
         }
         .onAppear { textOpacity = 1 }
     }
