@@ -29,8 +29,8 @@ final class ReferenceDailyIntake {
 
 extension ReferenceDailyIntake {
     private static let tableIndexes: [NutrientKey: Int] = [
-        .la:0, .ala:1, .calories:2, .calcium:3, .iron:4, .magnesium:5, .phosphorus:6, .potassium:7, .sodium:8,
-        .zinc:9, .a:10, .e:11, .c:12, .b1:13, .b2:14, .b3:15, .b6:16, .b12:17, .choline:18, .k:19, .b9:20]
+        .la:0, .ala:1, .calories:2, .calcium:3, .iron:4, .magnesium:5, .phosphorus:6, .potassium:7, .sodium:8, .zinc:9, .copper: 10,
+        .manganese: 11, .selenium: 12, .a:13, .e:14, .c:15, .b1:16, .b2:17, .b3:18, .b6:19, .b12:20, .choline:21, .k:22, .b9:23]
     
     private class func ageCategory(age: Int) -> Int {
         switch age {
