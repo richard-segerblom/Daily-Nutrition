@@ -16,6 +16,16 @@ final class UserController: ObservableObject {
     var profile: NutritionProfile { return user?.nutritionProfile ?? NewNutritionProfile(nutrients: []) }
     var age: Int { user?.age ?? 0 }
     var gender: Gender { user?.gender ?? .unknown }
+    var genderText: String {
+        switch gender {
+        case .man:
+            return "Man"
+        case .woman:
+            return "Woman"
+        default:
+            return "Unknown"
+        }
+    }
     
     init(persistenceController: PersistenceController, user: User? = nil) {
         self.persistenceController = persistenceController

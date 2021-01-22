@@ -11,9 +11,7 @@ struct Profile: View {
     var user: UserController
     
     @State private var profile: NutritionProfileController
-    @State private var gender = 0
-    @State private var age = 0
-    
+        
     @Environment(\.presentationMode) var presentationMode
     
     init(user: UserController) {
@@ -26,21 +24,12 @@ struct Profile: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Profile")) {
-                    Picker("Gender", selection: $gender) {
-                        Text("Man").tag(0)
-                        Text("Woman").tag(1)
-                    }.pickerStyle(SegmentedPickerStyle())
-                    
-                    Picker("Age", selection: $age) {
-                        ForEach(0 ..< 120) {
-                            Text("\($0)")
-                        }
-                    }
-                }
+                ProfileStaticRow(name: "Gender", value: user.genderText)
+                ProfileStaticRow(name: "Age", value: "\(user.age)")
+                
                 ProfileSection(title: "Vitamins", nutrients: profile[.vitamins], profile: $profile)
                 ProfileSection(title: "Minerals", nutrients: profile[.minerals], profile: $profile)
-                ProfileSection(title: "Energy", nutrients: profile[.energy], profile: $profile, isDecimal: false)                         
+                ProfileSection(title: "Energy", nutrients: profile[.energy], profile: $profile, isDecimal: false)
             }
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
@@ -53,6 +42,19 @@ struct Profile: View {
                 }
             }
         }
+    }
+}
+
+struct ProfileStaticRow: View {
+    let name: String
+    let value: String
+    
+    var body: some View {
+        HStack {
+            Text(name)
+            Spacer()
+            Text(value)
+        }.foregroundColor(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
     }
 }
 
@@ -87,6 +89,8 @@ struct ProfileSection: View {
                     Text(nutrient.unitText)
                         .frame(minWidth: unitMinWidth)                        
                 }
+                .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
+                .font(.subheadline)
             }
         }
     }
