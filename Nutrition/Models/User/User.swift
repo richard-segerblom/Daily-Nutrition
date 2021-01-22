@@ -48,9 +48,9 @@ extension User {
         let required = ReferenceDailyIntake.nutritionProfile(gender: gender, age: age)
         let profile = CDNutritionProfile.add(profile: required, context: persistenceController.container.viewContext)
         
-        User.saveAge(age: age)
-        User.saveGender(gender: gender)
-        User.saveNutritionProfileID(id: profile.id)
+        User.saveAge(age: age, userDefault: userDefault)
+        User.saveGender(gender: gender, userDefault: userDefault)
+        User.saveNutritionProfileID(id: profile.id, userDefault: userDefault)
                                 
         return User(age: age, gender: gender, nutritionProfile: profile)
     }
