@@ -29,12 +29,12 @@ final class ReferenceDailyIntake {
 
 extension ReferenceDailyIntake {
     private static let tableIndexes: [NutrientKey: Int] = [
-        .la:0, .ala:1, .calories:2, .calcium:3, .iron:4, .magnesium:5, .phosphorus:6, .potassium:7, .sodium:8, .zinc:9, .copper:10,
-        .manganese:11, .selenium:12, .a:13, .e:14, .c:15, .b1:16, .b2:17, .b3:18, .b6:19, .b12:20, .choline:21, .k:22, .b9:23]
+        .la:0, .ala:1, .calories:2, .calcium:3, .iron:4, .magnesium:5, .phosphorus:6, .potassium:7, .sodium:8,
+        .zinc:9, .a:10, .e:11, .c:12, .b1:13, .b2:14, .b3:15, .b6:16, .b12:17, .choline:18, .k:19, .b9:20]
     
     private class func ageCategory(age: Int) -> Int {
         switch age {
-        case 1...3:
+        case 2...3:
             return 0
         case 4...8:
             return 1
@@ -49,19 +49,19 @@ extension ReferenceDailyIntake {
         default:
             return 6
         }
-    }
+    }        
     
     private static let nutrientTableMen: [[Float]] = [
         [7, 10, 12, 16, 17, 17, 14],                    // LA - g
-        [0.7, 0.9, 1.3, 1.6, 1.6, 1.6, 1.6],            // ALA - g
-        [1000, 1500, 1800, 2800, 2600, 2200, 2000],     // Calories - kcal
+        [0.7, 0.9, 1.2, 1.6, 1.6, 1.6, 1.6],            // ALA - g
+        [1000, 1400, 1800, 2200, 2400, 2200, 2000],     // Calories - kcal
                     
         [700, 1000, 1300, 1300, 1000, 1000, 1000],      // Calcium - mg
         [7, 10, 8, 11, 8, 8, 8],                        // Iron - mg
         [80, 130, 240, 410, 400, 420, 420],             // Magnesium - mg
         [460, 500, 1250, 1250, 700, 700, 700],          // Phosphorus - mg
-        [3000, 3800, 4500, 4700, 4700, 4700, 4700],     // Potassium - mg
-        [1500, 1900, 2200, 2300, 2300, 2300, 2300],     // Sodium - mg
+        [2000, 2300, 2500, 3000, 3400, 3400, 3400],     // Potassium - mg
+        [1200, 1500, 1800, 2300, 2300, 2300, 2300],     // Sodium - mg
         [3, 5, 8, 11, 11, 11, 11],                      // Zinc - mg
         [340, 440, 700, 890, 900, 900, 900],            // Copper - mcg
         [1.2, 1.5, 1.9, 2.2, 2.3, 2.3, 2.3],            // Manganese - mg
@@ -77,7 +77,7 @@ extension ReferenceDailyIntake {
         [0.9, 1.2, 1.8, 2.4, 2.4, 2.4, 2.4],            // B12 - mcg
         [200, 250, 375, 550, 550, 550, 550],            // Choline - mg
         [30, 55, 60, 75, 120, 120, 120],                // Vitamin K - mcg
-        [150, 200, 300, 400, 400, 400, 400]]            // B9 Folsyr - mcg
+        [150, 200, 300, 400, 400, 400, 400]]            // B9 Folate - mcg
                 
     private static let nutrientTableWoman: [[Float]] = [
         [7, 10, 10, 11, 12, 12, 11],                    // LA - g
@@ -88,8 +88,8 @@ extension ReferenceDailyIntake {
         [7, 10, 8, 15, 18, 18, 8],                      // Iron - mg
         [80, 130, 240, 360, 310, 320, 320],             // Magnesium - mg
         [460, 500, 1250, 1250, 700, 700, 700],          // Phosphorus - mg
-        [3000, 3800, 4500, 4700, 4700, 4700, 4700],     // Potassium - mg
-        [1500, 1900, 2200, 2300, 2300, 2300, 2300],     // Sodium - mg
+        [2000, 2300, 2300, 2300, 2600, 2600, 2600],     // Potassium - mg
+        [1200, 1500, 1800, 2300, 2300, 2300, 2300],     // Sodium - mg
         [3, 5, 8, 9, 8, 8, 8],                          // Zinc - mg
         [340, 440, 700, 890, 900, 900, 900],            // Copper - mcg
         [1.2, 1.5, 1.6, 1.6, 1.8, 1.8, 1.8],            // Manganese - mg
@@ -105,5 +105,5 @@ extension ReferenceDailyIntake {
         [0.9, 1.2, 1.8, 2.4, 2.4, 2.4, 2.4],            // B12 - mcg
         [200, 250, 375, 400, 425, 425, 425],            // Choline - mg
         [30, 55, 60, 75, 90, 90, 90],                   // Vitamin K - mcg
-        [150, 200, 300, 400, 400, 400, 400]]            // B9 Folsyr - mcg
+        [150, 200, 300, 400, 400, 400, 400]]            // B9 Folate - mcg
 }

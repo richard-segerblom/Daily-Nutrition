@@ -73,7 +73,7 @@ struct Registration: View {
                 .font(.title)
 
             Picker(selection: $selectedAge, label: Text("Age")) {
-                ForEach(0...120, id:\.self) {
+                ForEach(2...120, id:\.self) {
                     Text("\($0)")
                 }
             }

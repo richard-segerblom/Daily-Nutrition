@@ -72,9 +72,11 @@ struct BarChartLine: View {
         HStack {
             Text(title)
                 .font(.system(size: fontSize))
+                .foregroundColor(color)
             Rectangle()
                 .frame(width: lineWidth, height: lineHeight)
-        }.foregroundColor(color)
+                .foregroundColor(color).opacity(0.5)
+        }
     }
     
     // MARK: - Drawing Constants

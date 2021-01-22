@@ -14,6 +14,8 @@ struct Profile: View {
         
     @Environment(\.presentationMode) var presentationMode
     
+    let url = URL(string: "https://www.dietaryguidelines.gov/sites/default/files/2020-12/Dietary_Guidelines_for_Americans_2020-2025.pdf")
+    
     init(user: UserController) {
         self.user = user
         _profile = State(initialValue: NutritionProfileController(profile: user.profile, required: user.profile))
@@ -24,6 +26,14 @@ struct Profile: View {
     var body: some View {
         NavigationView {
             Form {
+                VStack {
+                    Spacer()
+                    Link("Dietary Guidelines", destination: url!)
+                        .font(.subheadline)
+                        .foregroundColor(.accentColor)
+                    Spacer()
+                }
+                
                 ProfileStaticRow(name: "Gender", value: user.genderText)
                 ProfileStaticRow(name: "Age", value: "\(user.age)")
                 
