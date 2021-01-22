@@ -60,7 +60,7 @@ struct BarChart<Content: View>: View {
     private let lineHeight: CGFloat = 1
     private let verticalSpacing: CGFloat = 4
     private let fontSize: CGFloat = 14
-    private let textColor = Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+    private let textColor = Color("PrimaryTextColor")
 }
 
 struct BarChartLine: View {
@@ -72,17 +72,14 @@ struct BarChartLine: View {
         HStack {
             Text(title)
                 .font(.system(size: fontSize))
-                .foregroundColor(textColor)
             Rectangle()
                 .frame(width: lineWidth, height: lineHeight)
-                .foregroundColor(lineColor)
-        }
+        }.foregroundColor(color)
     }
     
     // MARK: - Drawing Constants
     private let fontSize: CGFloat = 12
-    private let textColor = Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-    private let lineColor = Color(#colorLiteral(red: 0.9247807457, green: 0.9247807457, blue: 0.9247807457, alpha: 1))
+    private let color = Color("ChartDetailColor")
 }
 
 struct BarChartView_Previews: PreviewProvider {

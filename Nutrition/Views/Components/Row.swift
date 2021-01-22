@@ -34,7 +34,7 @@ struct Row<Destination: View>: View {
                     Text(calories)
                         .scaledFont(size: caloriesFontSize)
                 }
-                .foregroundColor(Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1)))
+                .foregroundColor(textColor)
                 .padding(.vertical, padding)
                 
                 Spacer()
@@ -56,14 +56,16 @@ struct Row<Destination: View>: View {
     private let caloriesFontSize: CGFloat = 12
     private let dividerThickness: CGFloat = 0.5
     private let disclosureSize: CGFloat = 14
-    private let color = Color(#colorLiteral(red: 0.7281854981, green: 0.7307450292, blue: 0.7384236226, alpha: 1))
+    private let color = Color("RowDetailColor")
+    private let textColor = Color("PrimaryTextColor")
 }
 
 struct RowStyle: ButtonStyle {    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label            
-            .foregroundColor(configuration.isPressed ? Color.white : Color.accentColor)
-            .background(configuration.isPressed ? Color.accentColor : Color.white)
+            .foregroundColor(configuration.isPressed ? Color("SecondaryTextColor") : Color("PrimaryColor"))
+            .background(configuration.isPressed ? Color("PrimaryColor") : Color.clear)
+            .contentShape(Rectangle())
     }
 }
 

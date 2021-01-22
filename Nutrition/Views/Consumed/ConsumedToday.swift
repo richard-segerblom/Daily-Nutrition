@@ -60,7 +60,7 @@ struct ConsumedToday: View {
     
     // MARK: - Drawing Constants
     private let fontSize: CGFloat = 18
-    private let textColor = Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1))
+    private let textColor = Color("PrimaryTextColor")
 }
 
 struct ConsumedToday_Previews: PreviewProvider {

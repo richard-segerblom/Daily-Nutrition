@@ -25,7 +25,7 @@ extension UINavigationBar {
         setAppearance(appearance: transparentAppearance)
     }
     
-    class func setOpaqueBackground(color: Color = Color(#colorLiteral(red: 0.9537998028, green: 0.9537998028, blue: 0.9537998028, alpha: 1))) {
+    class func setOpaqueBackground(color: Color = Color("NavigationBarColor")) {
         let appearance = opaqueAppearance
         appearance.backgroundColor = UIColor(color)
         

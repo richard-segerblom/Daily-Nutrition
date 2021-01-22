@@ -35,7 +35,7 @@ struct Detail: View {
                     }
                 }
             }
-            .foregroundColor(Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1)))
+            .foregroundColor(textColor)
             .padding(.top)
             
             if sizeClass == .regular {
@@ -54,6 +54,7 @@ struct Detail: View {
     private let horizontalSpacingFats: CGFloat = 40
     private let horizontalSpacingComponents: CGFloat = 20
     private let paddingBottom: CGFloat = 30
+    private let textColor = Color("PrimaryTextColor")
 }
 
 struct NutrientSection: View {

@@ -54,8 +54,11 @@ struct ProfileStaticRow: View {
             Text(name)
             Spacer()
             Text(value)
-        }.foregroundColor(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
+        }.foregroundColor(textColor)
     }
+    
+    // MARK: - Drawing Constants
+    private let textColor = Color("PrimaryTextColor")
 }
 
 struct ProfileSection: View {
@@ -89,7 +92,7 @@ struct ProfileSection: View {
                     Text(nutrient.unitText)
                         .frame(minWidth: unitMinWidth)                        
                 }
-                .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
+                .foregroundColor(textColor)
                 .font(.subheadline)
             }
         }
@@ -97,6 +100,7 @@ struct ProfileSection: View {
     
     // MARK: - Drawing Constants
     private let unitMinWidth: CGFloat = 30
+    private let textColor = Color("PrimaryTextColor")
 }
 
 struct Profile_Previews: PreviewProvider {

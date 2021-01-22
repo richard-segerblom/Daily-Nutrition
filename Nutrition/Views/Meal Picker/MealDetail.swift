@@ -42,7 +42,7 @@ struct MealDetail: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(Text(mealController.name))
         }
-        .foregroundColor(Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1)))
+        .foregroundColor(textColor)
         .padding(.horizontal)
     }        
     
@@ -50,7 +50,8 @@ struct MealDetail: View {
     private let titlePadding: CGFloat = 5
     private let ingredientSpacing: CGFloat = 5
     private let ingredientPadding: CGFloat = 10
-    private let buttonPadding: CGFloat = 40    
+    private let buttonPadding: CGFloat = 40
+    private let textColor = Color("PrimaryTextColor")
 }
 
 struct MealDetail_Previews: PreviewProvider {

@@ -23,7 +23,7 @@ struct Fats: View {
                 }
                 .padding(.top)
                 .font(.system(size: fontSize(geometry)))
-                .foregroundColor(.white)
+                .foregroundColor(textColor)
                 
                 HStack(spacing: spacingBottom(geometry)) {
                     ForEach(profile[[.saturated, .monounsaturated, .polyunsaturated]]) { fat in
@@ -32,13 +32,13 @@ struct Fats: View {
                             Text(fat.floatValueText)
                         }
                         .font(.system(size: fontSize(geometry)))
-                        .foregroundColor(.white)
+                        .foregroundColor(textColor)
                     }
                 }
                 .frame(maxWidth: .infinity)
                 .padding([.horizontal, .bottom])
             }
-            .background(Color("ProgressColor"))
+            .background(backgroundColor)
             .cornerRadius(cornerRadius)
         }
     }
@@ -50,6 +50,8 @@ struct Fats: View {
     private func spacingBottom(_ geometry: GeometryProxy) -> CGFloat { 0.12 * geometry.size.width }
     private let spacingTop: CGFloat = 40
     private let cornerRadius: CGFloat = 25
+    private let backgroundColor = Color("PrimaryColor")
+    private let textColor = Color("SecondaryTextColor")
 }
 
 struct Fats_Previews: PreviewProvider {

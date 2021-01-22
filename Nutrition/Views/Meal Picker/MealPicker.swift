@@ -97,7 +97,7 @@ struct MealPicker: View {
     }
     
     // MARK: - Drawing Constants
-    private let menuColor = Color("ProgressColor")
+    private let menuColor = Color.accentColor
     private let padding: CGFloat = 4
     private let navigationBarIconSize: CGFloat = 26
 }

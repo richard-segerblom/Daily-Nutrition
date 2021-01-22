@@ -34,7 +34,7 @@ struct Bar: View {
             VStack(spacing: spacing) {
                 ZStack(alignment: .bottom) {
                     Rectangle().frame(width: size.width, height: size.height)
-                        .foregroundColor(progressTrackColor)
+                        .foregroundColor(trackColor)
                     Rectangle().frame(width: size.width, height: height)
                         .foregroundColor(progressColor)
                         .animation(Animation.linear.delay(0.3))
@@ -65,9 +65,9 @@ struct Bar: View {
     }
     
     // MARK: - Drawing Constants
-    private let progressTrackColor: Color = Color("ProgressTrackColor")
-    private let progressColor: Color = Color("ProgressColor")
-    private let textColor: Color = Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+    private let trackColor: Color = Color("TrackColor")
+    private let progressColor = Color("PrimaryColor")
+    private let textColor: Color = Color("PrimaryTextColor")
     private var height: CGFloat { CGFloat(nutrient.limitProgress) * size.height }
     private let spacing: CGFloat = 8
     private let fontSize: CGFloat = 12
@@ -89,7 +89,7 @@ struct BarDetail: View {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .frame(height: height)
                 .foregroundColor(color)
-                .shadow(color: .accentColor, radius: 2, x: 0, y: 0)
+                .shadow(color: shadowColor, radius: 2, x: 0, y: 0)
             Text(text)
                 .font(.system(size: fontSize))
                 .padding(.horizontal, padding)
@@ -99,7 +99,8 @@ struct BarDetail: View {
     
     // MARK: - Drawing Constants
     private let cornerRadius: CGFloat = 5
-    private let textColor = Color.white
+    private let textColor = Color("SecondaryTextColor")
+    private let shadowColor = Color("PrimaryColor")
     private var height: CGFloat { isIpadTouch ? 20 : 23 }
     private var padding: CGFloat { isIpadTouch ? 4 : 6 }
     private var fontSize: CGFloat { isIpadTouch ? 12 : 16 }

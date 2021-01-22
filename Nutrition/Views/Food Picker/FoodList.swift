@@ -82,6 +82,6 @@ struct FoodList: View {
     }
     
     // MARK: - Drawing Constants
-    private let menuColor = Color("ProgressColor")
+    private let menuColor = Color("PrimaryColor")
     private let navigationBarIconSize: CGFloat = 26
 }

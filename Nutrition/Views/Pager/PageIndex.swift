@@ -29,8 +29,8 @@ struct PageIndex: View {
     // MARK: - Drawing Constants
     private let circleSize: CGFloat = 10
     private let circleSpacing: CGFloat = 10
-    private let primaryColor = Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-    private let secondaryColor = Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)).opacity(0.6)
+    private let primaryColor = Color("PrimaryTextColor")
+    private let secondaryColor = Color("PrimaryTextColor").opacity(0.6)
 }
 
 struct PageIndex_Previews: PreviewProvider {

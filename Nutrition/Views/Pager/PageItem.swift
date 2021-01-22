@@ -34,7 +34,7 @@ struct PageItem: View {
                 }
                 .font(.system(size: titleFontSize(geometry)))
                 .position(x: x(geometry), y: y(geometry))
-                .border(Color.accentColor)                
+                .border(borderColor)                
             }).buttonStyle(RowStyle())
         }.sheet(isPresented: $isDetailPresented) {
             if actionType == .eat {
@@ -59,6 +59,7 @@ struct PageItem: View {
     }
     
     // MARK: - Drawing Constants
+    private let borderColor = Color("PrimaryColor")
     private let iconPadding: CGFloat = 10
     private let iconSize: CGFloat = 24
     private func titleFontSize(_ geometry: GeometryProxy) -> CGFloat { 0.07 * geometry.size.width }

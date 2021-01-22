@@ -13,16 +13,19 @@ struct SplashView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .foregroundColor(.white)
+                .foregroundColor(Color(UIColor.systemBackground))
                 .edgesIgnoringSafeArea(.all)
             Text("DAILY NUTRITION")
                 .opacity(textOpacity)
-                .foregroundColor(.accentColor)
+                .foregroundColor(textColor)
                 .animation(Animation.linear(duration: 0.5))
                 .multilineTextAlignment(.center)
         }
         .onAppear { textOpacity = 1 }
     }
+    
+    // MARK: - Drawing Constants
+    private let textColor = Color("PrimaryColor")
 }
 
 struct SplashView_Previews: PreviewProvider {

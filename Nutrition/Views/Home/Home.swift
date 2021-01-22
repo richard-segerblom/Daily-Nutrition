@@ -64,7 +64,7 @@ struct Home: View {
     }
     
     // MARK: - Drawing Constants
-    private let titleColor = Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+    private let titleColor = Color("PrimaryTextColor")
 }
 
 struct HomeView_Previews: PreviewProvider {

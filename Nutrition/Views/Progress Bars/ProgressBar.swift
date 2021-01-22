@@ -18,7 +18,7 @@ struct ProgressBar: View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 Rectangle().frame(width: geometry.size.width, height: geometry.size.height)
-                    .foregroundColor(progressTrackColor)
+                    .foregroundColor(trackColor)
                 Rectangle().frame(width: min(CGFloat(self.progress)*geometry.size.width, geometry.size.width), height: geometry.size.height)
                     .foregroundColor(progressColor)
             }.cornerRadius(cornerRadius)
@@ -26,8 +26,8 @@ struct ProgressBar: View {
     }
     
     // MARK: - Drawing Constants
-    private let progressTrackColor: Color = Color("ProgressTrackColor")
-    private let progressColor: Color = Color("ProgressColor")
+    private let trackColor: Color = Color("TrackColor")
+    private let progressColor = Color("PrimaryColor")
     private let cornerRadius: CGFloat = 6
 }
 

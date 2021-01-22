@@ -27,7 +27,7 @@ struct DefaultButton: View {
                     .foregroundColor(backgroundColor)
                 Text(title)
                     .font(.system(size: fontSize))
-                    .foregroundColor(.white)
+                    .foregroundColor(textColor)
             }
         }
         .frame(height: height)
@@ -38,9 +38,9 @@ struct DefaultButton: View {
     private let fontSize: CGFloat = 26
     private let cornerRadius: CGFloat = 10
     private let height: CGFloat = 50
-    private let color = Color("ProgressColor")
-    private let disabledColor = Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
-    var backgroundColor: Color { isDisabled ? disabledColor : color }
+    private let disabledColor = Color("DisabledButtonColor")
+    var backgroundColor: Color { isDisabled ? disabledColor : Color.accentColor }
+    var textColor = Color("SecondaryTextColor")
 }
 
 struct ButtonStyle_Previews: PreviewProvider {

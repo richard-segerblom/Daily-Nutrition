@@ -122,7 +122,7 @@ struct CreateMeal: View {
     private let spacing: CGFloat = 12
     private let listSpacing: CGFloat = 4
     private let paddingTop: CGFloat = 10
-    private let textColor = Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1))
+    private let textColor = Color("PrimaryTextColor")
 }
 
 struct IngredientList: View {
@@ -143,7 +143,7 @@ struct IngredientList: View {
     
     // MARK: - Drawing Constants
     private let minRowHeight: CGFloat = 40
-    private let rowBackgroundColor = Color(#colorLiteral(red: 0.9537998028, green: 0.9537998028, blue: 0.9537998028, alpha: 1))
+    private let rowBackgroundColor = Color("IngredientRowColor")
 }
 
 struct CreateMealDetail: View {

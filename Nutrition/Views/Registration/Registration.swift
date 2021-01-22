@@ -119,7 +119,7 @@ struct PopupView<Content: View>: View {
     private func rectangleWidth(_ geometry: GeometryProxy) -> CGFloat { min(geometry.size.width - 40, 500) }
     private func contentWidth(_ geometry: GeometryProxy) -> CGFloat { min(geometry.size.width - 80, 400) }
     private let shadowRadius: CGFloat = 10
-    private let formBackgroundColor = Color.white
+    private let formBackgroundColor = Color(UIColor.systemBackground)
     private let spacing: CGFloat = 10
     private let rectangleHeight: CGFloat = 400
     private let cornerRadius: CGFloat = 5

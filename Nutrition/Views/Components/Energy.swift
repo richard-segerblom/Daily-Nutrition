@@ -24,7 +24,7 @@ struct Energy: View {
                 }
                 .padding(.top)
                 .font(.system(size: fontSize(geometry)))
-                .foregroundColor(.white)
+                .foregroundColor(textColor)
                 
                 HStack(spacing: spacing) {
                     Group {
@@ -33,7 +33,7 @@ struct Energy: View {
                         EnergyDetail(nutrient: profile[.fats])
                     }
                     .font(.system(size: fontSize(geometry)))
-                    .foregroundColor(.white)
+                    .foregroundColor(textColor)
                 }
                 .padding([.horizontal, .bottom])
             }
@@ -48,7 +48,8 @@ struct Energy: View {
     private func fontSize(_ geometry: GeometryProxy) -> CGFloat { 0.045 * geometry.size.width }
     private let spacing: CGFloat = 25
     private let cornerRadius: CGFloat = 25
-    private let backgroundColor = Color("ProgressColor")
+    private let backgroundColor = Color("PrimaryColor")
+    private let textColor = Color("SecondaryTextColor")
 }
 
 struct EnergyDetail: View {
@@ -60,8 +61,8 @@ struct EnergyDetail: View {
                 .padding(.bottom, padding)
             ProgressView(value: nutrient.limitProgress)
                 .cornerRadius(cornerRadius)
-                .accentColor(.white)
-                .background(Color(#colorLiteral(red: 0.5425443053, green: 0.817581892, blue: 0.9679200053, alpha: 1)))
+                .accentColor(progressColor)
+                .background(trackColor)
                 .animation(.linear)
             Text(nutrient.percentText)
                 .padding(.top, padding)
@@ -71,6 +72,8 @@ struct EnergyDetail: View {
     // MARK: - Drawing Constants
     private let padding: CGFloat = 2
     private let cornerRadius: CGFloat = 5
+    private let progressColor = Color("SecondaryProgressColor")
+    private let trackColor = Color("EnergyTrackColor")
 }
 
 struct CaloriesDetail: View {

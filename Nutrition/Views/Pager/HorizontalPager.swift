@@ -82,8 +82,8 @@ struct HorizontalPager: View {
     }
     
     // MARK: - Drawing Constants
-    private let borderColor = Color.accentColor
-    private let textColor = Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+    private let borderColor = Color("PrimaryColor")
+    private let textColor = Color("PrimaryTextColor")
     private let padding: CGFloat = 6
     private let pageIndexPadding: CGFloat = 5
     private let fontSize: CGFloat = 14

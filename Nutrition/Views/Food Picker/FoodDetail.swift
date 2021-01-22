@@ -46,7 +46,7 @@ struct FoodDetail: View {
             .navigationTitle(Text(foodController.name))
         }
         .padding(.horizontal)
-        .foregroundColor(Color(#colorLiteral(red: 0.3985456812, green: 0.3985456812, blue: 0.3985456812, alpha: 1)))
+        .foregroundColor(textColor)
         .onAppear { self.foodController.scale(amount) }
     }
     
@@ -56,6 +56,7 @@ struct FoodDetail: View {
     
     // MARK: - Drawing Constants
     private let padding: CGFloat = 40
+    private let textColor = Color("PrimaryTextColor")
 }
 
 struct FoodDetail_Previews: PreviewProvider {
