@@ -225,6 +225,7 @@
 				7998349025A0CBC600949A6F /* Views */,
 				794103432598DB3900101920 /* NutritionApp.swift */,
 				798ABE8825B1ECA10074DC10 /* SplashView.swift */,
+				79C23A0825AC887D0034DCA2 /* PreviewData.swift */,
 				794103472598DB3A00101920 /* Assets.xcassets */,
 				794103512598DB3A00101920 /* Info.plist */,
 				794103492598DB3A00101920 /* Preview Content */,
@@ -236,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				7941034A2598DB3A00101920 /* Preview Assets.xcassets */,
-				79C23A0825AC887D0034DCA2 /* PreviewData.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -823,7 +823,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DailyNutrition;
+				PRODUCT_BUNDLE_IDENTIFIER = com.richardSegerblom.nutrition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -845,7 +845,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DailyNutrition;
+				PRODUCT_BUNDLE_IDENTIFIER = com.richardSegerblom.nutrition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
