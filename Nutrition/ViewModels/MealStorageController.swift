@@ -64,9 +64,9 @@ final class MealStorageController: ObservableObject {
     }
     
     func createMeal(name: String, category: Int, ingredients: [Ingredient]) {
-        guard let category = FoodCategory(rawValue: Int16(category)) else { return }
+        guard let category = MealCategory(rawValue: Int16(category)) else { return }
         
-        let meal = CDMeal(context: persistenceController.container.viewContext, name: name, foodCategory: category)
+        let meal = CDMeal(context: persistenceController.container.viewContext, name: name, mealCategory: category)
         for ingrediet in ingredients {
             CDIngredient(context: persistenceController.container.viewContext, amount: ingrediet.amount, sortOrder: ingrediet.sortOrder, food: ingrediet.food as! CDFood, meal: meal)
         }

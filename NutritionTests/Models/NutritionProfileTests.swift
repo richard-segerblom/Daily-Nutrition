@@ -1,20 +1,23 @@
 //
-//  ReferenceDailyIntakeTests.swift
+//  NutritionProfileTests.swift
 //  NutritionTests
 //
-//  Created by Richard Segerblom on 2021-01-22.
+//  Created by Richard Segerblom on 2021-01-25.
 //
 
 import XCTest
 
 @testable import Nutrition
 
-class ReferenceDailyIntakeTests: XCTestCase {
-    var man25Year: NutritionProfile!
-    var woman48Year: NutritionProfile!
-    
+class NutritionProfileTests: XCTestCase {
+    var persistent: PersistenceController!
+    var firstProfile: NutritionProfile!
+    var secondProfile: NutritionProfile!
+
     override func setUpWithError() throws {
-        man25Year = NewNutritionProfile(nutrients: [
+        persistent = PersistenceController(inMemory: true)
+        
+        firstProfile = NewNutritionProfile(nutrients: [
             NewNutrient(key: .la, value: 17, unit: .g),
             NewNutrient(key: .ala, value: 1.6, unit: .g),
             NewNutrient(key: .calories, value: 2400, unit: .kcal),
@@ -41,7 +44,7 @@ class ReferenceDailyIntakeTests: XCTestCase {
             NewNutrient(key: .b9, value: 400, unit: .mcg)
         ])
         
-        woman48Year = NewNutritionProfile(nutrients: [
+        secondProfile = NewNutritionProfile(nutrients: [
             NewNutrient(key: .la, value: 12, unit: .g),
             NewNutrient(key: .ala, value: 1.1, unit: .g),
             NewNutrient(key: .calories, value: 1800, unit: .kcal),
@@ -70,44 +73,51 @@ class ReferenceDailyIntakeTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        man25Year = nil
-        woman48Year = nil
+        persistent = nil
+        firstProfile = nil
+        secondProfile = nil
     }
 
-    func test_referenceDailyIntake_withMan25Year() throws {
+    func test_nutritionProfile_scale() {
         // Given
-        let gender = Gender.man
-        let age = 25
+        let scale: Float = 1.3
         
         // When
-        let profile = ReferenceDailyIntake.nutritionProfile(gender: gender, age: age)
+        let scaledProfile = firstProfile.scale(scale)
         
         // Then
-        for (key, nutrient) in man25Year.nutrients {
-            let profileNutrient = try XCTUnwrap(profile.nutrients[key])
-            
-            XCTAssertEqual(profileNutrient.key, nutrient.key)
-            XCTAssertEqual(profileNutrient.value, nutrient.value)
-            XCTAssertEqual(profileNutrient.unit, nutrient.unit)
+        for (key, nutrient) in scaledProfile.nutrients {
+            XCTAssertEqual(nutrient.value, (firstProfile.nutrients[key]?.value ?? 0) * scale)
         }
     }
     
-    func test_referenceDailyIntake_withWoman48Year() throws {
-        // Given
-        let gender = Gender.woman
-        let age = 48
-        
+    func test_nutritionProfile_merged() {
         // When
-        let profile = ReferenceDailyIntake.nutritionProfile(gender: gender, age: age)
+        let mergedProfile = firstProfile.merged(other: secondProfile)
         
         // Then
-        for (key, nutrient) in woman48Year.nutrients {
-            let profileNutrient = try XCTUnwrap(profile.nutrients[key])
-            
-            XCTAssertEqual(profileNutrient.key, nutrient.key)
-            XCTAssertEqual(profileNutrient.value, nutrient.value)
-            XCTAssertEqual(profileNutrient.unit, nutrient.unit)
+        for (key, nutrient) in mergedProfile.nutrients {
+            XCTAssertEqual(nutrient.value, (firstProfile.nutrients[key]?.value ?? 0) + (secondProfile.nutrients[key]?.value ?? 0))
         }
     }
+    
+    func test_nutritonProfile_add() {
+        // When
+        let addedProfile = CDNutritionProfile.add(profile: firstProfile, context: persistent.container.viewContext)
         
+        // Then
+        XCTAssertNotNil(addedProfile)
+    }
+    
+    func test_nutritionProfile_withID() {
+        // Given
+        let profile = CDNutritionProfile.add(profile: firstProfile, context: persistent.container.viewContext)
+                
+        // When
+        let fetchedProfile = CDNutritionProfile.withID(profile.id, context: persistent.container.viewContext)
+        
+        // Then
+        XCTAssertEqual(fetchedProfile?.nutritionProfileID, profile.id)
+    }
+
 }

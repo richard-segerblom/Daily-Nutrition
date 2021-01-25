@@ -65,6 +65,15 @@ extension CDNutrient {
 }
 
 extension CDNutrient {
+    static func withID(_ nutrientID: UUID, context: NSManagedObjectContext) -> CDNutrient? {
+        let request = NSFetchRequest<CDNutrient>(entityName: "CDNutrient")
+        request.predicate = NSPredicate(format: "nutrientID == %@", nutrientID as CVarArg)
+        
+        guard let result = try? context.fetch(request).first else { return nil }
+        
+        return result
+    }
+    
     static func withProfileID(_ profileID: UUID, context: NSManagedObjectContext) -> [CDNutrient] {
         let request = NSFetchRequest<CDNutrient>(entityName: "CDNutrient")
         request.predicate = NSPredicate(format: "nutritionProfileID == %@", profileID as CVarArg)

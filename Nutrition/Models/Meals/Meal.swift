@@ -86,7 +86,7 @@ public final class CDMeal: NSManagedObject, Meal {
  
 extension CDMeal {
     @discardableResult
-    convenience init(context: NSManagedObjectContext, name: String, foodCategory: FoodCategory, creationDate: Date = Date(), mealID: UUID = UUID()) {
+    convenience init(context: NSManagedObjectContext, name: String, mealCategory: MealCategory, creationDate: Date = Date(), mealID: UUID = UUID()) {
         let entity = NSEntityDescription.entity(forEntityName: "CDMeal", in: context)!
                         
         self.init(entity: entity, insertInto: context)
@@ -94,7 +94,7 @@ extension CDMeal {
         setValue(mealID, forKey: "mealID")
         setValue(name, forKey: "name")
         setValue(creationDate, forKey: "creationDate")
-        setValue(foodCategory.rawValue, forKey: "mealCategory")
+        setValue(mealCategory.rawValue, forKey: "mealCategory")
     }
 }
 
