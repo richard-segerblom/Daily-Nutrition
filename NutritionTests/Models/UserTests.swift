@@ -16,12 +16,7 @@ class UserTests: XCTestCase {
     override func setUpWithError() throws {
         persistence = PersistenceController(inMemory: true)
         userDefaults = MockUserDefaults()
-    }
-
-    override func tearDownWithError() throws {
-        persistence = nil
-        userDefaults = nil
-    }
+    }    
 
     func test_makeNewUser_shouldSaveUser() {
         // Given

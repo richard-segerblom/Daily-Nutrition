@@ -28,15 +28,7 @@ class EatableTests: XCTestCase {
         secondEatable = CDEatable(context: persistent.container.viewContext, amount: 120, food: orange)
     }
 
-    override func tearDownWithError() throws {
-        persistent = nil
-        apple = nil
-        orange = nil
-        firstEatable = nil
-        secondEatable = nil
-    }
-
-    func testExample() throws {
+    func test_eatable_withID() throws {
         // Given
         let eatableID = secondEatable.eatableID
         

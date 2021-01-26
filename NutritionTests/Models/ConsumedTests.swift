@@ -35,17 +35,6 @@ class ConsumedTests: XCTestCase {
         consumedApple = CDConsumed(context: persistent.container.viewContext, meal: nil, eatable: eatable)
     }
 
-    override func tearDownWithError() throws {
-        persistent = nil
-        apple = nil
-        eatable = nil
-        smoothie = nil
-        pancakes = nil
-        consumedSmoothie = nil
-        consumedPancakes = nil
-        consumedApple = nil
-    }
-
     func test_consumed_today() {
         // When
         let today = CDConsumed.today(context: persistent.container.viewContext)

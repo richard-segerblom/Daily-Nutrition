@@ -22,12 +22,6 @@ class NutrientTests: XCTestCase {
         nutrient = CDNutrient(context: persistent.container.viewContext, key: NutrientKey.b12.rawValue, unit: Unit.mg.rawValue,
                    value: nutrientValue, nutritionProfile: profile, nutrientID: profile.nutritionProfileID)
     }
-
-    override func tearDownWithError() throws {
-        persistent = nil
-        profile = nil
-        nutrient = nil
-    }
     
     func test_nutrient_withID() {
         // Given

@@ -72,12 +72,6 @@ class NutritionProfileTests: XCTestCase {
         ])
     }
 
-    override func tearDownWithError() throws {
-        persistent = nil
-        firstProfile = nil
-        secondProfile = nil
-    }
-
     func test_nutritionProfile_scale() {
         // Given
         let scale: Float = 1.3

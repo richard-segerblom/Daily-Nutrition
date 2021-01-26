@@ -21,12 +21,6 @@ class MealTests: XCTestCase {
         pancakes = CDMeal(context: persistent.container.viewContext, name: "Pancakes", mealCategory: .lunch)                
     }
 
-    override func tearDownWithError() throws {
-        persistent = nil
-        smoothie = nil
-        pancakes = nil
-    }
-
     func test_meal_all() {
         // When
         let meals = CDMeal.all(context: persistent.container.viewContext)

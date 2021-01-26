@@ -35,17 +35,6 @@ class IngredientTests: XCTestCase {
         ingredientThree = CDIngredient(context: persistent.container.viewContext, amount: 50, sortOrder: 0, food: apple, meal: pancakes)                
     }
 
-    override func tearDownWithError() throws {
-        persistent = nil
-        smoothie = nil
-        pancakes = nil
-        apple = nil
-        orange = nil
-        ingredientOne = nil
-        ingredientTwo = nil
-        ingredientThree = nil
-    }
-
     func test_ingredient_inMeal() {
         // Given
         let mealID = smoothie.mealID

@@ -23,12 +23,6 @@ class FoodTests: XCTestCase {
                        nutritionProfile: CDNutritionProfile(context: persistent.container.viewContext, food: nil))          
     }
 
-    override func tearDownWithError() throws {
-        persistent = nil
-        apple = nil
-        orange = nil
-    }
-
     func test_food_all() {
         // When
         let food = CDFood.all(context: persistent.container.viewContext)
@@ -36,7 +30,6 @@ class FoodTests: XCTestCase {
         // Then
         XCTAssertEqual(food.count, 2)
     }
-    
     
     func test_food_withID() {
         // Given
