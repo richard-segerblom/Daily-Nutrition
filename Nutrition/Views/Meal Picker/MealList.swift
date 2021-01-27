@@ -27,7 +27,7 @@ struct MealList: View {
                         }, label: { Label("Eat", systemImage: "folder") })
                         Button(action: { mealController.delete() }, label: { Label("Delete", systemImage: "folder") })
                     }))
-                }.onDelete { indexSet in mealStorage.deleteMeal(atOffsets: indexSet) }
+                }
             }
             Spacer()
         }

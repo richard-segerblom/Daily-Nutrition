@@ -26,7 +26,7 @@ struct FoodDetail: View {
             VStack(spacing: 0) {
                 Slider(value: Binding(get: { amount }, set: { (newValue) in
                     amount = newValue
-                    foodController.scale(newValue)
+                    foodController.scale(newValue / 100)
                 }), in: 5...500, step: 5,  minimumValueLabel: Text("5g"), maximumValueLabel: Text("500g")) { Text("Amount") }
                     .padding(.top, padding)
                 

@@ -9,8 +9,6 @@ import SwiftUI
 
 @main
 struct NutritionApp: App {
-    let persistenceController = PersistenceController.shared
-
     @ObservedObject var appController: AppController
     
     @State var showSplash = true

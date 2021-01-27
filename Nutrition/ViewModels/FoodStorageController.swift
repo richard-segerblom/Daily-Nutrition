@@ -31,12 +31,7 @@ final class FoodStorageController: ObservableObject {
         }
     }
     
-    func foodProfiles(food: Food) -> FoodController {
-        return FoodController(food: food, required: userController.profile, persistenceController: persistenceController)
-    }
-
-    // TODO - Should check for change notification and fetch then
-    func fetchFood() {
+    private func fetchFood() {
         allFood = CDFood.all(context: persistenceController.container.viewContext).map {
             FoodController(food: $0, required: userController.profile, persistenceController: persistenceController)
         }

@@ -59,10 +59,6 @@ final class MealStorageController: ObservableObject {
         if reloadRecent {fetchRecent() }
     }
     
-    func deleteMeal(atOffsets offsets: IndexSet) {
-        meals.remove(atOffsets: offsets)
-    }
-    
     func createMeal(name: String, category: Int, ingredients: [Ingredient]) {
         guard let category = MealCategory(rawValue: Int16(category)) else { return }
         
@@ -74,7 +70,7 @@ final class MealStorageController: ObservableObject {
         persistenceController.saveChanges()
     }
     
-    func fetchMeals() {
+    private func fetchMeals() {
         allMeals = CDMeal.all(context: persistenceController.container.viewContext).map {
             MealController(meal: $0, required: userController.profile, persistenceController: persistenceController)
         }
@@ -82,7 +78,7 @@ final class MealStorageController: ObservableObject {
         filter(filter)
     }
     
-    func fetchRecent() {
+    private func fetchRecent() {
         var distinct: [UUID: Meal] = [:]
         CDConsumed.latestMeals(context: persistenceController.container.viewContext).forEach {
             if let meal = $0.cdMeal {
@@ -92,7 +88,7 @@ final class MealStorageController: ObservableObject {
             }
         }
         
-        recent = distinct.map { MealController(meal: $1, required: userController.profile, persistenceController: persistenceController) }        
+        recent = distinct.map { MealController(meal: $1, required: userController.profile, persistenceController: persistenceController) }
     }
     
     static func nutrition(_ ingredients: [Ingredient], user: UserController) -> NutritionProfileController {

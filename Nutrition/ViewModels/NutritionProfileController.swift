@@ -66,12 +66,10 @@ class NutritionProfileController: Identifiable, ObservableObject {
         nutrientUnits[key] ?? .unknown
     }
     
-    func scale(_ amount: Float) {
-        let scale = amount / 100
-        
+    func scale(_ value: Float) {
         var nutrients: [Nutrient] = []
         for (key, nutrient) in _profile.nutrients {
-            nutrients.append(NewNutrient(id: nutrient.id, key: key, value: nutrient.value * scale, unit: nutrient.unit))
+            nutrients.append(NewNutrient(id: nutrient.id, key: key, value: nutrient.value * value, unit: nutrient.unit))
         }
         
         objectWillChange.send()

@@ -41,6 +41,15 @@
 		795C89A8259FC62E00C87566 /* NutritionProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795C89A7259FC62E00C87566 /* NutritionProfileController.swift */; };
 		795C89AE259FCEFF00C87566 /* NutrientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795C89AD259FCEFF00C87566 /* NutrientController.swift */; };
 		796F9F59259F92F1008B41C0 /* FoodStorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F9F58259F92F1008B41C0 /* FoodStorageController.swift */; };
+		797C50E125C167F8004DE12E /* MealStorageControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C50E025C167F8004DE12E /* MealStorageControllerTests.swift */; };
+		797C50E525C18B35004DE12E /* NutritionProfileControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C50E425C18B35004DE12E /* NutritionProfileControllerTests.swift */; };
+		797C50E925C19DA8004DE12E /* NutrientContollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C50E825C19DA8004DE12E /* NutrientContollerTests.swift */; };
+		797C50ED25C1BC97004DE12E /* FoodControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C50EC25C1BC97004DE12E /* FoodControllerTests.swift */; };
+		797C50F125C1C1EA004DE12E /* MealControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C50F025C1C1EA004DE12E /* MealControllerTests.swift */; };
+		797C50F525C1C9C1004DE12E /* ConsumedControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C50F425C1C9C1004DE12E /* ConsumedControllerTests.swift */; };
+		7981594425C05EE400A5897D /* AppControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7981594325C05EE400A5897D /* AppControllerTests.swift */; };
+		7981596025C0AA2300A5897D /* FoodStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7981595F25C0AA2300A5897D /* FoodStorageTests.swift */; };
+		7981596425C0B74B00A5897D /* ConsumedStorageControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7981596325C0B74B00A5897D /* ConsumedStorageControllerTests.swift */; };
 		79850C5025AA24ED008490FE /* Meat.json in Resources */ = {isa = PBXBuildFile; fileRef = 79850C4F25AA24ED008490FE /* Meat.json */; };
 		79850C5725AA254E008490FE /* Seafood.json in Resources */ = {isa = PBXBuildFile; fileRef = 79850C5625AA254E008490FE /* Seafood.json */; };
 		79850C5A25AA256B008490FE /* Dairy.json in Resources */ = {isa = PBXBuildFile; fileRef = 79850C5925AA256B008490FE /* Dairy.json */; };
@@ -139,6 +148,15 @@
 		795C89A7259FC62E00C87566 /* NutritionProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionProfileController.swift; sourceTree = "<group>"; };
 		795C89AD259FCEFF00C87566 /* NutrientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientController.swift; sourceTree = "<group>"; };
 		796F9F58259F92F1008B41C0 /* FoodStorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodStorageController.swift; sourceTree = "<group>"; };
+		797C50E025C167F8004DE12E /* MealStorageControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealStorageControllerTests.swift; sourceTree = "<group>"; };
+		797C50E425C18B35004DE12E /* NutritionProfileControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionProfileControllerTests.swift; sourceTree = "<group>"; };
+		797C50E825C19DA8004DE12E /* NutrientContollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientContollerTests.swift; sourceTree = "<group>"; };
+		797C50EC25C1BC97004DE12E /* FoodControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodControllerTests.swift; sourceTree = "<group>"; };
+		797C50F025C1C1EA004DE12E /* MealControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealControllerTests.swift; sourceTree = "<group>"; };
+		797C50F425C1C9C1004DE12E /* ConsumedControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumedControllerTests.swift; sourceTree = "<group>"; };
+		7981594325C05EE400A5897D /* AppControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppControllerTests.swift; sourceTree = "<group>"; };
+		7981595F25C0AA2300A5897D /* FoodStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodStorageTests.swift; sourceTree = "<group>"; };
+		7981596325C0B74B00A5897D /* ConsumedStorageControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumedStorageControllerTests.swift; sourceTree = "<group>"; };
 		79850C4F25AA24ED008490FE /* Meat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Meat.json; sourceTree = "<group>"; };
 		79850C5625AA254E008490FE /* Seafood.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Seafood.json; sourceTree = "<group>"; };
 		79850C5925AA256B008490FE /* Dairy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Dairy.json; sourceTree = "<group>"; };
@@ -210,6 +228,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7924F70F25BF700700B65863 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7981594325C05EE400A5897D /* AppControllerTests.swift */,
+				7981595F25C0AA2300A5897D /* FoodStorageTests.swift */,
+				7981596325C0B74B00A5897D /* ConsumedStorageControllerTests.swift */,
+				797C50E025C167F8004DE12E /* MealStorageControllerTests.swift */,
+				797C50E425C18B35004DE12E /* NutritionProfileControllerTests.swift */,
+				797C50E825C19DA8004DE12E /* NutrientContollerTests.swift */,
+				797C50EC25C1BC97004DE12E /* FoodControllerTests.swift */,
+				797C50F425C1C9C1004DE12E /* ConsumedControllerTests.swift */,
+				797C50F025C1C1EA004DE12E /* MealControllerTests.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		794103372598DB3900101920 = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +502,7 @@
 			children = (
 				79EB6D7825BF204E00C7AAB5 /* Utility */,
 				79EB6D7925BF205C00C7AAB5 /* Models */,
+				7924F70F25BF700700B65863 /* ViewModels */,
 				79C5D95E25BB761D002EFB4C /* MockUserDefaults.swift */,
 				79C5D94425BB2440002EFB4C /* Info.plist */,
 			);
@@ -712,14 +747,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797C50E125C167F8004DE12E /* MealStorageControllerTests.swift in Sources */,
+				797C50F525C1C9C1004DE12E /* ConsumedControllerTests.swift in Sources */,
 				7924F70C25BF6C0700B65863 /* EatableTests.swift in Sources */,
 				79EB6D7325BF127F00C7AAB5 /* NutrientTests.swift in Sources */,
 				79EB6D7B25BF210200C7AAB5 /* FoodTests.swift in Sources */,
+				797C50ED25C1BC97004DE12E /* FoodControllerTests.swift in Sources */,
 				79C5D96525BB77CC002EFB4C /* UserTests.swift in Sources */,
+				797C50E925C19DA8004DE12E /* NutrientContollerTests.swift in Sources */,
 				79EB6D8725BF583B00C7AAB5 /* IngredientTests.swift in Sources */,
+				7981596025C0AA2300A5897D /* FoodStorageTests.swift in Sources */,
+				797C50F125C1C1EA004DE12E /* MealControllerTests.swift in Sources */,
 				79C5D95F25BB761D002EFB4C /* MockUserDefaults.swift in Sources */,
+				797C50E525C18B35004DE12E /* NutritionProfileControllerTests.swift in Sources */,
 				79EB6D8125BF261F00C7AAB5 /* MealTests.swift in Sources */,
 				79EB6D6525BF031200C7AAB5 /* NutritionProfileTests.swift in Sources */,
+				7981594425C05EE400A5897D /* AppControllerTests.swift in Sources */,
+				7981596425C0B74B00A5897D /* ConsumedStorageControllerTests.swift in Sources */,
 				79EB6D8B25BF60C100C7AAB5 /* ConsumedTests.swift in Sources */,
 				79C5D94D25BB2644002EFB4C /* ReferenceDailyIntakeTests.swift in Sources */,
 			);

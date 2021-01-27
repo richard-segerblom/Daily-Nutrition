@@ -27,12 +27,12 @@ final class UserController: ObservableObject {
         }
     }
     
-    init(persistenceController: PersistenceController, user: User? = nil) {
+    init(persistenceController: PersistenceController, user: User? = nil, userDefaults: UserDefaults = UserDefaults.standard) {
         self.persistenceController = persistenceController
         self.user = user
         
         if user == nil {
-            self.user = User.loadUser(context: persistenceController.container.viewContext)
+            self.user = User.loadUser(context: persistenceController.container.viewContext, userDefault: userDefaults)
         }
     }
     

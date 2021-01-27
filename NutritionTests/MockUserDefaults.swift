@@ -13,6 +13,7 @@ class MockUserDefaults : UserDefaults {
     var gender: Int?
     var age: Int?
     var profileID: Any?
+    var isStoragePopulated: Bool = false
         
     convenience init() {
         self.init(suiteName: "Mock User Defaults")!
@@ -28,6 +29,12 @@ class MockUserDefaults : UserDefaults {
             gender = value
         } else if defaultName == UserDefaults.Keys.age.rawValue {
             age = value
+        }
+    }
+    
+    override func set(_ value: Bool, forKey defaultName: String) {
+        if defaultName == UserDefaults.StorageKeys.isStoragePopulated.rawValue {
+            isStoragePopulated = value
         }
     }
     
@@ -51,5 +58,13 @@ class MockUserDefaults : UserDefaults {
             return profileID as? String
         }
         return nil
+    }
+    
+    override func bool(forKey defaultName: String) -> Bool {
+        if defaultName == UserDefaults.StorageKeys.isStoragePopulated.rawValue {
+            return isStoragePopulated
+        }
+        
+        return false
     }
 }

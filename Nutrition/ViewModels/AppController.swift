@@ -10,7 +10,7 @@ import Foundation
 final class AppController: ObservableObject {
     @Published var isContentLoaded = false
     
-    let userDefaults: UserDefaults
+    private let userDefaults: UserDefaults
     
     var persitence: PersistenceController! = nil
     var user: UserController! = nil
@@ -18,35 +18,25 @@ final class AppController: ObservableObject {
     var foodStorage: FoodStorageController! = nil
     var mealStorage: MealStorageController! = nil
     
-    static private let isDataLoadedKey = "isDataLoaded"
+    init() { userDefaults = UserDefaults.standard }
     
-    init(persistenceController: PersistenceController, userController: UserController, userDefaults: UserDefaults = UserDefaults.standard) {
-        self.user = userController
-        self.persitence = persistenceController
+    init?(inMemoryStorage: Bool = false, userDefaults: UserDefaults = UserDefaults.standard, completed: (() -> Void)? = nil) {
         self.userDefaults = userDefaults
-                
-        self.populateStorage()
-        
-        consumedStorage = ConsumedStorageController(persistenceController: persitence, userController: userController)
-        foodStorage = FoodStorageController(persistenceController: persitence, userController: userController)
-        mealStorage = MealStorageController(persistenceController: persitence, userController: userController)
-    }
-    
-    init?(userDefaults: UserDefaults = UserDefaults.standard) {
-        self.userDefaults = userDefaults
-        persitence = PersistenceController(loaded: { [weak self] in
+        persitence = PersistenceController(inMemory: inMemoryStorage, loaded: { [weak self] in
             // TODO Fix. Not correct..
             DispatchQueue.main.async {
-                if !userDefaults.bool(forKey: AppController.isDataLoadedKey) {
+                if !userDefaults.bool(forKey: UserDefaults.StorageKeys.isStoragePopulated.rawValue) {
                     self?.populateStorage()
-                    userDefaults.set(true, forKey: AppController.isDataLoadedKey)
+                    userDefaults.set(true, forKey: UserDefaults.StorageKeys.isStoragePopulated.rawValue)
                 }
-                self?.setup()
+                if let self = self { self.setup(persistence: self.persitence) }
+                
+                completed?()
             }
         })
     }
     
-    private func populateStorage() {
+    func populateStorage() {
         let context = self.persitence.container.viewContext
         
         Loader.populate(context, file: "Fruits")
@@ -57,13 +47,19 @@ final class AppController: ObservableObject {
         Loader.populate(context, file: "Pantry")
     }
     
-    private func setup() {
-        let user = UserController(persistenceController: PersistenceController.shared)
-        self.consumedStorage = ConsumedStorageController(persistenceController: PersistenceController.shared, userController: user)
-        self.foodStorage = FoodStorageController(persistenceController: PersistenceController.shared, userController: user)
-        self.mealStorage = MealStorageController(persistenceController: PersistenceController.shared, userController: user)
+    func setup(persistence: PersistenceController) {
+        let user = UserController(persistenceController: persistence)
+        self.consumedStorage = ConsumedStorageController(persistenceController: persistence, userController: user)
+        self.foodStorage = FoodStorageController(persistenceController: persistence, userController: user)
+        self.mealStorage = MealStorageController(persistenceController: persistence, userController: user)
         self.user = user
         
         self.isContentLoaded = true
     }        
+}
+
+extension UserDefaults {
+    enum StorageKeys: String {
+        case isStoragePopulated
+    }
 }

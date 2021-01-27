@@ -33,8 +33,7 @@ final class ConsumedStorageController: ObservableObject {
             self.today.forEach { $0.required = user.nutritionProfile }
             self.latest.forEach { $0.required = user.nutritionProfile }
             self.sumNutritionToday()
-        }
-            
+        }            
     }
     
     deinit {
@@ -55,13 +54,13 @@ final class ConsumedStorageController: ObservableObject {
         if shouldReload { fetch() }
     }
         
-    func fetch() {
+    private func fetch() {
         fetchToday()
         fetchLatest()
         self.sumNutritionToday()
     }
     
-    func fetchToday() {
+    private func fetchToday() {
         self.today = CDConsumed.today(context: persistenceController.container.viewContext)
             .map { ConsumedController(consumed: $0, required: userController.profile, persistenceController: persistenceController) }
     }

@@ -91,5 +91,13 @@ struct PreviewData {
     static let mealStorage = MealStorageController(persistenceController: PersistenceController.preview,
                                                    userController: PreviewData.userController)
     
-    static let appController = AppController(persistenceController: PersistenceController.preview, userController: userController)
+    static var appController: AppController = {
+        var controller = AppController()
+        controller.user = userController
+        controller.persitence = PersistenceController.preview
+        controller.populateStorage()
+        controller.setup(persistence: PersistenceController.preview)
+        
+        return controller
+    }()
 }
