@@ -15,11 +15,12 @@ struct SplashView: View {
             Rectangle()
                 .foregroundColor(Color(UIColor.systemBackground))
                 .edgesIgnoringSafeArea(.all)
-            Text("DAILY NUTRITION")
+            Text("Whole-Foods, Plant Based Diet")
                 .opacity(textOpacity)
                 .foregroundColor(textColor)
                 .animation(Animation.linear(duration: 0.5))
                 .multilineTextAlignment(.center)
+                .padding(.horizontal)
         }
         .onAppear { textOpacity = 1 }
     }

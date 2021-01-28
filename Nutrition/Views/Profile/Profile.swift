@@ -14,7 +14,8 @@ struct Profile: View {
         
     @Environment(\.presentationMode) var presentationMode
     
-    let url = URL(string: "https://www.dietaryguidelines.gov/sites/default/files/2020-12/Dietary_Guidelines_for_Americans_2020-2025.pdf")
+    let guidelineUrl = URL(string: "https://www.dietaryguidelines.gov/sites/default/files/2020-12/Dietary_Guidelines_for_Americans_2020-2025.pdf")!
+    let wfpbUrl = URL(string: "https://www.healthline.com/nutrition/plant-based-diet-guide")!
     
     init(user: UserController) {
         self.user = user
@@ -26,16 +27,15 @@ struct Profile: View {
     var body: some View {
         NavigationView {
             Form {
-                VStack {
-                    Spacer()
-                    Link("Dietary Guidelines", destination: url!)
-                        .font(.subheadline)
-                        .foregroundColor(.accentColor)
-                    Spacer()
+                Section {
+                    ProfileLink(url: guidelineUrl, linkText: "Dietary Guidelines")
+                    ProfileLink(url: wfpbUrl, linkText: "Whole-Foods, Plant Based Diet")
                 }
                 
-                ProfileStaticRow(name: "Gender", value: user.genderText)
-                ProfileStaticRow(name: "Age", value: "\(user.age)")
+                Section {
+                    ProfileStaticRow(name: "Gender", value: user.genderText)
+                    ProfileStaticRow(name: "Age", value: "\(user.age)")
+                }
                 
                 ProfileSection(title: "Vitamins", nutrients: profile[.vitamins], profile: $profile)
                 ProfileSection(title: "Minerals", nutrients: profile[.minerals], profile: $profile)
@@ -55,6 +55,21 @@ struct Profile: View {
     }
 }
 
+struct ProfileLink: View {
+    let url: URL
+    let linkText: String
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            Link(linkText, destination: url)
+                .font(.subheadline)
+                .foregroundColor(.accentColor)
+            Spacer()
+        }
+    }
+}
+
 struct ProfileStaticRow: View {
     let name: String
     let value: String
@@ -68,7 +83,7 @@ struct ProfileStaticRow: View {
     }
     
     // MARK: - Drawing Constants
-    private let textColor = Color("PrimaryTextColor")
+    private let textColor = Color("PrimaryTextColor").opacity(0.5)
 }
 
 struct ProfileSection: View {
