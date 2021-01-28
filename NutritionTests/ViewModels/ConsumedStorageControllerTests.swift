@@ -27,7 +27,7 @@ class ConsumedStorageControllerTests: XCTestCase {
         let eatableApple = CDEatable(context: persistance.container.viewContext, amount: 75, food: apple)
         consumedApple = CDConsumed(context: persistance.container.viewContext, meal: nil, eatable: eatableApple)
         
-        let quinoa = CDFood(context: persistance.container.viewContext, name: "Quinoa", category: FoodCategory.pantry.rawValue,
+        let quinoa = CDFood(context: persistance.container.viewContext, name: "Quinoa", category: FoodCategory.grains.rawValue,
                            nutritionProfile: CDNutritionProfile(context: persistance.container.viewContext, food: nil))
         let eatableQuinoa = CDEatable(context: persistance.container.viewContext, amount: 120, food: quinoa)
         CDConsumed(context: persistance.container.viewContext, meal: nil, eatable: eatableQuinoa)
@@ -37,7 +37,7 @@ class ConsumedStorageControllerTests: XCTestCase {
         let eatableOrange = CDEatable(context: persistance.container.viewContext, amount: 150, food: orange)
         CDConsumed(context: persistance.container.viewContext, meal: nil, eatable: eatableOrange, date: Date(timeIntervalSince1970: 0))
         
-        let banana = CDFood(context: persistance.container.viewContext, name: "Banana", category: FoodCategory.pantry.rawValue,
+        let banana = CDFood(context: persistance.container.viewContext, name: "Banana", category: FoodCategory.fruit.rawValue,
                            nutritionProfile: CDNutritionProfile(context: persistance.container.viewContext, food: nil))
         eatableBanana = CDEatable(context: persistance.container.viewContext, amount: 150, food: banana)
         

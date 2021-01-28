@@ -88,10 +88,10 @@ struct FoodCategoryPicker: View {
         Picker("Category", selection: $selected) {
             Text("Fruit").tag(0)
             Text("Vegetables").tag(1)
-            Text("Meat").tag(2)
-            Text("Seafood").tag(3)
-            Text("Dairy").tag(4)
-            Text("Pantry").tag(5)
+            Text("Nuts").tag(2)
+            Text("Legumes").tag(3)
+            Text("Grains").tag(4)
+            Text("Animal").tag(5)            
         }.pickerStyle(SegmentedPickerStyle())
     }
 }
@@ -102,6 +102,20 @@ struct SearchDetail_Previews: PreviewProvider {
     }
 }
 
+/*
+ 
+ menuItem(name: "All", icon: "asterisk.circle.fill", filter: .all)
+ menuItem(name: "Fruits", icon: "f.circle.fill", filter: .fruit)
+ menuItem(name: "Vegetables", icon: "v.circle.fill", filter: .vegetables)
+ menuItem(name: "Nuts", icon: "n.circle.fill", filter: .meat)
+ menuItem(name: "Legumes", icon: "l.circle.fill", filter: .meat)
+ menuItem(name: "Grains", icon: "g.circle.fill", filter: .meat)
+ menuItem(name: "Meat", icon: "m.circle.fill", filter: .meat)
+ menuItem(name: "Seafood", icon: "s.circle.fill", filter: .seafood)
+ menuItem(name: "Dairy", icon: "d.circle.fill", filter: .dairy)
+ menuItem(name: "Pantry", icon: "p.circle.fill", filter: .pantry)
+ 
+ */
 
 
 // ---------------------------------- REMOVE -----------------------------------

@@ -47,12 +47,14 @@ final class FoodStorageController: ObservableObject {
             foods = allFood.filter { $0.category == .fruit }
         case .vegetables:
             foods = allFood.filter { $0.category == .vegetables }
-        case .seafood:
-            foods = allFood.filter { $0.category == .seafood }
-        case .dairy:
-            foods = allFood.filter { $0.category == .dairy }
-        case .pantry:
-            foods = allFood.filter { $0.category == .pantry }
+        case .nuts:
+            foods = allFood.filter { $0.category == .nuts }
+        case .legumes:
+            foods = allFood.filter { $0.category == .legumes }
+        case .grains:
+            foods = allFood.filter { $0.category == .grains }
+        case .animal:
+            foods = allFood.filter { $0.category == .animal }
         default:
             foods = allFood
         }
@@ -63,8 +65,8 @@ enum FoodFilterOption {
     case all
     case fruit
     case vegetables
-    case meat
-    case seafood
-    case dairy
-    case pantry
+    case nuts
+    case legumes
+    case grains
+    case animal
 }

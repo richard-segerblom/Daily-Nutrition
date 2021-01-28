@@ -47,7 +47,7 @@ struct FoodDetail: View {
         }
         .padding(.horizontal)
         .foregroundColor(textColor)
-        .onAppear { self.foodController.scale(amount) }
+        .onAppear { self.foodController.scale(amount / 100) }
     }
     
     var eatButton: some View {

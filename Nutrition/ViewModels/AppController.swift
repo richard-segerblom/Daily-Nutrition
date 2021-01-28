@@ -39,12 +39,12 @@ final class AppController: ObservableObject {
     func populateStorage() {
         let context = self.persitence.container.viewContext
         
-        Loader.populate(context, file: "Fruits")
-        Loader.populate(context, file: "Vegetables")
-        Loader.populate(context, file: "Meat")
-        Loader.populate(context, file: "Seafood")
-        Loader.populate(context, file: "Dairy")
-        Loader.populate(context, file: "Pantry")
+        Loader.populate(context, file: FoodFileNames.fruits.rawValue)
+        Loader.populate(context, file: FoodFileNames.vegetables.rawValue)
+        Loader.populate(context, file: FoodFileNames.nuts.rawValue)
+        Loader.populate(context, file: FoodFileNames.legumes.rawValue)
+        Loader.populate(context, file: FoodFileNames.grains.rawValue)
+        Loader.populate(context, file: FoodFileNames.animal.rawValue)
     }
     
     func setup(persistence: PersistenceController) {

@@ -46,3 +46,12 @@ final class Loader {
         return food
     }
 }
+
+enum FoodFileNames: String {
+    case fruits     = "Fruits"
+    case vegetables = "Vegetables"
+    case nuts       = "Nuts"
+    case legumes    = "Legumes"
+    case grains     = "Grains"
+    case animal     = "Animal"
+}

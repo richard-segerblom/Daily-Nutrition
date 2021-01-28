@@ -38,7 +38,7 @@ public final class CDFood: NSManagedObject, Food {
     @NSManaged public var existsInIngredients: CDIngredient?
     
     var id: UUID { foodID }
-    var category: FoodCategory { FoodCategory(rawValue: foodCategory) ?? .pantry }
+    var category: FoodCategory { FoodCategory(rawValue: foodCategory) ?? .fruit }
     var profile: NutritionProfile { nutritionProfile }
 }
     
@@ -119,8 +119,8 @@ extension CDFood {
 enum FoodCategory: Int16, CaseIterable {
     case fruit
     case vegetables
-    case meat
-    case seafood
-    case dairy
-    case pantry
+    case nuts
+    case legumes
+    case grains
+    case animal    
 }

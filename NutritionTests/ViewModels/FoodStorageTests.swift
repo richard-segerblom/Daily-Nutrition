@@ -17,8 +17,8 @@ class FoodStorageTests: XCTestCase {
     
     override func setUpWithError() throws {
         persistance = PersistenceController(inMemory: true)
-        Loader.populate(persistance.container.viewContext, file: "Fruits")
-        Loader.populate(persistance.container.viewContext, file: "Vegetables")
+        Loader.populate(persistance.container.viewContext, file: FoodFileNames.fruits.rawValue)
+        Loader.populate(persistance.container.viewContext, file: FoodFileNames.vegetables.rawValue)
         
         userController = UserController(persistenceController: persistance)
         foodStorage = FoodStorageController(persistenceController: persistance, userController: userController)

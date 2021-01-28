@@ -14,14 +14,14 @@ extension Image {
             return Image(systemName: "f.circle.fill")
         case .vegetables:
             return Image(systemName: "v.circle.fill")
-        case .meat:
-            return Image(systemName: "m.circle.fill")
-        case .seafood:
-            return Image(systemName: "s.circle.fill")
-        case .dairy:
-            return Image(systemName: "d.circle.fill")
+        case .nuts:
+            return Image(systemName: "n.circle.fill")
+        case .legumes:
+            return Image(systemName: "l.circle.fill")
+        case .grains:
+            return Image(systemName: "g.circle.fill")
         default:
-            return Image(systemName: "p.circle.fill")
+            return Image(systemName: "a.circle.fill")        
         }
     }
     
