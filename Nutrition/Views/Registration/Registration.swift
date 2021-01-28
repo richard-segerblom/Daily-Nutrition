@@ -76,14 +76,12 @@ struct Registration: View {
                 ForEach(2...120, id:\.self) {
                     Text("\($0)")
                 }
-            }.transition(.identity)
+            }
 
             DefaultButton(title: "DONE", action: {
                 userControl.setupNewUser(gender: selectedGender, age: selectedAge)
             })
         }
-        .transition(.opacity)
-        .animation(Animation.linear(duration: 0.5))
     }
         
     // MARK: - Drawing Constants
