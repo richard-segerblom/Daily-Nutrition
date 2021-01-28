@@ -32,15 +32,12 @@ struct FoodList: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(foodStorage.foods) { foodController in
-                    Row(name: foodController.name, calories: foodController.caloriesText, icon: Image.icon(foodController.category)) {
-                        FoodDetail(foodController: foodController, style: style, action: action)
-                    }
-                }
-            }
-            Spacer()
+        List(foodStorage.foods) { foodController in
+            NavigationLink(
+                destination: FoodDetail(foodController: foodController, style: style, action: action),
+                label: {
+                    Row(name: foodController.name, calories: foodController.caloriesText, icon: Image.icon(foodController.category))
+                })
         }
         .sheet(isPresented: $isSearchPresented) { SearchView(searchController: searchController) }
         .navigationTitle(title)

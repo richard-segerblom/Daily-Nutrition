@@ -14,22 +14,18 @@ struct MealList: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(mealStorage.meals) { mealController in
-                    Row(name: mealController.name, calories: mealController.caloriesText, icon: Image.icon(mealController.category)) {
-                        MealDetail(mealController: mealController) {
-                            $0.eat { self.presentationMode.wrappedValue.dismiss() }                            
-                        }
-                    }.contextMenu(ContextMenu(menuItems: {
-                        Button(action: {
-                            mealController.eat { presentationMode.wrappedValue.dismiss() }
-                        }, label: { Label("Eat", systemImage: "folder") })
-                        Button(action: { mealController.delete() }, label: { Label("Delete", systemImage: "folder") })
-                    }))
-                }
-            }
-            Spacer()
+        List(mealStorage.meals) { mealController in
+            NavigationLink(
+                destination: MealDetail(mealController: mealController) {
+                    $0.eat { self.presentationMode.wrappedValue.dismiss() } },
+                label: {
+                    Row(name: mealController.name, calories: mealController.caloriesText, icon: Image.icon(mealController.category))
+                        .contextMenu(ContextMenu(menuItems: {
+                            Button(action: { mealController.eat { presentationMode.wrappedValue.dismiss() } },
+                                   label:  { Label("Eat", systemImage: "folder") })
+                            Button(action: { mealController.delete() }, label: { Label("Delete", systemImage: "folder") })
+                        }))
+                })
         }
     }
 }

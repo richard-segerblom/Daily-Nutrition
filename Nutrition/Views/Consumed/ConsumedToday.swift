@@ -22,33 +22,31 @@ struct ConsumedToday: View {
     
     var body: some View {
         NavigationView {
-            Group {
-                if consumedStorageController.today.isEmpty {
-                    Text("No food consumed today")
-                        .font(.system(size: fontSize))
-                        .foregroundColor(textColor)
-                } else {
-                    ScrollView {
-                        VStack {
-                            ForEach(consumedStorageController.today) { consumed in
-                                Row(name: consumed.name, calories: consumed.caloriesText, icon: Image.icon(consumed)) {
-                                    ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE",
-                                                   action: { deleteTapped($0) })
-                                }
-                                .contextMenu(ContextMenu(menuItems: {
-                                    Button(action: { deleteTapped(consumed) },
-                                           label: { Label("Delete", systemImage: "trash.fill") })
-                                }))
-                            }
-                        }
-                        Spacer()
-                    }
-                }
-            }
+            content
             .navigationTitle(Text("Consumed Today"))
             .navigationBarTitleDisplayMode(.inline)
             .onDisappear {
                 if let consumed = toDelete { consumed.delete() }
+            }
+        }
+    }
+        
+
+    @ViewBuilder
+    var content: some View {
+        if consumedStorageController.today.isEmpty {
+            Text("No food consumed today")
+                .font(.system(size: fontSize))
+                .foregroundColor(textColor)
+        } else {
+            List(consumedStorageController.today) { consumed in
+            NavigationLink(
+                destination: ConsumedDetail(consumedController: consumed, buttonTitle: "DELETE", action: { deleteTapped($0) }),
+                label: { Row(name: consumed.name, calories: consumed.caloriesText, icon: Image.icon(consumed))
+                    .contextMenu(ContextMenu {
+                        Button(action: { deleteTapped(consumed) }, label: { Label("Delete", systemImage: "trash.fill") })
+                    })                    
+                })
             }
         }
     }

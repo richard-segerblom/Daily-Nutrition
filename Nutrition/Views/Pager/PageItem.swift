@@ -35,7 +35,7 @@ struct PageItem: View {
                 .font(.system(size: titleFontSize(geometry)))
                 .position(x: x(geometry), y: y(geometry))
                 .border(borderColor)                
-            }).buttonStyle(RowStyle())
+            }).buttonStyle(PageItemStyle())
         }.sheet(isPresented: $isDetailPresented) {
             if actionType == .eat {
                 ConsumedDetail(consumedController: food, buttonTitle: actionType.rawValue, action: action)
@@ -49,6 +49,15 @@ struct PageItem: View {
         .contextMenu(ContextMenu(menuItems: {
             Button(action: { self.action(food) }, label: { menuLabel })
         }))
+    }
+    
+    struct PageItemStyle: ButtonStyle {
+        func makeBody(configuration: Self.Configuration) -> some View {
+            configuration.label
+                .foregroundColor(configuration.isPressed ? Color("SecondaryTextColor") : Color("PrimaryColor"))
+                .background(configuration.isPressed ? Color("PrimaryColor") : Color.clear)
+                .contentShape(Rectangle())
+        }
     }
     
     private var menuLabel: some View {
