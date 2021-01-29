@@ -83,6 +83,7 @@
 		79C5D94D25BB2644002EFB4C /* ReferenceDailyIntakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5D94C25BB2644002EFB4C /* ReferenceDailyIntakeTests.swift */; };
 		79C5D95F25BB761D002EFB4C /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5D95E25BB761D002EFB4C /* MockUserDefaults.swift */; };
 		79C5D96525BB77CC002EFB4C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5D96425BB77CC002EFB4C /* UserTests.swift */; };
+		79DACE2A25C4036100B970F3 /* Meals.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DACE2925C4036100B970F3 /* Meals.json */; };
 		79E137A725A103BA0085390A /* HomeCompactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E137A625A103BA0085390A /* HomeCompactLayout.swift */; };
 		79E137AA25A103D60085390A /* HomeRegularLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E137A925A103D60085390A /* HomeRegularLayout.swift */; };
 		79E37BBE25B9F5A400785C7D /* ScaledFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E37BBD25B9F5A400785C7D /* ScaledFont.swift */; };
@@ -192,6 +193,7 @@
 		79C5D94C25BB2644002EFB4C /* ReferenceDailyIntakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceDailyIntakeTests.swift; sourceTree = "<group>"; };
 		79C5D95E25BB761D002EFB4C /* MockUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
 		79C5D96425BB77CC002EFB4C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		79DACE2925C4036100B970F3 /* Meals.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Meals.json; sourceTree = "<group>"; };
 		79E137A625A103BA0085390A /* HomeCompactLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCompactLayout.swift; sourceTree = "<group>"; };
 		79E137A925A103D60085390A /* HomeRegularLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRegularLayout.swift; sourceTree = "<group>"; };
 		79E37BBD25B9F5A400785C7D /* ScaledFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaledFont.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				79B2C60D25C30DC800325314 /* Legumes.json */,
 				79B2C61125C30DF400325314 /* Grains.json */,
 				79850C4F25AA24ED008490FE /* Animal.json */,
+				79DACE2925C4036100B970F3 /* Meals.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 			files = (
 				794103A7259904FF00101920 /* Fruits.json in Resources */,
 				79B2C61225C30DF400325314 /* Grains.json in Resources */,
+				79DACE2A25C4036100B970F3 /* Meals.json in Resources */,
 				79FC150E25A64E9D0043E130 /* Vegetables.json in Resources */,
 				79850C5025AA24ED008490FE /* Animal.json in Resources */,
 				79B2C60E25C30DC800325314 /* Legumes.json in Resources */,

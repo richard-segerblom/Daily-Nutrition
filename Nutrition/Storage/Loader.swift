@@ -8,7 +8,7 @@
 import CoreData
 
 final class Loader {
-    class func populate(_ context: NSManagedObjectContext, file: String, bundle: Bundle = Bundle.main) {
+    class func food(_ context: NSManagedObjectContext, file: String, bundle: Bundle = Bundle.main) {
         let path = bundle.path(forResource: file, ofType: "json")
         do {
             let data = try Data(contentsOf: URL(fileURLWithPath: path!))
@@ -16,16 +16,32 @@ final class Loader {
 
             for object in result {
                 if let jsonObject = object as? [String : Any] {                    
-                    parse(jsonObject: jsonObject, context: context)
+                    parseFood(jsonObject: jsonObject, context: context)
                 }
                                 
                 try context.save()
             }
         } catch {  fatalError("Unable to pre populate food storage: \(error.localizedDescription)") }
     }
+    
+    class func meals(_ context: NSManagedObjectContext, file: String = "Meals", bundle: Bundle = Bundle.main) {
+        let path = bundle.path(forResource: file, ofType: "json")
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: path!))
+            let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [AnyObject]
+
+            for object in result {
+                if let jsonObject = object as? [String : Any] {
+                    parseMeal(jsonObject: jsonObject, context: context)
+                }
+                                
+                try context.save()
+            }
+        } catch {  fatalError("Unable to pre populate storage with meals: \(error.localizedDescription)") }
+    }
 
     @discardableResult
-    private class func parse(jsonObject: [String: Any], context: NSManagedObjectContext) -> Food? {
+    private class func parseFood(jsonObject: [String: Any], context: NSManagedObjectContext) -> Food? {
         guard let name = jsonObject["Food Name"] as? String else { return nil }
         guard let category = (jsonObject["Category"] as? NSNumber)?.int16Value else { return nil }
         guard let nutrientRows = jsonObject["Nutrients"] as? [[String : AnyObject]] else { return nil }
@@ -44,6 +60,33 @@ final class Loader {
         }
         
         return food
+    }
+    
+    @discardableResult
+    private class func parseMeal(jsonObject: [String: Any], context: NSManagedObjectContext) -> Meal? {
+        guard let name = jsonObject["Name"] as? String else { return nil }
+        guard let rawCategory = (jsonObject["Category"] as? NSNumber)?.int16Value else { return nil }
+        guard let category = MealCategory(rawValue: rawCategory) else { return nil }
+        guard let ingredientRows = jsonObject["Ingredients"] as? [[String : AnyObject]] else { return nil }
+        
+        let food = CDFood.all(context: context)
+        
+        let meal = CDMeal(context: context, name: name, mealCategory: category)
+        var ingredients: [CDIngredient] = []
+        for row in ingredientRows {
+            guard let amount = row["Amount"] as? Int16 else { continue }
+            guard let sortOrder = row["SortOrder"] as? Int16 else { continue }
+            guard let foodName = row["Food Name"] as? String else { continue }
+            
+            guard let food = food.first(where: { $0.name == foodName }) else { continue }
+            
+            let ingredient = CDIngredient(context: context, amount: amount, sortOrder: sortOrder, food: food, meal: meal)
+            ingredients.append(ingredient)
+        }
+        
+        meal.addToCdIngredients(NSSet(array: ingredients))
+        
+        return meal
     }
 }
 

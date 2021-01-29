@@ -1,0 +1,8 @@
+[
+    {"Name": "Smoothie", "Category": 0, "Ingredients": [
+        {"Amount": 120, "SortOrder": 0, "Food Name": "Banana"},
+        {"Amount": 70, "SortOrder": 1, "Food Name": "Blackberries"},
+        {"Amount": 50, "SortOrder": 2, "Food Name": "Spinach"},
+        {"Amount": 10, "SortOrder": 3, "Food Name": "Chia Seeds"}
+    ]}
+]
