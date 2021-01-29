@@ -1,5 +1,5 @@
 //
-//  Persistence.swift
+//  Populate.swift
 //  Nutrition
 //
 //  Created by Richard Segerblom on 2020-12-27.
@@ -7,37 +7,34 @@
 
 import CoreData
 
-final class Loader {
-    class func food(_ context: NSManagedObjectContext, file: String, bundle: Bundle = Bundle.main) {
-        let path = bundle.path(forResource: file, ofType: "json")
-        do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path!))
-            let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [AnyObject]
+final class Populate {
+    class func storageWithFood(_ context: NSManagedObjectContext, file: String, bundle: Bundle = Bundle.main) throws {
+        guard let path = bundle.path(forResource: file, ofType: "json") else { throw PrepopulateError.invalidFile }
+        let data = try Data(contentsOf: URL(fileURLWithPath: path))
+        
+        let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [AnyObject]
+        guard let objects = result else { throw PrepopulateError.convertJSONFailed }
 
-            for object in result {
-                if let jsonObject = object as? [String : Any] {                    
-                    parseFood(jsonObject: jsonObject, context: context)
-                }
-                                
-                try context.save()
+        for object in objects {
+            if let jsonObject = object as? [String : Any] {
+                parseFood(jsonObject: jsonObject, context: context)
             }
-        } catch {  fatalError("Unable to pre populate food storage: \(error.localizedDescription)") }
+        }
+        try context.save()
     }
     
-    class func meals(_ context: NSManagedObjectContext, file: String = "Meals", bundle: Bundle = Bundle.main) {
-        let path = bundle.path(forResource: file, ofType: "json")
-        do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path!))
-            let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [AnyObject]
-
-            for object in result {
-                if let jsonObject = object as? [String : Any] {
-                    parseMeal(jsonObject: jsonObject, context: context)
-                }
-                                
-                try context.save()
+    class func storageWithMeals(_ context: NSManagedObjectContext, file: String = "Meals", bundle: Bundle = Bundle.main) throws {
+        guard let path = bundle.path(forResource: file, ofType: "json") else { throw PrepopulateError.invalidFile }
+        let data = try Data(contentsOf: URL(fileURLWithPath: path))
+        let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [AnyObject]
+        guard let objects = result else { throw PrepopulateError.convertJSONFailed }
+        
+        for object in objects {
+            if let jsonObject = object as? [String : Any] {
+                parseMeal(jsonObject: jsonObject, context: context)
             }
-        } catch {  fatalError("Unable to pre populate storage with meals: \(error.localizedDescription)") }
+        }
+        try context.save()
     }
 
     @discardableResult
@@ -88,6 +85,11 @@ final class Loader {
         
         return meal
     }
+}
+
+enum PrepopulateError: Error {
+    case invalidFile
+    case convertJSONFailed
 }
 
 enum FoodFileNames: String {

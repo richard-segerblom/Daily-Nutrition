@@ -24,7 +24,7 @@
 		794103932598F2B700101920 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794103922598F2B700101920 /* UserController.swift */; };
 		7941039F2598FD7000101920 /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7941039D2598FD7000101920 /* DefaultButton.swift */; };
 		794103A02598FD7000101920 /* UINavigationBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7941039E2598FD7000101920 /* UINavigationBar+Appearance.swift */; };
-		794103A3259903E500101920 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794103A2259903E500101920 /* Loader.swift */; };
+		794103A3259903E500101920 /* Populate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794103A2259903E500101920 /* Populate.swift */; };
 		794103A7259904FF00101920 /* Fruits.json in Resources */ = {isa = PBXBuildFile; fileRef = 794103A6259904FF00101920 /* Fruits.json */; };
 		794103B52599230C00101920 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794103B42599230C00101920 /* Service.swift */; };
 		794103B82599231A00101920 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794103B72599231A00101920 /* Endpoint.swift */; };
@@ -133,7 +133,7 @@
 		794103922598F2B700101920 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		7941039D2598FD7000101920 /* DefaultButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		7941039E2598FD7000101920 /* UINavigationBar+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Appearance.swift"; sourceTree = "<group>"; };
-		794103A2259903E500101920 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		794103A2259903E500101920 /* Populate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Populate.swift; sourceTree = "<group>"; };
 		794103A6259904FF00101920 /* Fruits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Fruits.json; sourceTree = "<group>"; };
 		794103B42599230C00101920 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		794103B72599231A00101920 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				7998348E25A0CB5B00949A6F /* Data */,
-				794103A2259903E500101920 /* Loader.swift */,
+				794103A2259903E500101920 /* Populate.swift */,
 				7941034C2598DB3A00101920 /* Persistence.swift */,
 				7941035D2598DBDF00101920 /* Nutrition.xcdatamodeld */,
 			);
@@ -731,7 +731,7 @@
 				7920A62D25B4B3C20030EB9B /* EdgeBorder.swift in Sources */,
 				79AB13D625A3919D008D6C54 /* Profile.swift in Sources */,
 				79FC150925A60E2F0043E130 /* AppController.swift in Sources */,
-				794103A3259903E500101920 /* Loader.swift in Sources */,
+				794103A3259903E500101920 /* Populate.swift in Sources */,
 				79E137A725A103BA0085390A /* HomeCompactLayout.swift in Sources */,
 				79E3FC8425B1D19100A2F78A /* VitaminChart.swift in Sources */,
 				7998347D25A0BE8B00949A6F /* PageIndex.swift in Sources */,
