@@ -84,6 +84,7 @@
 		79C5D95F25BB761D002EFB4C /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5D95E25BB761D002EFB4C /* MockUserDefaults.swift */; };
 		79C5D96525BB77CC002EFB4C /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5D96425BB77CC002EFB4C /* UserTests.swift */; };
 		79DACE2A25C4036100B970F3 /* Meals.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DACE2925C4036100B970F3 /* Meals.json */; };
+		79DACE2E25C411EF00B970F3 /* IngredientRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DACE2D25C411EF00B970F3 /* IngredientRow.swift */; };
 		79E137A725A103BA0085390A /* HomeCompactLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E137A625A103BA0085390A /* HomeCompactLayout.swift */; };
 		79E137AA25A103D60085390A /* HomeRegularLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E137A925A103D60085390A /* HomeRegularLayout.swift */; };
 		79E37BBE25B9F5A400785C7D /* ScaledFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E37BBD25B9F5A400785C7D /* ScaledFont.swift */; };
@@ -194,6 +195,7 @@
 		79C5D95E25BB761D002EFB4C /* MockUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
 		79C5D96425BB77CC002EFB4C /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		79DACE2925C4036100B970F3 /* Meals.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Meals.json; sourceTree = "<group>"; };
+		79DACE2D25C411EF00B970F3 /* IngredientRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientRow.swift; sourceTree = "<group>"; };
 		79E137A625A103BA0085390A /* HomeCompactLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCompactLayout.swift; sourceTree = "<group>"; };
 		79E137A925A103D60085390A /* HomeRegularLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRegularLayout.swift; sourceTree = "<group>"; };
 		79E37BBD25B9F5A400785C7D /* ScaledFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaledFont.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				79AB13B725A25686008D6C54 /* CreateMeal.swift */,
 				79AB13B925A25686008D6C54 /* MealDetail.swift */,
 				79E41F6B25AF62F1000532CF /* IngredientPicker.swift */,
+				79DACE2D25C411EF00B970F3 /* IngredientRow.swift */,
 			);
 			path = "Meal Picker";
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				794103D3259A75A100101920 /* NutritionProfile.swift in Sources */,
 				790A174525A0CD6300B8E5D1 /* ConsumedStorageController.swift in Sources */,
 				794103C72599E14900101920 /* Detail.swift in Sources */,
+				79DACE2E25C411EF00B970F3 /* IngredientRow.swift in Sources */,
 				794103BB25992C8000101920 /* SearchResult.swift in Sources */,
 				7998347C25A0BE8B00949A6F /* BarChart.swift in Sources */,
 				79AB13A725A21689008D6C54 /* MealStorageController.swift in Sources */,

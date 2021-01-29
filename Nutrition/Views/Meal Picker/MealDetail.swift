@@ -20,17 +20,15 @@ struct MealDetail: View {
                         .font(.headline)
                     Spacer()
                 }
+                
                 ForEach(mealController.ingredients, id:\.id) { ingredient in
                     VStack(spacing: ingredientSpacing) {
-                        HStack {
-                            Text(mealController.ingredientFriendlyName(ingredient))
-                            Spacer()
-                        }
-                        .padding([.top, .leading], ingredientPadding)
+                        IngredientRow(ingredient: ingredient)
+                            .padding([.top, .leading], ingredientPadding)
                         
                         Divider()
                     }
-                }                
+                }
                 
                 Detail(profile: mealController)
                 

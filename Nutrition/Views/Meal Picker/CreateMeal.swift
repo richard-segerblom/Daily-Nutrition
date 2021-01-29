@@ -135,7 +135,7 @@ struct IngredientList: View {
                     .foregroundColor(rowBackgroundColor)
                     .frame(minHeight: minRowHeight)
                     
-                Text("\(ingredient.amount)g   \t\(ingredient.food.name)")
+                IngredientRow(ingredient: ingredient)                
                     .padding(.leading)
             }
         }
