@@ -15,18 +15,26 @@ struct SplashView: View {
             Rectangle()
                 .foregroundColor(Color(UIColor.systemBackground))
                 .edgesIgnoringSafeArea(.all)
-            Text("Whole-Foods, Plant Based Diet")
-                .opacity(textOpacity)
-                .foregroundColor(textColor)
-                .animation(Animation.linear(duration: 0.5))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
+            VStack(spacing: 5) {
+                Text("Nutritional Health")
+                    .opacity(textOpacity)
+                    .foregroundColor(titleColor)
+                    .animation(Animation.linear(duration: 0.5))
+                    .padding(.horizontal)
+                Text("Whole-Foods, Plant Based Diet")
+                    .opacity(textOpacity)
+                    .foregroundColor(subTitleColor)
+                    .animation(Animation.linear(duration: 0.5))
+                    .padding(.horizontal)
+                    .font(.subheadline)
+            }
         }
         .onAppear { textOpacity = 1 }
     }
     
     // MARK: - Drawing Constants
-    private let textColor = Color("PrimaryColor")
+    private let titleColor = Color("PrimaryColor")
+    private let subTitleColor = Color("PrimaryTextColor")
 }
 
 struct SplashView_Previews: PreviewProvider {
