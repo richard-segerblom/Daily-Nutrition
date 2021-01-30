@@ -43,7 +43,7 @@ struct FoodDetail: View {
                     .padding(.bottom)
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(Text(foodController.name))
+            .navigationTitle(Text(foodController.detailName))
         }
         .padding(.horizontal)
         .foregroundColor(textColor)

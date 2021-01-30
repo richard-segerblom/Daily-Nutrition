@@ -14,7 +14,17 @@ final class FoodController: NutritionProfileController {
     
     var name: String { food.name }
     var category: FoodCategory { food.category }
-    var caloriesText: String { "\(intValue(key: .calories)) kcal" }    
+    var caloriesText: String { "\(intValue(key: .calories)) kcal" }
+    var detailName: String {
+        switch category {
+        case .grains:
+            return name + " Uncooked"
+        case .legumes:
+            return name + " Dry"
+        default:
+            return name
+        }
+    }
     
     init(food: Food, required: NutritionProfile, persistenceController: PersistenceController) {
         self.food = food

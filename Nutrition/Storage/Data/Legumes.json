@@ -1,5 +1,5 @@
 [
-    {"Food Name": "Black Beans Dry", "Category": 3,
+    {"Food Name": "Black Beans", "Category": 3,
     "Nutrients": [
     {"Key": "B3 Niacin", "Unit": "mg", "Value": 0.446},
     {"Key": "Zinc", "Unit": "mg", "Value": 1.04},
@@ -31,7 +31,7 @@
     {"Key": "Selenium", "Unit": "µg", "Value": 1.1}
     ]},
     
-    {"Food Name": "Kidney Beans Dry", "Category": 3,
+    {"Food Name": "Kidney Beans", "Category": 3,
     "Nutrients": [
     {"Key": "Zinc", "Unit": "mg", "Value": 1.0},
     {"Key": "Choline", "Unit": "mg", "Value": 28.4},
@@ -64,7 +64,7 @@
     {"Key": "B3 Niacin", "Unit": "mg", "Value": 0.51}
     ]},
     
-    {"Food Name": "Lima Beans Dry", "Category": 3,
+    {"Food Name": "Lima Beans", "Category": 3,
     "Nutrients": [
     {"Key": "LA", "Unit": "g", "Value": 2.46},
     {"Key": "Calories", "Unit": "kcal", "Value": 164.0},
@@ -96,7 +96,7 @@
     {"Key": "Sodium", "Unit": "mg", "Value": 218.0}
     ]},
     
-    {"Food Name": "Pinto Beans Dry", "Category": 4,
+    {"Food Name": "Pinto Beans", "Category": 4,
     "Nutrients": [
     {"Key": "P", "Unit": "g", "Value": 2.9},
     {"Key": "K", "Unit": "µg", "Value": 10.9},
@@ -129,7 +129,7 @@
     {"Key": "Copper", "Unit": "mg", "Value": 0.204}
     ]},
     
-    {"Food Name": "Chickpeas Dry", "Category": 3,
+    {"Food Name": "Chickpeas", "Category": 3,
     "Nutrients": [
     {"Key": "E", "Unit": "mg", "Value": 1.09},
     {"Key": "B1 Thiamine", "Unit": "mg", "Value": 0.102},
@@ -163,40 +163,7 @@
     {"Key": "Copper", "Unit": "mg", "Value": 0.327}
     ]},
     
-    {"Food Name": "Soybeans Cooked Dry", "Category": 3,
-    "Nutrients": [
-    {"Key": "Zinc", "Unit": "mg", "Value": 1.07},
-    {"Key": "Choline", "Unit": "mg", "Value": 44.2},
-    {"Key": "E", "Unit": "mg", "Value": 1.09},
-    {"Key": "Selenium", "Unit": "µg", "Value": 6.8},
-    {"Key": "P", "Unit": "g", "Value": 7.39},
-    {"Key": "Calories", "Unit": "kcal", "Value": 217.0},
-    {"Key": "ALA", "Unit": "g", "Value": 0.886},
-    {"Key": "Copper", "Unit": "mg", "Value": 0.378},
-    {"Key": "C", "Unit": "mg", "Value": 1.5},
-    {"Key": "B1 Thiamine", "Unit": "mg", "Value": 0.137},
-    {"Key": "Magnesium", "Unit": "mg", "Value": 80.0},
-    {"Key": "Sugar", "Unit": "g", "Value": 2.79},
-    {"Key": "B9 Folate", "Unit": "µg", "Value": 48.0},
-    {"Key": "Potassium", "Unit": "mg", "Value": 479.0},
-    {"Key": "K", "Unit": "µg", "Value": 25.5},
-    {"Key": "Iron", "Unit": "mg", "Value": 4.79},
-    {"Key": "M", "Unit": "g", "Value": 4.57},
-    {"Key": "Phosphorus", "Unit": "mg", "Value": 228.0},
-    {"Key": "LA", "Unit": "g", "Value": 6.5},
-    {"Key": "Sodium", "Unit": "mg", "Value": 217.0},
-    {"Key": "S", "Unit": "g", "Value": 2.1},
-    {"Key": "Fiber", "Unit": "g", "Value": 5.6},
-    {"Key": "Carbs", "Unit": "g", "Value": 7.77},
-    {"Key": "Protein", "Unit": "g", "Value": 16.9},
-    {"Key": "B3 Niacin", "Unit": "mg", "Value": 0.352},
-    {"Key": "B2 Riboflavin", "Unit": "mg", "Value": 0.252},
-    {"Key": "Calcium", "Unit": "mg", "Value": 95.0},
-    {"Key": "B6", "Unit": "mg", "Value": 0.207},
-    {"Key": "Fats", "Unit": "g", "Value": 14.8}
-    ]},
-    
-    {"Food Name": "Lentils Dry", "Category": 3,
+    {"Food Name": "Lentils", "Category": 3,
     "Nutrients": [
     {"Key": "Sodium", "Unit": "mg", "Value": 218.0},
     {"Key": "B2 Riboflavin", "Unit": "mg", "Value": 0.064},

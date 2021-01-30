@@ -1,5 +1,5 @@
 [
-    {"Food Name": "Oats Uncooked", "Category": 4,
+    {"Food Name": "Oats", "Category": 4,
     "Nutrients": [
     {"Key": "P", "Unit": "g", "Value": 2.3},
     {"Key": "Potassium", "Unit": "mg", "Value": 362.0},
@@ -31,7 +31,7 @@
     {"Key": "Magnesium", "Unit": "mg", "Value": 138.0}
     ]},
     
-    {"Food Name": "Rice Long-Grain Uncooked", "Category": 4,
+    {"Food Name": "Rice Long-Grain", "Category": 4,
     "Nutrients": [
     {"Key": "Zinc", "Unit": "mg", "Value": 1.02},
     {"Key": "B2 Riboflavin", "Unit": "mg", "Value": 0.05},
@@ -63,7 +63,7 @@
     {"Key": "Calories", "Unit": "kcal", "Value": 374.0}
     ]},
     
-    {"Food Name": "Bulgur Uncooked", "Category": 4,
+    {"Food Name": "Bulgur", "Category": 4,
     "Nutrients": [
     {"Key": "Choline", "Unit": "mg", "Value": 28.1},
     {"Key": "Calories", "Unit": "kcal", "Value": 342.0},
@@ -96,7 +96,7 @@
     {"Key": "Phosphorus", "Unit": "mg", "Value": 300.0}
     ]},
     
-    {"Food Name": "Buckwheat Uncooked", "Category": 4,
+    {"Food Name": "Buckwheat", "Category": 4,
     "Nutrients": [
     {"Key": "Iron", "Unit": "mg", "Value": 2.47},
     {"Key": "LA", "Unit": "g", "Value": 0.766},
@@ -126,7 +126,7 @@
     {"Key": "Carbs", "Unit": "g", "Value": 75.0}
     ]},
     
-    {"Food Name": "Quinoa Uncooked", "Category": 4,
+    {"Food Name": "Quinoa", "Category": 4,
     "Nutrients": [
     {"Key": "ALA", "Unit": "g", "Value": 0.26},
     {"Key": "M", "Unit": "g", "Value": 1.61},
@@ -158,7 +158,7 @@
     {"Key": "B2 Riboflavin", "Unit": "mg", "Value": 0.318}
     ]},
     
-    {"Food Name": "Amaranth Uncooked", "Category": 4,
+    {"Food Name": "Amaranth", "Category": 4,
     "Nutrients": [
     {"Key": "Calcium", "Unit": "mg", "Value": 159.0},
     {"Key": "Phosphorus", "Unit": "mg", "Value": 557.0},
@@ -191,7 +191,7 @@
     {"Key": "Sugar", "Unit": "g", "Value": 1.69}
     ]},
     
-    {"Food Name": "Sorghum Uncooked", "Category": 4,
+    {"Food Name": "Sorghum", "Category": 4,
     "Nutrients": [
     {"Key": "Selenium", "Unit": "µg", "Value": 12.2},
     {"Key": "Magnesium", "Unit": "mg", "Value": 165.0},
@@ -222,7 +222,7 @@
     {"Key": "ALA", "Unit": "g", "Value": 0.065}
     ]},
     
-    {"Food Name": "Barley Uncooked", "Category": 4,
+    {"Food Name": "Barley", "Category": 4,
     "Nutrients": [
     {"Key": "Iron", "Unit": "mg", "Value": 2.5},
     {"Key": "E", "Unit": "mg", "Value": 0.02},
@@ -256,7 +256,7 @@
     {"Key": "K", "Unit": "µg", "Value": 2.2}
     ]},
     
-    {"Food Name": "Millet Uncooked", "Category": 4,
+    {"Food Name": "Millet", "Category": 4,
     "Nutrients": [
     {"Key": "B3 Niacin", "Unit": "mg", "Value": 4.72},
     {"Key": "Calories", "Unit": "kcal", "Value": 378.0},
