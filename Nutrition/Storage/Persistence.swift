@@ -19,7 +19,7 @@ final class PersistenceController: ObservableObject {
 
     init(inMemory: Bool = false, loaded: (() -> Void)? = nil) {
         container = NSPersistentContainer(name: "Nutrition")
-        if inMemory {
+        if inMemory || UserDefaults.standard.bool(forKey: "uitesting") {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         container.loadPersistentStores { (storeDescription, error) in

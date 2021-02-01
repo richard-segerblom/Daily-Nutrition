@@ -36,6 +36,7 @@ struct HomeRegularLayout: View {
                 Group {
                     HorizontalPager(items: consumedStorage.today, title: "CONSUMED TODAY", emptyText: "No food exists",
                                     actionType: .delete) { $0.delete() }
+                        .accessibilityIdentifier("consumedTodayPager")
                     HorizontalPager(items: consumedStorage.latest, title: "RECENT", emptyText: "No recent items exists.",
                                     actionType: .eat) { $0.eat() }                        
                 }.padding(.top)

@@ -61,6 +61,7 @@
 		7998347F25A0BE8B00949A6F /* HorizontalPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998347A25A0BE8B00949A6F /* HorizontalPager.swift */; };
 		7998348225A0BF5300949A6F /* PageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998348125A0BF5300949A6F /* PageItem.swift */; };
 		79A024B725A513CD005D186B /* ReferenceDailyIntake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A024B625A513CD005D186B /* ReferenceDailyIntake.swift */; };
+		79A11EF425C5C7CD00D7C115 /* ConsumingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A11EF325C5C7CD00D7C115 /* ConsumingUITests.swift */; };
 		79A2B645259BC4D600F848DA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A2B644259BC4D600F848DA /* SearchView.swift */; };
 		79A2B648259BC4E900F848DA /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A2B647259BC4E900F848DA /* SearchController.swift */; };
 		79A2B64B259BD47A00F848DA /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A2B64A259BD47A00F848DA /* Food.swift */; };
@@ -104,6 +105,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		79A11EF625C5C7CD00D7C115 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 794103382598DB3900101920 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7941033F2598DB3900101920;
+			remoteInfo = Nutrition;
+		};
 		79C5D94525BB2440002EFB4C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 794103382598DB3900101920 /* Project object */;
@@ -170,6 +178,9 @@
 		7998347A25A0BE8B00949A6F /* HorizontalPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalPager.swift; sourceTree = "<group>"; };
 		7998348125A0BF5300949A6F /* PageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageItem.swift; sourceTree = "<group>"; };
 		79A024B625A513CD005D186B /* ReferenceDailyIntake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceDailyIntake.swift; sourceTree = "<group>"; };
+		79A11EF125C5C7CD00D7C115 /* NutritionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutritionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79A11EF325C5C7CD00D7C115 /* ConsumingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumingUITests.swift; sourceTree = "<group>"; };
+		79A11EF525C5C7CD00D7C115 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79A2B644259BC4D600F848DA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		79A2B647259BC4E900F848DA /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		79A2B64A259BD47A00F848DA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -222,6 +233,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79A11EEE25C5C7CD00D7C115 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		79C5D93D25BB2440002EFB4C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,6 +271,7 @@
 			children = (
 				794103422598DB3900101920 /* Nutrition */,
 				79C5D94125BB2440002EFB4C /* NutritionTests */,
+				79A11EF225C5C7CD00D7C115 /* NutritionUITests */,
 				794103412598DB3900101920 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -262,6 +281,7 @@
 			children = (
 				794103402598DB3900101920 /* Nutrition.app */,
 				79C5D94025BB2440002EFB4C /* NutritionTests.xctest */,
+				79A11EF125C5C7CD00D7C115 /* NutritionUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -456,6 +476,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		79A11EF225C5C7CD00D7C115 /* NutritionUITests */ = {
+			isa = PBXGroup;
+			children = (
+				79A11EF325C5C7CD00D7C115 /* ConsumingUITests.swift */,
+				79A11EF525C5C7CD00D7C115 /* Info.plist */,
+			);
+			path = NutritionUITests;
+			sourceTree = "<group>";
+		};
 		79A2B643259BC4B200F848DA /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -596,6 +625,24 @@
 			productReference = 794103402598DB3900101920 /* Nutrition.app */;
 			productType = "com.apple.product-type.application";
 		};
+		79A11EF025C5C7CD00D7C115 /* NutritionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79A11EFA25C5C7CD00D7C115 /* Build configuration list for PBXNativeTarget "NutritionUITests" */;
+			buildPhases = (
+				79A11EED25C5C7CD00D7C115 /* Sources */,
+				79A11EEE25C5C7CD00D7C115 /* Frameworks */,
+				79A11EEF25C5C7CD00D7C115 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79A11EF725C5C7CD00D7C115 /* PBXTargetDependency */,
+			);
+			name = NutritionUITests;
+			productName = NutritionUITests;
+			productReference = 79A11EF125C5C7CD00D7C115 /* NutritionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		79C5D93F25BB2440002EFB4C /* NutritionTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79C5D94725BB2440002EFB4C /* Build configuration list for PBXNativeTarget "NutritionTests" */;
@@ -626,6 +673,10 @@
 					7941033F2598DB3900101920 = {
 						CreatedOnToolsVersion = 12.3;
 					};
+					79A11EF025C5C7CD00D7C115 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 7941033F2598DB3900101920;
+					};
 					79C5D93F25BB2440002EFB4C = {
 						CreatedOnToolsVersion = 12.3;
 						TestTargetID = 7941033F2598DB3900101920;
@@ -647,6 +698,7 @@
 			targets = (
 				7941033F2598DB3900101920 /* Nutrition */,
 				79C5D93F25BB2440002EFB4C /* NutritionTests */,
+				79A11EF025C5C7CD00D7C115 /* NutritionUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -665,6 +717,13 @@
 				7941034B2598DB3A00101920 /* Preview Assets.xcassets in Resources */,
 				79B2C60825C30BB500325314 /* Nuts.json in Resources */,
 				794103482598DB3A00101920 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79A11EEF25C5C7CD00D7C115 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +810,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79A11EED25C5C7CD00D7C115 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79A11EF425C5C7CD00D7C115 /* ConsumingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		79C5D93C25BB2440002EFB4C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -780,6 +847,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		79A11EF725C5C7CD00D7C115 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7941033F2598DB3900101920 /* Nutrition */;
+			targetProxy = 79A11EF625C5C7CD00D7C115 /* PBXContainerItemProxy */;
+		};
 		79C5D94625BB2440002EFB4C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7941033F2598DB3900101920 /* Nutrition */;
@@ -950,6 +1022,44 @@
 			};
 			name = Release;
 		};
+		79A11EF825C5C7CD00D7C115 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GR4LWKUNJ7;
+				INFOPLIST_FILE = NutritionUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.RichardSegerblom.NutritionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Nutrition;
+			};
+			name = Debug;
+		};
+		79A11EF925C5C7CD00D7C115 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GR4LWKUNJ7;
+				INFOPLIST_FILE = NutritionUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.RichardSegerblom.NutritionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Nutrition;
+			};
+			name = Release;
+		};
 		79C5D94825BB2440002EFB4C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1007,6 +1117,15 @@
 			buildConfigurations = (
 				794103552598DB3A00101920 /* Debug */,
 				794103562598DB3A00101920 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79A11EFA25C5C7CD00D7C115 /* Build configuration list for PBXNativeTarget "NutritionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79A11EF825C5C7CD00D7C115 /* Debug */,
+				79A11EF925C5C7CD00D7C115 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

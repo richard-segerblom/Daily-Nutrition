@@ -14,8 +14,26 @@ struct NutritionApp: App {
     @State var showSplash = true
     
     init() {
+        #if DEBUG
+        UserDefaults.standard.set(false, forKey: "uitesting")
+        if CommandLine.arguments.contains("--uitesting") {
+            print("--uitesting")
+            let defaultsName = Bundle.main.bundleIdentifier!
+            UserDefaults.standard.removePersistentDomain(forName: defaultsName)
+            UserDefaults.standard.set(true, forKey: "uitesting")
+        }
+        #endif
+        
         guard let appController = AppController() else {  fatalError("AppController initialization failed") }
         self.appController = appController
+        
+        #if DEBUG
+        if CommandLine.arguments.contains("-user") {
+            print("-user")
+            let user = User.makeNewUser(age: 36, gender: .man, persistenceController: appController.persitence)
+            appController.user = UserController(persistenceController: appController.persitence, user: user)
+        }
+        #endif
     }
     
     var body: some Scene {

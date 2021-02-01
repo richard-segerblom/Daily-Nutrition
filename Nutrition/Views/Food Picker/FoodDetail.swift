@@ -28,13 +28,14 @@ struct FoodDetail: View {
                     amount = newValue
                     foodController.scale(newValue / 100)
                 }), in: 5...500, step: 5,  minimumValueLabel: Text("5g"), maximumValueLabel: Text("500g")) { Text("Amount") }
-                    .padding(.top, padding)
+                .padding(.top, padding)
+                .accessibility(identifier: "amountPicker")
                 
                 Text("\(amount, specifier: "%.0f")g")
                     .padding(.bottom)
                     .font(.title2)
                                 
-                eatButton
+                eatButton                    
                 
                 Detail(profile: foodController)
                     .padding(.bottom, padding)
