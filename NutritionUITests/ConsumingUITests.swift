@@ -37,7 +37,7 @@ class ConsumingUITests: XCTestCase {
         }
     }
     
-    func test_eatMeal() {
+    func test_eatMeal_fromDetailPage() {
         _ = app.buttons["MEALS"].waitForExistence(timeout: 5)
         app.buttons["MEALS"].tap()
 
@@ -48,6 +48,22 @@ class ConsumingUITests: XCTestCase {
         app.scrollViews.firstMatch.swipeUp()
         app.scrollViews.firstMatch.swipeUp()
         app.scrollViews.otherElements.buttons["EAT"].tap()
+
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            app.navigationBars["_TtGC7SwiftUI19UIHosting"].buttons["clock"].tap()
+            XCTAssertEqual(app.tables.cells.count, 1)
+        } else {
+            XCTAssertEqual(app.collectionViews["consumedTodayPager"].cells.count, 1)
+        }
+    }
+    
+    func test_eatMeal_fromContextMenu() {
+        _ = app.buttons["MEALS"].waitForExistence(timeout: 5)
+        app.buttons["MEALS"].tap()
+
+        _ = app.navigationBars["All Meals"].waitForExistence(timeout: 5)
+        app.tables.element(boundBy: 0).cells.element(boundBy: 0).press(forDuration: 1.5)
+        app.collectionViews.buttons["Eat"].tap()        
 
         if UIDevice.current.userInterfaceIdiom == .phone {
             app.navigationBars["_TtGC7SwiftUI19UIHosting"].buttons["clock"].tap()

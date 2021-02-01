@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790922B925C86A5C00FBF0D9 /* DeletionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790922B825C86A5C00FBF0D9 /* DeletionUITests.swift */; };
 		790A174525A0CD6300B8E5D1 /* ConsumedStorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A174425A0CD6300B8E5D1 /* ConsumedStorageController.swift */; };
 		790A174825A0CF9700B8E5D1 /* Consumed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A174725A0CF9700B8E5D1 /* Consumed.swift */; };
 		790A174B25A0D0E300B8E5D1 /* Eatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A174A25A0D0E300B8E5D1 /* Eatable.swift */; };
@@ -122,6 +123,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		790922B825C86A5C00FBF0D9 /* DeletionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionUITests.swift; sourceTree = "<group>"; };
 		790A174425A0CD6300B8E5D1 /* ConsumedStorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumedStorageController.swift; sourceTree = "<group>"; };
 		790A174725A0CF9700B8E5D1 /* Consumed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consumed.swift; sourceTree = "<group>"; };
 		790A174A25A0D0E300B8E5D1 /* Eatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eatable.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				79A11EF325C5C7CD00D7C115 /* ConsumingUITests.swift */,
+				790922B825C86A5C00FBF0D9 /* DeletionUITests.swift */,
 				79A11EF525C5C7CD00D7C115 /* Info.plist */,
 			);
 			path = NutritionUITests;
@@ -815,6 +818,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79A11EF425C5C7CD00D7C115 /* ConsumingUITests.swift in Sources */,
+				790922B925C86A5C00FBF0D9 /* DeletionUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
